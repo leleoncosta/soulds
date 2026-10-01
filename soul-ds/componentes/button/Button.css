@@ -1,0 +1,237 @@
+/*
+ * Soul DS — Button Component
+ * Variantes: primary, outline, link, toggle, icon
+ * Estados: default, hover, active, disabled
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Hover/active não têm token semântico dedicado no DS — usam filter() sobre a cor base,
+ * em vez de inventar um novo --color-primary-hover inexistente no Figma/tokens.json.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-16);
+
+  border: 2px solid transparent;
+  border-radius: var(--radius-8);
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+
+  cursor: pointer;
+  transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
+  white-space: nowrap;
+  user-select: none;
+
+  outline: none;
+  position: relative;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PRIMARY VARIANT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+.btn--primary:hover:not(:disabled),
+.btn--primary.btn--hover {
+  filter: brightness(0.9);
+}
+
+.btn--primary:active:not(:disabled),
+.btn--primary.btn--active {
+  filter: brightness(0.8);
+  transform: translateY(1px);
+}
+
+.btn--primary:disabled {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+  color: var(--color-muted-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   OUTLINE VARIANT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn--outline:hover:not(:disabled),
+.btn--outline.btn--hover {
+  background-color: var(--color-accent);
+}
+
+.btn--outline:active:not(:disabled),
+.btn--outline.btn--active {
+  background-color: var(--color-accent);
+  filter: brightness(0.95);
+}
+
+.btn--outline:disabled {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-muted-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LINK VARIANT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn--link {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: none;
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--font-size-link);
+
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.btn--link:hover:not(:disabled),
+.btn--link.btn--hover {
+  filter: brightness(0.9);
+  text-decoration-thickness: 2px;
+}
+
+.btn--link:active:not(:disabled),
+.btn--link.btn--active {
+  filter: brightness(0.8);
+}
+
+.btn--link:disabled {
+  color: var(--color-muted-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TOGGLE VARIANT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn--toggle {
+  background-color: var(--color-muted);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+  padding: var(--spacing-12) var(--spacing-16);
+}
+
+.btn--toggle:hover:not(:disabled),
+.btn--toggle.btn--hover {
+  filter: brightness(0.97);
+}
+
+.btn--toggle.btn--active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+.btn--toggle.btn--active:hover:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+.btn--toggle:disabled {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+  color: var(--color-muted-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ICON VARIANT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn--icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  gap: 0;
+  border-radius: 50%;
+
+  background-color: var(--color-muted);
+  color: var(--color-foreground);
+  border-color: transparent;
+}
+
+.btn--icon:hover:not(:disabled),
+.btn--icon.btn--hover {
+  filter: brightness(0.95);
+}
+
+.btn--icon:active:not(:disabled),
+.btn--icon.btn--active {
+  filter: brightness(0.9);
+}
+
+.btn--icon:disabled {
+  background-color: var(--color-muted);
+  color: var(--color-muted-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ICON POSITIONING (works for all variants)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn__icon svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.btn__label {
+  display: inline;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ACCESSIBILITY
+   ───────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+
+  .btn--primary:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .btn {
+    border-width: 3px;
+  }
+
+  .btn:focus-visible {
+    outline-width: 3px;
+  }
+}

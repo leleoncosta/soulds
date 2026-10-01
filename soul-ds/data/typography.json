@@ -1,0 +1,40 @@
+{
+  "$schema": "soul-ds/typography@1",
+  "$description": "Camada de tipografia (coleção 'tipografia' do Figma), resolvida nos 3 modos de família. Corrige 2 bugs reais da Fase 0: Regular apontava para medium (500) em vez de normal (400); o modo Roboto tinha \"roboto\" minúsculo.",
+  "$modoPadrao": "openSans",
+
+  "familia": {
+    "openSans": "fontFamily.openSans",
+    "roboto": "fontFamily.roboto",
+    "inter": "fontFamily.inter"
+  },
+
+  "peso": {
+    "$nota": "Aliases completados nesta fase — o Figma só tinha thin/Regular/Bold/Semibold. Faltavam light/medium/extrabold/black, que existem em tokens.json → fontWeight mas não tinham alias semântico na coleção tipografia.",
+    "thin":       "fontWeight.thin",
+    "light":      "fontWeight.light",
+    "regular": {
+      "$valor": "fontWeight.normal",
+      "$descricao": "CORRIGIDO — Figma apontava para fontWeight.medium (500). \"Regular\" tem que ser 400 (normal), não 500. Achado T1 da Fase 0: todo texto marcado Regular renderizava em Medium."
+    },
+    "medium":     "fontWeight.medium",
+    "semibold":   "fontWeight.semibold",
+    "bold":       "fontWeight.bold",
+    "extrabold":  "fontWeight.extrabold",
+    "black":      "fontWeight.black"
+  },
+
+  "tamanho": {
+    "h1": "fontSize.5xl",
+    "h2": "fontSize.4xl",
+    "h3": "fontSize.3xl",
+    "h4": "fontSize.2xl",
+    "h5": "fontSize.xl",
+    "h6": "fontSize.lg",
+    "body": "fontSize.base",
+    "bodySmall": "fontSize.sm",
+    "caption": "fontSize.xs",
+    "link": "fontSize.base",
+    "button": "fontSize.base"
+  }
+}

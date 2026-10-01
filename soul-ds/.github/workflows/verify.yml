@@ -1,0 +1,55 @@
+name: Soul DS — verify
+
+# Roda em todo push e PR. Não precisa de FIGMA_TOKEN nem de rede — só checa
+# integridade interna dos data/*.json e do motor de validação. Isso é
+# exatamente o que já rodou manualmente ao longo das Fases 1–4; aqui só
+# formaliza como gate obrigatório, não como script que alguém lembra de rodar.
+
+on:
+  push:
+    paths:
+      - 'soul-ds/**'
+  pull_request:
+    paths:
+      - 'soul-ds/**'
+  workflow_dispatch: {}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: soul-ds
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Integridade de ícones (sem rede)
+        run: node scripts/verify-icons.mjs
+
+      - name: Integridade de componentes (sem rede)
+        run: node scripts/verify-components.mjs
+
+      - name: Integridade de tokens (sem rede)
+        run: node scripts/verify-tokens.mjs
+
+      - name: Build do CSS a partir dos tokens
+        run: node scripts/build-css.mjs
+
+      - name: Testes de regressão do motor de validação
+        run: node scripts/test-validate.mjs
+
+      - name: Testes de regressão da migração de espaçamento
+        run: node scripts/test-migrate-spacing.mjs
+
+      - name: Publicar dist/ como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: soul-ds-dist
+          path: |
+            soul-ds/dist/soul-ds.css
+            soul-ds/dist/icons/
+          retention-days: 30

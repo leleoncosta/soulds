@@ -1,0 +1,83 @@
+{
+  "$schema": "soul-ds/rules@1",
+  "$gerado": false,
+  "$fonte": "SKILL.md § 3 (Regras de geração de código) e § 8 (Checklist de qualidade), transformadas em asserção executável. Não duplica dado: a lista de componentes planejados vem de data/components.json em tempo de execução, não é copiada aqui.",
+
+  "tokenProps": {
+    "cor": {
+      "props": ["color", "background", "background-color", "border-color", "outline-color", "fill", "stroke"],
+      "ofensor": "hex",
+      "mensagem": "Use var(--color-*) — nunca cor hardcoded (SKILL.md § 3)."
+    },
+    "espacamento": {
+      "props": ["padding", "margin", "gap", "padding-top", "padding-right", "padding-bottom", "padding-left", "margin-top", "margin-right", "margin-bottom", "margin-left", "row-gap", "column-gap"],
+      "ofensor": "px",
+      "mensagem": "Use var(--spacing-*) — nunca px hardcoded (SKILL.md § 3)."
+    },
+    "radius": {
+      "props": ["border-radius"],
+      "ofensor": "px",
+      "mensagem": "Use var(--radius-*) — nunca border-radius direto (SKILL.md § 3)."
+    },
+    "fonte": {
+      "props": ["font-size"],
+      "ofensor": "px",
+      "mensagem": "Use var(--font-size-*) — nunca fonte hardcoded (SKILL.md § 3)."
+    }
+  },
+
+  "escapeMarker": "[DS-TEMP]",
+  "escapeJanela": 400,
+  "escapeRegra": "Um valor hardcoded ou uma classe de componente planejado só passa se houver um comentário contendo o marcador dentro da janela de caracteres anteriores à ocorrência, com um motivo não vazio depois do marcador.",
+
+  "require": [
+    {
+      "id": "icon-btn-aria-label",
+      "descricao": "Botão cujo único conteúdo é um ícone precisa de aria-label no <button>.",
+      "severidade": "error",
+      "fonte": "SKILL.md § 3 e § 8"
+    },
+    {
+      "id": "icon-decorativo-aria-hidden",
+      "descricao": "Ícone decorativo (sem role=\"img\") precisa de aria-hidden=\"true\" no wrapper .icon.",
+      "severidade": "error",
+      "fonte": "SKILL.md § 3 e § 8"
+    },
+    {
+      "id": "icon-semantico-aria-label",
+      "descricao": "Ícone com role=\"img\" precisa de aria-label no mesmo elemento.",
+      "severidade": "error",
+      "fonte": "SKILL.md § 3 e § 8"
+    },
+    {
+      "id": "input-label-associado",
+      "descricao": "Todo <input> com id precisa de um <label for=\"mesmo-id\"> em algum lugar do arquivo.",
+      "severidade": "error",
+      "fonte": "SKILL.md § 8 e components.json → input.rules.must"
+    },
+    {
+      "id": "svg-inline-currentcolor",
+      "descricao": "SVG inline não pode ter fill/stroke em hex — deve usar currentColor (ícones devem vir de dist/icons/, já normalizados).",
+      "severidade": "error",
+      "fonte": "SKILL.md § 3 e icons.md § Contrato"
+    },
+    {
+      "id": "componente-planejado-sem-marcacao",
+      "descricao": "Classe cujo nome (BEM) corresponde a um componente com status=planned em components.json precisa do comentário [DS-TEMP] com motivo.",
+      "severidade": "error",
+      "fonte": "SKILL.md § 3 (\"Se precisar de algo fora da DS, marque com [DS-TEMP]\") + components.json → planejados"
+    }
+  ],
+
+  "contrasteConhecido": {
+    "$nota": "Não recalcula contraste — cita as razões já medidas na Fase 0 (2026-09-29) contra os valores reais de tokens.css. Ratio abaixo de 4.5 (texto) ou 3.0 (UI) gera aviso, não erro, porque a causa é o token em si, não o arquivo sendo validado.",
+    "pares": [
+      { "id": "muted-foreground-on-background", "tokens": ["--color-muted-foreground", "--color-background"], "ratio": 2.36, "alvo": 4.5, "contexto": "helper text, placeholder, caption, header de tabela — o token mais usado do sistema" },
+      { "id": "border-on-background", "tokens": ["--color-border"], "ratio": 1.39, "alvo": 3.0, "contexto": "borda de input praticamente invisível" },
+      { "id": "info-on-info-background", "tokens": ["--color-info", "--color-info-background"], "ratio": 3.88, "alvo": 4.5, "contexto": ".alert--info" },
+      { "id": "success-on-success-background", "tokens": ["--color-success", "--color-success-background"], "ratio": 2.94, "alvo": 4.5, "contexto": ".alert--success", "shippedEm": "project-root/tokens.css (não migrado)", "corrigido": { "ratio": 4.18, "fonte": "data/tokens.json → color.green.600", "aindaAbaixoDoAlvo": true } },
+      { "id": "warning-on-warning-background", "tokens": ["--color-warning", "--color-warning-background"], "ratio": 3.31, "alvo": 4.5, "contexto": ".alert--warning", "shippedEm": "project-root/tokens.css (não migrado)", "corrigido": { "ratio": 4.42, "fonte": "data/tokens.json → color.orange.600", "aindaAbaixoDoAlvo": true } },
+      { "id": "ring-green-on-background", "tokens": ["--color-ring"], "ratio": 2.88, "alvo": 3.0, "contexto": "foco invisível nos temas Green — tema-dependente, não detectável estaticamente" }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+<!-- Casos que DEVEM disparar erro -->
+<button class="btn btn--icon">
+  <span class="icon icon--md"><svg></svg></span>
+</button>
+
+<span class="icon icon--md">
+  <svg><path fill="#205E7E" d="M1 1"/></svg>
+</span>
+
+<span class="icon icon--md" role="img">
+  <svg><path fill="currentColor" d="M1 1"/></svg>
+</span>
+
+<div class="input-field">
+  <input id="sem-label" class="input-field__input" type="text" />
+</div>
+
+<span class="toast toast--novo">Novo</span>
+
+<!-- Casos que DEVEM passar limpo -->
+<button class="btn btn--icon" aria-label="Excluir item">
+  <span class="icon icon--md" aria-hidden="true"><svg><path fill="currentColor" d="M1 1"/></svg></span>
+</button>
+
+<span class="icon icon--md" role="img" aria-label="Paciente em isolamento">
+  <svg><path fill="currentColor" d="M1 1"/></svg>
+</span>
+
+<div class="input-field">
+  <label class="input-field__label" for="com-label">Nome</label>
+  <input id="com-label" class="input-field__input" type="text" />
+</div>
+
+<!-- [DS-TEMP] toast de contagem não modelado no Figma ainda; ticket DS-88 -->
+<span class="toast toast--contagem">3</span>
+
+<style>
+  /* [DS-TEMP] ajuste fino de 1px pedido pelo design em revisão pontual, ticket DS-91 */
+  .ajuste-fino { margin-top: 1px; }
+</style>

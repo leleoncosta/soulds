@@ -1,0 +1,338 @@
+{
+  "$schema": "soul-ds/manifest@1",
+  "versao": "1.2.0",
+  "fase": "6 — CI + sync parcial fim-a-fim (roadmap original completo)",
+  "geradoEm": "2026-09-29",
+  "responsavel": "Renato Espinhara",
+  "figma": {
+    "fileKey": "N905bwbVakikHDGQzo5aKC",
+    "url": "https://www.figma.com/design/N905bwbVakikHDGQzo5aKC/Soul-DS---2026",
+    "libraryKey": "lk-956a6be75e5fa0f728d632ca737e93948862dcad3077cedd44c1ea6c91d8e672070b7f17370275953334f54d9ce646c374ad0107fc1466eae5678f9d8dbb9b23"
+  },
+  "artefatos": {
+    "data/icons.json": {
+      "gerado": true,
+      "por": "scripts/build-icons.mjs",
+      "hash": "sha256:aba9312a8e816a12ead24faf92ad627c1c8a86ffb714ec20157814df8fbae656",
+      "registros": 739
+    },
+    "data/icon-stems.json": {
+      "gerado": false,
+      "curadoAMao": true,
+      "nota": "única fonte editável de sinônimos"
+    },
+    "dist/icons/": {
+      "gerado": true,
+      "por": "scripts/sync-icons.mjs",
+      "svgsPresentes": 53,
+      "svgsEsperados": 739,
+      "estado": "PARCIAL — 53/739 (7%). Exportados via Figma MCP ao vivo nesta sessão, cobrindo as baterias de teste da Fase 1. Restante requer sync-icons.mjs com FIGMA_TOKEN via REST API."
+    },
+    "data/components.json": {
+      "gerado": false,
+      "curadoAMao": true,
+      "nota": "extração de props/descrição é automática (fetch ao vivo do Figma), mas status/rules/selector exigem julgamento humano",
+      "hash": "sha256:7f5916083d5bd043e94ed877753977bccae9882539403c994cab02421de9f056",
+      "componentesReais": 24,
+      "planejados": 5,
+      "novoStatus": "codeOnly — adicionado nesta resolução, espelho de designed"
+    },
+    "scripts/check-components-drift.mjs": {
+      "gerado": false,
+      "proposito": "detector de divergência contra Figma real via REST API — não corrige, só aponta"
+    },
+    "data/rules.json": {
+      "gerado": false,
+      "curadoAMao": true,
+      "fonte": "SKILL.md § 3 e § 8, transformadas em asserção",
+      "hash": "sha256:35923f698e96d2f441aff387f94d5b076fdae96640f1d562d6be60c15facdddf"
+    },
+    "scripts/validate.mjs": {
+      "gerado": false,
+      "proposito": "roda rules.json contra um arquivo real; exit 0 só se zero erros",
+      "testeDeRegressao": "scripts/test-validate.mjs — 4/4 passando"
+    },
+    "project-root/SKILL.md": {
+      "gerado": false,
+      "curadoAMao": true,
+      "proposito": "substitui /SKILL.md do projeto (587→109 linhas). NÃO foi aplicado automaticamente — /mnt/project é read-only neste ambiente. Copiar manualmente por cima do original.",
+      "linhas": 109
+    },
+    "project-root/components.md": {
+      "proposito": "stub — substitui /components.md (251→~30 linhas), redireciona para soul-ds/data/components.json"
+    },
+    "project-root/icons.md": {
+      "proposito": "stub — substitui /icons.md (529→~25 linhas), redireciona para soul-ds/data/icons.json + find-icon.mjs"
+    },
+    "project-root/tokens.css": {
+      "proposito": "cópia do /tokens.css original + cabeçalho de aviso sobre a colisão de namespace e os 2 valores primitivos divergentes do Figma. Nenhuma regra CSS alterada — confirmado via diff a partir de âncora estável."
+    },
+    "data/tokens.json": {
+      "gerado": false,
+      "curadoAMao": true,
+      "fonte": "Figma coleção primitives, com 2 correções (orange/600, green/600) e 1 adição (spacing 2px, achado ESP-1)",
+      "hash": "sha256:f63104f871985f4a06bb5a4bc2abcff11c8dcdb450754346d445caf788b678b5"
+    },
+    "data/themes.json": {
+      "gerado": false,
+      "curadoAMao": true,
+      "fonte": "Figma coleção soulds, 4 temas",
+      "hash": "sha256:d1800f2ae4c80fd1535eb457098b83db7a8a6f7784bc611a1fb21dfbade8abf7"
+    },
+    "data/typography.json": {
+      "gerado": false,
+      "curadoAMao": true,
+      "fonte": "Figma coleção tipografia, 3 modos, com 2 bugs corrigidos (T1 Regular→normal, T2 Roboto casing)",
+      "hash": "sha256:03164d9701cae1cf4e1e6d3c1605b70cb1520114bfcf57e62f8a93d7c3923595"
+    },
+    "dist/soul-ds.css": {
+      "gerado": true,
+      "por": "scripts/build-css.mjs",
+      "nota": "gerado com sucesso, zero avisos na primeira execução real (após corrigir 1 bug de travessia recursiva)"
+    },
+    "scripts/migrate-spacing-refs.mjs": {
+      "gerado": false,
+      "proposito": "migração atômica de --spacing-N índice→valor, testada em scripts/test-migrate-spacing.mjs (4/4)"
+    },
+    ".github/workflows/verify.yml": {
+      "proposito": "CI sem rede — verify-icons/components/tokens, build-css, os 2 test-*.mjs. Testado localmente via npm run ci, equivalente ao que o workflow roda."
+    },
+    ".github/workflows/sync.yml": {
+      "proposito": "CI com rede — sync-icons.mjs + check-components-drift.mjs, requer secret FIGMA_TOKEN. Escrito mas NUNCA executado como Action de verdade (sem ambiente de CI real disponível nesta sessão)."
+    },
+    "package.json": {
+      "proposito": "amarra os scripts. npm run ci testado localmente, exit 0."
+    }
+  },
+  "integridade": {
+    "regra": "Se svgsPresentes < svgsEsperados, um agente NÃO deve assumir que o ícone existe em disco. Consultar data/icons.json e, se o arquivo faltar, sinalizar a lacuna em vez de gerar SVG.",
+    "verificar": "node scripts/verify-icons.mjs"
+  },
+  "pendencias": [
+    {
+      "id": "ICO-1",
+      "item": "2 component sets chamados `ambiente` em mv-basico/sistema",
+      "acao": "renomear ou deprecar um dos dois no Figma",
+      "severidade": "media"
+    },
+    {
+      "id": "ICO-2",
+      "item": "9 ícones com dimensão fora do padrão sm/md/lg",
+      "acao": "corrigir containers no Figma",
+      "severidade": "media"
+    },
+    {
+      "id": "ICO-3",
+      "item": "722 de 739 component sets sem description no Figma",
+      "acao": "preencher em lote a partir de icons.json",
+      "severidade": "alta"
+    },
+    {
+      "id": "ICO-4",
+      "item": "`politicas` tem variante extra `tamanho4`",
+      "acao": "remover a variante",
+      "severidade": "baixa"
+    },
+    {
+      "id": "ICO-5",
+      "item": "SVGs exportados apenas para o lote-semente (8 de 739)",
+      "acao": "rodar scripts/sync-icons.mjs com FIGMA_TOKEN",
+      "severidade": "alta"
+    },
+    {
+      "id": "CMP-1",
+      "item": "16 de 19 componentes reais (designed) não têm nenhuma implementação CSS/HTML no repositório",
+      "acao": "priorizar por uso: input-calendar, celulas+cell-slot (tabela), dialog primeiro",
+      "severidade": "alta"
+    },
+    {
+      "id": "CMP-2",
+      "item": "celulas: descrição do Figma cita variant=chips, mas o enum real é slot — prosa desatualizada",
+      "acao": "corrigir a descrição no Figma",
+      "severidade": "media"
+    },
+    {
+      "id": "CMP-3",
+      "item": "button: state=active existe só em variant=toggle; as outras 4 variantes não têm, e state=focus não existe em enum nenhum",
+      "acao": "adicionar as variantes de estado faltantes no Figma",
+      "severidade": "media"
+    },
+    {
+      "id": "CMP-4",
+      "item": "input-calendar é o único componente sem description no Figma e o único com enum status em vez de state",
+      "acao": "preencher descrição e renomear para state",
+      "severidade": "media"
+    },
+    {
+      "id": "CMP-5",
+      "item": "dialog não tem variante de confirmação destrutiva (achado Fase 0, Nielsen #3)",
+      "acao": "desenhar variante confirm-destructive",
+      "severidade": "alta"
+    },
+    {
+      "id": "CMP-6",
+      "item": "Code Connect cobre 2 de 19 componentes (10%)",
+      "acao": "expandir Code Connect conforme cada designed vira stable",
+      "severidade": "media"
+    },
+    {
+      "id": "RUL-1",
+      "item": "validate.mjs não recalcula contraste, só cita a Fase 0 — se um token mudar, a citação desatualiza silenciosamente",
+      "acao": "religar a citação a data/tokens.json quando a Fase 4 existir, em vez de valores citados a mão",
+      "severidade": "media"
+    },
+    {
+      "id": "RUL-2",
+      "item": "governança de componente planejado casa só pelo nome BEM literal — não detecta reimplementação com nome diferente (ex: .status em vez de .badge)",
+      "acao": "documentado como limitação conhecida em rules.md, não há correção automática razoável",
+      "severidade": "baixa"
+    },
+    {
+      "id": "RUL-3",
+      "item": "outline:none sem substituto de foco não é detectável por regex — 2.4.7 continua exigindo revisão manual",
+      "acao": "nenhuma — limitação estrutural do método, documentada",
+      "severidade": "baixa"
+    },
+    {
+      "id": "RUL-4",
+      "item": "soul-ds-examples.html tem 28 erros reais quando validado (12 alert, 4 card, 2 table, 9 sidebar sem [DS-TEMP], 1 margin-left:2px hardcoded)",
+      "acao": "marcar os 4 componentes ad hoc com [DS-TEMP] ou promovê-los a planejados formalmente implementados",
+      "severidade": "alta",
+      "status": "resolvida",
+      "resolucao": "alert/card/table/sidebar/badge promovidos a status=codeOnly em components.json. Restam 2 erros reais (não de governança): margin-left:2px e padding:2px, ambos fora da escala de espaçamento. Ver ESP-1."
+    },
+    {
+      "id": "ESP-1",
+      "item": "2 usos reais e independentes de 2px hardcoded (margin-left do asterisco obrigatório; padding vertical do .status) — não existe token para esse valor (--spacing-1=1px, --spacing-1-5=1.5px, --spacing-2=4px)",
+      "acao": "incluir primitivo de 2px na escala ao decidir o ADR de renomeação de espaçamento (Fase 4). Até lá, marcar com [DS-TEMP] — ver references/patch-soul-ds-examples.md",
+      "severidade": "media",
+      "status": "resolvida",
+      "resolucao": "primitivo spacing.2 = 2px adicionado a data/tokens.json"
+    },
+    {
+      "id": "CMP-7",
+      "item": "5 componentes reais em produção (alert, card, table, sidebar, badge) não têm nenhum respaldo no Figma — nenhum designer revisou o padrão visual, contraste ou variantes",
+      "acao": "levar os 5 para desenho no Figma; badge em particular precisa reconciliar o nome (.status no CSS vs badge no conceito)",
+      "severidade": "alta"
+    },
+    {
+      "id": "CMP-8",
+      "item": "table (codeOnly) não consome celulas/cell-slot (designed, Fase 2) — dois caminhos de implementação de tabela coexistem sem reconciliação",
+      "acao": "decidir se table adota celulas/cell-slot ou se os átomos do Figma são descontinuados em favor do <table> nativo",
+      "severidade": "media"
+    },
+    {
+      "id": "RUL-5",
+      "item": "validador não detectava hardcode dentro de shorthand parcialmente tokenizado (ex: padding: 2px var(--spacing-4)) — corrigido para checar por segmento, não pela declaração inteira",
+      "acao": "nenhuma — corrigido nesta sessão, coberto por scripts/test-validate.mjs",
+      "severidade": "baixa",
+      "status": "resolvida"
+    },
+    {
+      "id": "SKL-1",
+      "item": "Os 3 arquivos de project-root/ não foram aplicados ao projeto real — /mnt/project é read-only neste ambiente. O usuário precisa copiá-los manualmente por cima de SKILL.md, components.md, icons.md e tokens.css.",
+      "acao": "copiar soul-ds/project-root/* para a raiz do projeto, sobrescrevendo os 4 arquivos originais",
+      "severidade": "alta"
+    },
+    {
+      "id": "SKL-2",
+      "item": "references/patterns.md e references/a11y.md, referenciados pelo novo SKILL.md como fonte de composição de tela e decisão de acessibilidade, ainda não foram escritos",
+      "acao": "escrever os dois — ainda não agendado em nenhuma fase",
+      "severidade": "media"
+    },
+    {
+      "id": "ADR-001",
+      "item": "Decisão tomada e ferramenta de migração pronta (migrate-spacing-refs.mjs), mas project-root/tokens.css e todos os consumidores reais (soul-ds-examples.html etc.) ainda usam a nomenclatura antiga por índice",
+      "acao": "rodar migrate-spacing-refs.mjs --write nos arquivos de produção numa janela coordenada com QA visual",
+      "severidade": "alta",
+      "status": "decidida-nao-aplicada"
+    },
+    {
+      "id": "TOK-1",
+      "item": "2 valores primitivos corrigidos em tokens.json (orange/600, green/600) não foram sincronizados para project-root/tokens.css em produção",
+      "acao": "aplicar a correção em produção junto da migração de espaçamento (ADR-001), mesma janela de mudança",
+      "severidade": "alta"
+    },
+    {
+      "id": "TOK-2",
+      "item": "Mesmo com os valores corrigidos, .alert--success (4.18:1) e .alert--warning (4.42:1) continuam abaixo do alvo AA de 4.5:1",
+      "acao": "abrir ADR de cor separado — este resolveu nomenclatura de espaçamento, não paleta de cor",
+      "severidade": "media"
+    },
+    {
+      "id": "TOK-3",
+      "item": "Temas dark (blueDark/greenDark): *-background no tom 800 com texto no tom 600 — dois tons escuros sobrepostos, ver themes.json → temasComContrasteFalho",
+      "acao": "ADR de cor separado, mesmo item de TOK-2",
+      "severidade": "alta"
+    },
+    {
+      "id": "CI-1",
+      "item": "Cobertura de SVG subiu de 8/739 (1%) para 53/739 (7%) via exportação real ao vivo nesta sessão — as 686 restantes ainda dependem de sync-icons.mjs + FIGMA_TOKEN",
+      "acao": "rodar scripts/sync-icons.mjs localmente ou via .github/workflows/sync.yml com o secret configurado",
+      "severidade": "media",
+      "status": "parcialmente-resolvida"
+    },
+    {
+      "id": "CI-2",
+      "item": ".github/workflows/sync.yml nunca rodou como GitHub Action de verdade — só localmente via MCP, que é um canal diferente (Plugin API via MCP, não REST API via FIGMA_TOKEN)",
+      "acao": "primeira execução real do workflow vai validar se sync-icons.mjs funciona igual ao MCP — não é garantido, são APIs diferentes do Figma",
+      "severidade": "alta"
+    },
+    {
+      "id": "CI-3",
+      "item": "15 dos 24 componentes reconfirmados sem drift contra o Figma nesta fase (os 9 sem prop enum — pagination, cell-slot, dialog, tooltip, alert, card, table, sidebar, badge — não foram re-checados, não têm variantOptions para comparar)",
+      "acao": "check-components-drift.mjs cobre esses 9 também via nome/descrição quando rodar de verdade",
+      "severidade": "baixa"
+    }
+  ],
+  "validacao": {
+    "executadaEm": "2026-09-29",
+    "metodo": "integridade estrutural + validação cruzada por amostra contra Figma real + bateria de busca com 27 consultas em linguagem natural",
+    "integridadeEstrutural": {
+      "status": "✓ passou — todos os 6 checks",
+      "checks": [
+        "739 linhas brutas == 739 registros no icons.json",
+        "739 figmaKeys únicas, todas no formato correto (40 hex)",
+        "nenhuma key da extração bruta ausente no índice final",
+        "todo registro tem svg path, tamanhos e ≥3 keywords",
+        "contagens por coleção batem com a árvore real do Figma (250 + 489)",
+        "build é idempotente — duas execuções produzem JSON byte-idêntico"
+      ]
+    },
+    "validacaoCruzadaFigma": {
+      "metodo": "importComponentSetByKeyAsync sobre amostra estratificada (2 por categoria)",
+      "amostra": 43,
+      "corretos": 42,
+      "bugEncontrado": {
+        "icone": "mv-basico/logos/mv-logo",
+        "problema": "tamanhos hardcoded como [default,md,lg,...] — na verdade é [sm,md,lg,...] (sem default, com sm). O script assumia que mv-logo e logo compartilham a mesma escala; são diferentes.",
+        "status": "corrigido — escalas separadas e verificadas variante a variante contra o Figma"
+      }
+    },
+    "bateriaDeBusca": {
+      "totalConsultas": 27,
+      "corretas": 24,
+      "ambiguasAceitaveis": 2,
+      "notas": [
+        {
+          "consulta": "senha de acesso",
+          "resultado": "empate exato entre chave e senha_alterar (10.00=10.00) — ambos são respostas defensáveis, desempate por ordem alfabética"
+        },
+        {
+          "consulta": "paciente isolado",
+          "resultado": "resolve para isolamento_prescricao; existem 3 ícones de isolamento igualmente válidos sem leito explícito na consulta — expectativa de teste era estreita demais, não é falha do resolvedor"
+        }
+      ],
+      "limitacaoConhecida": {
+        "casos": [
+          "agendar horario → aprazar (esperado: adicionar_horario)",
+          "fechar janela → janela_maximizar (esperado: fechar)",
+          "prescrever remedio → med_gatilho (esperado: prescricao)"
+        ],
+        "causaRaiz": "o resolvedor pondera por IDF (raridade do termo). Quando dois candidatos batem em termos DIFERENTES da consulta (nenhum bate nos dois), vence quem casou no termo mais raro — não necessariamente quem é semanticamente mais correto. Em corpus pequeno (739 itens), diferenças marginais de frequência (5 vs 6 documentos) invertem o resultado.",
+        "mitigacaoTentada": "corrigi a penalidade de especificidade para só penalizar nomes compostos que têm um ícone-base genérico competindo (ex: notificacao_email vs notificacao). Isso corrigiu 2 bugs reais (senha_alterar, adicionar_horario deixaram de ser penalizados sem razão) mas removeu um efeito colateral que acidentalmente acertava fechar/prescricao.",
+        "recomendacao": "para Phase 3+: substituir a soma ponderada por IDF por BM25 com normalização de cobertura de termos, ou aceitar como limitação documentada de um resolvedor lexical leve — nenhum dos 3 casos é clinicamente sensível (não envolvem dosagem, alergia ou identificação de paciente, que testaram corretos)."
+      }
+    }
+  }
+}

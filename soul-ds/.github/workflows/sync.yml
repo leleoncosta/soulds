@@ -1,0 +1,65 @@
+name: Soul DS — sync com Figma
+
+# Diferente de verify.yml: este workflow PRECISA de rede e do secret
+# FIGMA_TOKEN. Não roda em todo push — só sob demanda ou semanalmente,
+# porque cada execução consome a cota de export da API do Figma e pode
+# levar minutos (739 ícones + 24 componentes).
+#
+# Setup necessário antes do primeiro uso:
+#   Settings → Secrets and variables → Actions → New repository secret
+#   Nome: FIGMA_TOKEN
+#   Valor: token pessoal com escopo file:read (figma.com → Settings → Security)
+
+on:
+  workflow_dispatch:
+    inputs:
+      somenteIcones:
+        description: 'Rodar só sync-icons.mjs (pula o drift-check de componentes)'
+        type: boolean
+        default: false
+  schedule:
+    # toda segunda às 9h UTC — ajustar conforme a cadência real de mudança do Figma
+    - cron: '0 9 * * 1'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: soul-ds
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sincronizar ícones (Figma → raw → SVGs → icons.json)
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+        run: node scripts/sync-icons.mjs
+
+      - name: Checar drift de componentes contra o Figma
+        if: ${{ !inputs.somenteIcones }}
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+        run: node scripts/check-components-drift.mjs
+
+      - name: Verificar integridade após sync
+        run: |
+          node scripts/verify-icons.mjs
+          node scripts/verify-components.mjs
+
+      - name: Abrir PR se algo mudou
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore(soul-ds): sync automático com Figma'
+          title: 'Soul DS — sync automático com Figma'
+          body: |
+            Gerado pelo workflow `sync.yml`. Revisar antes de mergear:
+            - `data/icons.json` e `dist/icons/*.svg` — regenerados
+            - `scripts/check-components-drift.mjs` pode ter apontado divergência
+              em `data/components.json` (ver log do job acima) — esse arquivo é
+              curado à mão e este workflow NÃO o edita automaticamente.
+          branch: soul-ds/sync-automatico
+          labels: soul-ds, automated

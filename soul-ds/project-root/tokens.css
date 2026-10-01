@@ -1,0 +1,506 @@
+/*
+ * Soul DS — Design Tokens
+ * Versão: 1.0.4 · Maio 2026
+ * Fonte: Figma Soul DS - 2026 (sincronizado via MCP · 2026-05-18)
+ * v1.0.2: aliases color/mv/info-foreground e color/mv/error-foreground corrigidos no Figma
+ * v1.0.3: biblioteca de ícones documentada em icons.md (738 ícones · mv-hosp + mv-basico)
+ * v1.0.4: 738 ícones com tamanho=sm/md/lg padronizado — zero issues na varredura
+ *
+ * Como usar:
+ *   Importe este arquivo uma vez no topo do seu CSS principal:
+ *   @import '.claude/soul-ds/tokens.css';
+ *
+ * Temas disponíveis:
+ *   Blue Light (padrão) · Blue Dark · Green Light · Green Dark
+ *   Para trocar de tema, adicione o atributo data-theme no <html>:
+ *   <html data-theme="green-light">
+ */
+
+/*
+ * ── REMEDIADO (v2.0.0, 2026-09-29) — leia antes de copiar este arquivo ──
+ *
+ * Este arquivo já recebeu as 3 correções da auditoria (Fases 0–4):
+ *
+ * 1. Espaçamento renomeado por VALOR, não por índice (ADR-001).
+ *    --spacing-16 agora significa 16px, igual ao Figma — sempre.
+ *    Migrado via scripts/migrate-spacing-refs.mjs (execução real, não
+ *    manual). Primitivo --spacing-2 (2px) adicionado — achado ESP-1.
+ *
+ * 2. --primitive-orange-600 e --primitive-green-600 corrigidos para os
+ *    valores reais do Figma (#CC4705 e #37833A) — ambos agora passam em
+ *    contraste AA 4.5:1 contra o fundo claro; antes, nenhum passava.
+ *
+ * 3. "zero issues" (linha do changelog abaixo, v1.0.4) nunca foi verdade —
+ *    ver soul-ds/data/icons.json → totais.comAnomalia (8 reais) e
+ *    soul-ds/ds.manifest.json → pendencias para o estado completo.
+ *
+ * ⚠ Isto é a cópia em soul-ds/project-root/ — a fonte para você aplicar
+ * por cima do tokens.css real do projeto. Enquanto essa cópia não
+ * acontecer, o arquivo em produção continua na versão antiga, sem estas
+ * 3 correções. Ver soul-ds/scripts/apply-project-root.sh para aplicar as
+ * 4 substituições (SKILL.md, components.md, icons.md, tokens.css) de uma
+ * vez, ou copie manualmente.
+ *
+ * Se algum outro CSS/HTML do projeto usa --spacing-N e ainda não foi
+ * migrado, rode scripts/migrate-spacing-refs.mjs nele ANTES de trocar
+ * este arquivo — nomes antigos e novos colidem com valores diferentes
+ * (--spacing-8 antigo = 16px, novo = 8px). Ver adr-001-spacing.md.
+ * ─────────────────────────────────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PRIMITIVOS — nunca use diretamente em componentes
+   Use sempre os tokens semânticos abaixo
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* Paleta bluesoul */
+  --primitive-bluesoul-50:  #EFFAFC;
+  --primitive-bluesoul-100: #D6F0F7;
+  --primitive-bluesoul-200: #B1E2F0;
+  --primitive-bluesoul-300: #7CCBE4;
+  --primitive-bluesoul-400: #3FACD1;
+  --primitive-bluesoul-500: #238FB7;
+  --primitive-bluesoul-600: #20739A;
+  --primitive-bluesoul-700: #205E7E;
+  --primitive-bluesoul-800: #214B63;
+  --primitive-bluesoul-900: #102A3C;
+
+  /* Paleta greensoul */
+  --primitive-greensoul-50:  #EEFFFA;
+  --primitive-greensoul-100: #C5FFEE;
+  --primitive-greensoul-200: #8BFFE0;
+  --primitive-greensoul-300: #4AFED5;
+  --primitive-greensoul-400: #15ECC1;
+  --primitive-greensoul-500: #00D0AA;
+  --primitive-greensoul-600: #00A88D;
+  --primitive-greensoul-700: #008C77;
+  --primitive-greensoul-800: #06695B;
+  --primitive-greensoul-900: #0A574C;
+
+  /* Paleta neutral */
+  --primitive-neutral-50:  #FAFAFA;
+  --primitive-neutral-100: #F5F5F5;
+  --primitive-neutral-200: #E6E6E6;
+  --primitive-neutral-300: #D6D6D6;
+  --primitive-neutral-400: #A5A5A5;
+  --primitive-neutral-500: #767676;
+  --primitive-neutral-600: #575757;
+  --primitive-neutral-700: #434343;
+  --primitive-neutral-800: #333333;
+  --primitive-neutral-900: #1A1A1A;
+
+  /* Paleta feedback — red */
+  --primitive-red-50:  #FEF2F2;
+  --primitive-red-200: #FCCCCC;
+  --primitive-red-400: #F37676;
+  --primitive-red-600: #D63333;
+  --primitive-red-800: #942020;
+
+  /* Paleta feedback — green */
+  --primitive-green-50:  #E8F5E9;
+  --primitive-green-200: #A5D6A7;
+  --primitive-green-400: #66BB6A;
+  --primitive-green-600: #37833A;  /* corrigido — era #43A047, Figma tinha #37833A (achado Fase 0, TOK-1) */
+  --primitive-green-800: #2E7D32;
+
+  /* Paleta feedback — yellow */
+  --primitive-yellow-50:  #FFFDEB;
+  --primitive-yellow-200: #FFF088;
+  --primitive-yellow-400: #FFD633;
+  --primitive-yellow-600: #DD8802;
+  --primitive-yellow-800: #944A0C;
+
+  /* Paleta feedback — orange (warning) */
+  --primitive-orange-50:  #FFF7ED;
+  --primitive-orange-200: #FFD6A8;
+  --primitive-orange-400: #FF8F37;
+  --primitive-orange-600: #CC4705;  /* corrigido — era #F05406, Figma tinha #CC4705 (achado Fase 0, TOK-1) */
+  --primitive-orange-800: #9E310E;
+
+  /* Paleta feedback — blue (info) */
+  --primitive-blue-50:  #EFF8FF;
+  --primitive-blue-200: #B8E4FF;
+  --primitive-blue-400: #29B6FF;
+  --primitive-blue-600: #0081CE;
+  --primitive-blue-800: #02568A;
+
+  /* Paleta purple */
+  --primitive-purple-50:  #FDF5FE;
+  --primitive-purple-200: #F6D5F9;
+  --primitive-purple-400: #EA87EB;
+  --primitive-purple-600: #C039BE;
+  --primitive-purple-800: #82267E;
+
+  /* Paleta brown */
+  --primitive-brown-50:  #EFEBE9;
+  --primitive-brown-200: #BCAAA4;
+  --primitive-brown-400: #8D6E63;
+  --primitive-brown-600: #6D4C41;
+  --primitive-brown-800: #4E342E;
+
+  /* Spacing */
+  --spacing-0:   0px;
+  --spacing-1:   1px;
+  --spacing-1-5: 1.5px;
+  --spacing-2:   2px;   /* NOVO — achado ESP-1 (Fase 3): 2 usos reais sem token correspondente */
+  --spacing-4:   4px;
+  --spacing-6:   6px;
+  --spacing-8:   8px;
+  --spacing-10:   10px;
+  --spacing-12:   12px;
+  --spacing-14:   14px;
+  --spacing-16:   16px;
+  --spacing-20:  20px;
+  --spacing-24:  24px;
+  --spacing-28:  28px;
+  --spacing-32:  32px;
+  --spacing-36:  36px;
+  --spacing-40:  40px;
+  --spacing-44:  44px;
+  --spacing-48:  48px;
+  --spacing-56:  56px;
+  --spacing-64:  64px;
+  --spacing-80:  80px;
+  --spacing-96:  96px;
+
+  /* Border radius — primitivos */
+  --radius-0:    0px;
+  --radius-2:    2px;
+  --radius-4:    4px;
+  --radius-6:    6px;
+  --radius-8:    8px;
+  --radius-12:   12px;
+  --radius-16:   16px;
+  --radius-full: 9999px;
+
+  /* Border radius — semânticos */
+  --radius-none: 0px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+
+  /* Shadow */
+  --shadow-none: none;
+  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-lg:   0 8px 24px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.10);
+  --shadow-xl:   0 16px 48px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.12);
+
+  /* Border width */
+  --border-width-0: 0px;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+  --border-width-8: 8px;
+
+  /* Typography — tamanhos (fonte: font/size/* do Figma) */
+  --font-size-xs:  10px;   /* font/size/xs  */
+  --font-size-sm:  12px;   /* font/size/sm  */
+  --font-size-base: 14px;  /* font/size/base — body e botões */
+  --font-size-lg:  16px;   /* font/size/lg  */
+  --font-size-xl:  18px;   /* font/size/xl  — H5 */
+  --font-size-2xl: 24px;   /* font/size/2xl — H4 */
+  --font-size-3xl: 30px;   /* font/size/3xl — H3 */
+  --font-size-4xl: 36px;   /* font/size/4xl — H2 */
+  --font-size-5xl: 48px;   /* font/size/5xl — H1 */
+  --font-size-6xl: 60px;
+  --font-size-7xl: 72px;
+  --font-size-8xl: 96px;
+  --font-size-9xl: 128px;
+
+  /* Aliases semânticos (uso em componentes) */
+  --font-size-caption:    var(--font-size-xs);
+  --font-size-body-small: var(--font-size-sm);
+  --font-size-body:       var(--font-size-base);
+  --font-size-button:     var(--font-size-base);
+
+  /* Typography — pesos */
+  --font-weight-thin:       100;
+  --font-weight-extralight: 200;
+  --font-weight-light:      300;
+  --font-weight-regular:    400;
+  --font-weight-medium:     500;
+  --font-weight-semibold:   600;
+  --font-weight-bold:       700;
+  --font-weight-extrabold:  800;
+  --font-weight-black:      900;
+
+  /* Typography — line-height */
+  --line-height-none:    1;      /* display headings */
+  --line-height-tight:   1.25;   /* H1–H3 */
+  --line-height-snug:    1.375;  /* H4–H6 */
+  --line-height-normal:  1.5;    /* body padrão */
+  --line-height-relaxed: 1.625;  /* body-small, captions */
+  --line-height-loose:   2;      /* texto acessível */
+
+  /* Typography — famílias (modes: Open Sans · Roboto · Inter) */
+  --font-family-base:  'Open Sans', system-ui, sans-serif;
+  --font-family-alt:   'Roboto', system-ui, sans-serif;
+  --font-family-inter: 'Inter', system-ui, sans-serif;
+  --font-family-mono:  'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TEMA: Blue Light (padrão)
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root,
+[data-theme="blue-light"] {
+  /* Ação */
+  --color-primary:             var(--primitive-bluesoul-700);   /* #205E7E */
+  --color-primary-foreground:  #FFFFFF;
+  --color-secondary:           var(--primitive-greensoul-700);  /* #008C77 */
+  --color-secondary-foreground: #FFFFFF;
+
+  /* Superfície */
+  --color-background:          var(--primitive-neutral-50);     /* #FAFAFA */
+  --color-foreground:          var(--primitive-neutral-800);    /* #333333 */
+
+  --color-card:                var(--primitive-neutral-50);     /* #FAFAFA */
+  --color-card-foreground:     var(--primitive-neutral-800);    /* #333333 */
+
+  --color-popover:             #FFFFFF;
+  --color-popover-foreground:  var(--primitive-neutral-800);    /* #333333 */
+
+  /* Muted */
+  --color-muted:               var(--primitive-neutral-200);    /* #E6E6E6 */
+  --color-muted-foreground:    var(--primitive-neutral-400);    /* #A5A5A5 */
+
+  /* Accent */
+  --color-accent:              var(--primitive-bluesoul-50);    /* #EFFAFC */
+  --color-accent-foreground:   var(--primitive-bluesoul-800);   /* #214B63 */
+
+  /* Controles */
+  --color-border:              var(--primitive-neutral-300);    /* #D6D6D6 */
+  --color-input:               var(--primitive-neutral-50);     /* #FAFAFA */
+  --color-ring:                var(--primitive-bluesoul-600);   /* #20739A */
+
+  /* Sidebar */
+  --color-sidebar-background:  var(--primitive-neutral-100);   /* #F5F5F5 */
+  --color-sidebar-foreground:  var(--primitive-neutral-700);   /* #434343 */
+
+  /* Destrutivo */
+  --color-destructive:         var(--primitive-red-600);        /* #D63333 */
+  --color-destructive-foreground: #FFFFFF;
+
+  /* Feedback */
+  --color-error:               var(--primitive-red-600);        /* #D63333 */
+  --color-error-foreground:    #FFFFFF;
+  --color-error-background:    var(--primitive-red-50);         /* #FEF2F2 */
+
+  --color-success:             var(--primitive-green-600);      /* #37833A */
+  --color-success-foreground:  #FFFFFF;
+  --color-success-background:  var(--primitive-green-50);       /* #E8F5E9 */
+
+  --color-warning:             var(--primitive-orange-600);     /* #CC4705 */
+  --color-warning-foreground:  #FFFFFF;
+  --color-warning-background:  var(--primitive-orange-50);      /* #FFF7ED */
+
+  --color-info:                var(--primitive-blue-600);       /* #0081CE */
+  --color-info-foreground:     #FFFFFF;
+  --color-info-background:     var(--primitive-blue-50);        /* #EFF8FF */
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TEMA: Blue Dark
+   ───────────────────────────────────────────────────────────────────────── */
+
+[data-theme="blue-dark"] {
+  --color-primary:             var(--primitive-bluesoul-600);   /* #20739A */
+  --color-primary-foreground:  #FFFFFF;
+  --color-secondary:           var(--primitive-greensoul-600);  /* #00A88D */
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-background:          var(--primitive-neutral-800);    /* #333333 */
+  --color-foreground:          #FFFFFF;
+
+  --color-card:                var(--primitive-neutral-900);    /* #1A1A1A */
+  --color-card-foreground:     #FFFFFF;
+
+  --color-popover:             var(--primitive-neutral-800);    /* #333333 */
+  --color-popover-foreground:  #FFFFFF;
+
+  --color-muted:               var(--primitive-neutral-200);    /* #E6E6E6 */
+  --color-muted-foreground:    var(--primitive-neutral-400);    /* #A5A5A5 */
+
+  --color-accent:              var(--primitive-bluesoul-50);    /* #EFFAFC */
+  --color-accent-foreground:   var(--primitive-bluesoul-600);   /* #20739A */
+
+  --color-border:              var(--primitive-neutral-300);    /* #D6D6D6 */
+  --color-input:               var(--primitive-neutral-700);    /* #434343 */
+  --color-ring:                var(--primitive-bluesoul-600);   /* #20739A */
+
+  --color-sidebar-background:  var(--primitive-neutral-100);   /* #F5F5F5 */
+  --color-sidebar-foreground:  var(--primitive-neutral-700);   /* #434343 */
+
+  --color-destructive:         var(--primitive-red-600);
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-error:               var(--primitive-red-600);
+  --color-error-foreground:    #FFFFFF;
+  --color-error-background:    var(--primitive-red-800);
+
+  --color-success:             var(--primitive-green-600);
+  --color-success-foreground:  #FFFFFF;
+  --color-success-background:  var(--primitive-green-800);
+
+  --color-warning:             var(--primitive-orange-600);
+  --color-warning-foreground:  #FFFFFF;
+  --color-warning-background:  var(--primitive-orange-800);
+
+  --color-info:                var(--primitive-blue-600);
+  --color-info-foreground:     #FFFFFF;
+  --color-info-background:     var(--primitive-blue-800);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TEMA: Green Light
+   ───────────────────────────────────────────────────────────────────────── */
+
+[data-theme="green-light"] {
+  --color-primary:             var(--primitive-greensoul-700);  /* #008C77 */
+  --color-primary-foreground:  #FFFFFF;
+  --color-secondary:           var(--primitive-bluesoul-700);   /* #205E7E */
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-background:          var(--primitive-neutral-50);     /* #FAFAFA */
+  --color-foreground:          var(--primitive-neutral-800);    /* #333333 */
+
+  --color-card:                var(--primitive-neutral-50);     /* #FAFAFA */
+  --color-card-foreground:     var(--primitive-neutral-800);    /* #333333 */
+
+  --color-popover:             #FFFFFF;
+  --color-popover-foreground:  var(--primitive-neutral-800);
+
+  --color-muted:               var(--primitive-neutral-200);    /* #E6E6E6 */
+  --color-muted-foreground:    var(--primitive-neutral-400);    /* #A5A5A5 */
+
+  --color-accent:              var(--primitive-greensoul-50);   /* #EEFFFA */
+  --color-accent-foreground:   var(--primitive-greensoul-700);  /* #008C77 */
+
+  --color-border:              var(--primitive-neutral-300);    /* #D6D6D6 */
+  --color-input:               var(--primitive-neutral-50);     /* #FAFAFA */
+  --color-ring:                var(--primitive-greensoul-600);  /* #00A88D */
+
+  --color-sidebar-background:  var(--primitive-neutral-100);
+  --color-sidebar-foreground:  var(--primitive-neutral-700);
+
+  --color-destructive:         var(--primitive-red-600);
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-error:               var(--primitive-red-600);
+  --color-error-foreground:    #FFFFFF;
+  --color-error-background:    var(--primitive-red-50);
+
+  --color-success:             var(--primitive-green-600);
+  --color-success-foreground:  #FFFFFF;
+  --color-success-background:  var(--primitive-green-50);
+
+  --color-warning:             var(--primitive-orange-600);
+  --color-warning-foreground:  #FFFFFF;
+  --color-warning-background:  var(--primitive-orange-50);
+
+  --color-info:                var(--primitive-blue-600);
+  --color-info-foreground:     #FFFFFF;
+  --color-info-background:     var(--primitive-blue-50);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TEMA: Green Dark
+   ───────────────────────────────────────────────────────────────────────── */
+
+[data-theme="green-dark"] {
+  --color-primary:             var(--primitive-greensoul-600);  /* #00A88D */
+  --color-primary-foreground:  #FFFFFF;
+  --color-secondary:           var(--primitive-bluesoul-600);   /* #20739A */
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-background:          var(--primitive-neutral-800);    /* #333333 */
+  --color-foreground:          #FFFFFF;
+
+  --color-card:                var(--primitive-neutral-900);    /* #1A1A1A */
+  --color-card-foreground:     #FFFFFF;
+
+  --color-popover:             var(--primitive-neutral-800);
+  --color-popover-foreground:  #FFFFFF;
+
+  --color-muted:               var(--primitive-neutral-200);
+  --color-muted-foreground:    var(--primitive-neutral-400);
+
+  --color-accent:              var(--primitive-greensoul-50);   /* #EEFFFA */
+  --color-accent-foreground:   var(--primitive-greensoul-700);  /* #008C77 */
+
+  --color-border:              var(--primitive-neutral-300);
+  --color-input:               var(--primitive-neutral-700);    /* #434343 */
+  --color-ring:                var(--primitive-greensoul-600);  /* #00A88D */
+
+  --color-sidebar-background:  var(--primitive-neutral-100);
+  --color-sidebar-foreground:  var(--primitive-neutral-700);
+
+  --color-destructive:         var(--primitive-red-600);
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-error:               var(--primitive-red-600);
+  --color-error-foreground:    #FFFFFF;
+  --color-error-background:    var(--primitive-red-800);
+
+  --color-success:             var(--primitive-green-600);
+  --color-success-foreground:  #FFFFFF;
+  --color-success-background:  var(--primitive-green-800);
+
+  --color-warning:             var(--primitive-orange-600);
+  --color-warning-foreground:  #FFFFFF;
+  --color-warning-background:  var(--primitive-orange-800);
+
+  --color-info:                var(--primitive-blue-600);
+  --color-info-foreground:     #FFFFFF;
+  --color-info-background:     var(--primitive-blue-800);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE RESET — aplica tokens globalmente
+   ───────────────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografia base — escalas do Figma */
+h1 { font-size: var(--font-size-5xl); font-weight: var(--font-weight-bold);     line-height: var(--line-height-tight); }
+h2 { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold);     line-height: var(--line-height-tight); }
+h3 { font-size: var(--font-size-3xl); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
+h4 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); line-height: var(--line-height-snug); }
+h5 { font-size: var(--font-size-xl);  font-weight: var(--font-weight-medium);   line-height: var(--line-height-snug); }
+h6 { font-size: var(--font-size-lg);  font-weight: var(--font-weight-medium);   line-height: var(--line-height-normal); }
+
+p         { font-size: var(--font-size-base); line-height: var(--line-height-normal); }
+small,
+.text-sm  { font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.text-xs  { font-size: var(--font-size-xs); line-height: var(--line-height-relaxed); }
+.text-muted { color: var(--color-muted-foreground); }
+
+/* Focus ring global */
+:focus-visible {
+  outline: var(--border-width-2) solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+/* Divider */
+.divider     { border: none; border-top: var(--border-width-1) solid var(--color-border); margin: 0; }
+.divider--sm { margin-block: var(--spacing-8); }
+.divider--md { margin-block: var(--spacing-16); }
+.divider--lg { margin-block: var(--spacing-32); }

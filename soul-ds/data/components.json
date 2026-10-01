@@ -1,0 +1,568 @@
+{
+  "$schema": "soul-ds/components@1",
+  "$gerado": "curado manualmente a partir de fetch ao vivo do Figma em 2026-09-29 — ver ds.manifest.json → figma para o fileKey. Não é gerado por script (diferente de icons.json): a extração de props/descrição é automática, mas status, rules e selector exigem julgamento humano. Rode scripts/check-components-drift.mjs para detectar quando este arquivo ficar desatualizado em relação ao Figma.",
+
+  "contrato": {
+    "regra": "status decide o que fazer. 'stable' = existe em código, use. 'designed' = existe no Figma, sem código — implemente a partir de props/tokens, não do zero. 'codeOnly' = existe em código de produção, sem respaldo no Figma — use, mas trate como pendência de documentação/desenho. 'planned' = não existe. Use o equivalente HTML nativo com [DS-TEMP].",
+    "statusEnum": ["stable", "designed", "codeOnly", "beta", "planned", "deprecated"],
+    "atomicEnum": ["atom", "molecule", "organism", "template", "page"],
+    "regraCritica": "Nunca reimplemente um componente com status 'stable' ou 'designed' do zero. A doc 1.0.x listava 13 destes 19 como 'planejados v1.1' — esse erro é a razão deste arquivo existir."
+  },
+
+  "componentes": {
+
+    "button": {
+      "status": "stable",
+      "atomic": "atom",
+      "figma": { "key": "81b394b69c15bbdd3e38e24a999be32fb8ca38d3", "nodeId": "107:501", "pagina": "↪ botão" },
+      "codeConnect": "button.figma.js",
+      "selector": ".btn",
+      "descricao": "Ação principal da interface. Use para disparar eventos, enviar formulários ou navegar entre telas.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["primary", "outline", "link", "toggle", "icon"], "css": ".btn--{value}" },
+        "state": { "tipo": "enum", "valores": ["default", "hover", "active", "disabled"], "css": { "hover": ":hover", "disabled": "[disabled]" } },
+        "label": { "tipo": "text", "figmaProp": "Label#107:7" },
+        "iconLeft": { "tipo": "boolean", "figmaProp": "icon left#107:5" },
+        "iconRight": { "tipo": "boolean", "figmaProp": "icon right#107:6" },
+        "icones": { "tipo": "instanceSwap", "figmaProp": "Icones#107:4" }
+      },
+      "rules": {
+        "must": [
+          "Estilizar :focus-visible em todo estado interativo",
+          "icon (sem label) sempre precisa de aria-label no elemento",
+          "Desabilitar via state=disabled, nunca ocultando o botão"
+        ],
+        "mustNot": [
+          "Mais de 1 variant=primary por área visível",
+          "Dois botões primary lado a lado — o segundo deve ser outline",
+          "Desabilitar sem fornecer feedback de por quê"
+        ]
+      },
+      "a11y": { "wcag": ["2.4.7", "4.1.2", "2.5.8"] },
+      "tokenAdoption": { "fills": "53/53", "texto": "13/13", "padding": "16/46" },
+      "pendencias": [
+        "Figma não tem state=focus no enum — designers não conseguem especificar foco explicitamente, só o CSS implementa via :focus-visible",
+        "state=active ausente em 4 das 5 variants (primary, outline, link, icon) — só toggle tem",
+        "btn--destructive existe no CSS e no soul-ds-examples.html mas não existe como variant no Figma"
+      ]
+    },
+
+    "input": {
+      "status": "stable",
+      "atomic": "atom",
+      "figma": { "key": "185b014e9a7c4b0cb2db04d33f67610d98389816", "nodeId": "225:7164", "pagina": "↪ inputs" },
+      "codeConnect": "input.figma.js",
+      "selector": ".input-field",
+      "descricao": "Campo de entrada de texto. Suporta label, placeholder, ícone, hint e validação.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["text", "placeholder"] },
+        "state": { "tipo": "enum", "valores": ["default", "focus", "error", "disabled"], "css": { "error": "[data-state=\"error\"]", "disabled": "[disabled]" } },
+        "label": { "tipo": "text" },
+        "obrigatorio": { "tipo": "boolean", "figmaProp": "obrigatório#225:22" },
+        "hasLabel": { "tipo": "boolean", "figmaProp": "has Label#256:30" },
+        "icone": { "tipo": "boolean", "figmaProp": "icone#225:24" },
+        "hint": { "tipo": "boolean", "figmaProp": "hint#225:26" },
+        "textoAuxiliar": { "tipo": "text", "figmaProp": "Texto auxiliar#225:25" },
+        "icon": { "tipo": "instanceSwap", "figmaProp": "Icon#258:39" }
+      },
+      "rules": {
+        "must": [
+          "Sempre exibir label visível",
+          "state=error sempre com Texto auxiliar explicando o problema, role=\"alert\"",
+          "obrigatorio=true + required + aria-required=\"true\""
+        ],
+        "mustNot": ["Usar placeholder como substituto de label"]
+      },
+      "a11y": { "wcag": ["1.3.1", "3.3.1", "3.3.2", "4.1.2"] },
+      "tokenAdoption": { "fills": "48/48", "texto": "24/24", "padding": "8/24" },
+      "pendencias": []
+    },
+
+    "check": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "4a88873f80a8c687dc82882c37118c57485a5b45", "nodeId": "325:272", "pagina": "↪ inputs" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Seleção múltipla independente. Cada checkbox opera de forma autônoma.",
+      "props": {
+        "selected": { "tipo": "enum", "valores": ["true", "false"] },
+        "size": { "tipo": "enum", "valores": ["sm", "md", "lg"] }
+      },
+      "rules": {
+        "must": ["Usar quando o usuário pode selecionar zero, um ou vários itens de uma lista"],
+        "mustNot": ["Usar para seleção exclusiva — nesse caso usar radio"]
+      },
+      "a11y": { "wcag": ["4.1.2", "2.5.8"], "nota": "usar <input type=\"checkbox\"> nativo + <label> até existir CSS próprio — ver planejados/checkbox no README para o mapeamento" },
+      "tokenAdoption": { "fills": "9/9", "texto": "0/0", "padding": "0/9" },
+      "pendencias": ["Sem implementação CSS/HTML — nenhum consumidor no repositório ainda"]
+    },
+
+    "radio": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "9b6ce29f4c27879687545cc5b1a6e41373467d5a", "nodeId": "325:297", "pagina": "↪ inputs" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Seleção exclusiva dentro de um grupo. Apenas um item pode estar selecionado por vez.",
+      "props": {
+        "selected": { "tipo": "enum", "valores": ["true", "false"] },
+        "size": { "tipo": "enum", "valores": ["sm", "md", "lg"] }
+      },
+      "rules": {
+        "must": ["Agrupar sempre dois ou mais radio buttons dentro de <fieldset>"],
+        "mustNot": ["Usar um único radio isolado", "Usar para mais de 5 opções — nesse caso preferir select"]
+      },
+      "a11y": { "wcag": ["4.1.2", "2.5.8"], "nota": "usar <input type=\"radio\"> + <fieldset> + <legend> nativos até existir CSS próprio" },
+      "tokenAdoption": { "fills": "6/6", "texto": "0/0", "padding": "0/3" },
+      "pendencias": ["Sem implementação CSS/HTML — nenhum consumidor no repositório ainda"]
+    },
+
+    "switch": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "fceac3c7dc40876cef33d227b25bd58dfb21ecf2", "nodeId": "355:277", "pagina": "↪ inputs" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Controle de alternância binária com efeito imediato. Liga/desliga uma configuração sem necessidade de confirmação.",
+      "props": {
+        "selected": { "tipo": "enum", "valores": ["true", "false"] },
+        "state": { "tipo": "enum", "valores": ["default", "disabled"] },
+        "icon": { "tipo": "boolean", "figmaProp": "Icon#355:6" }
+      },
+      "rules": {
+        "must": ["Acompanhar sempre de label descritivo à esquerda ou acima"],
+        "mustNot": [
+          "Usar para configurações que exigem confirmação/submit — nesse caso usar checkbox",
+          "Usar como substituto de checkbox em formulários com botão salvar"
+        ]
+      },
+      "a11y": { "wcag": ["4.1.2"], "nota": "role=\"switch\" + aria-checked — não documentado no Figma, mas obrigatório na implementação" },
+      "tokenAdoption": { "fills": "12/12", "texto": "0/0", "padding": "0/20" },
+      "pendencias": ["Sem implementação CSS/HTML — nenhum consumidor no repositório ainda"]
+    },
+
+    "input-calendar": {
+      "status": "beta",
+      "atomic": "molecule",
+      "figma": { "key": "1eb304e7dd5f63cea3e3918f96d88e526013c7ea", "nodeId": "534:2267", "pagina": "↪ inputs" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": null,
+      "props": {
+        "status": { "tipo": "enum", "valores": ["ativo", "inativo"], "nota": "único componente do sistema com enum de estado chamado status em vez de state — inconsistência de nomenclatura" }
+      },
+      "rules": {
+        "must": ["Combinar com calendario para seleção de data — inferido da composição do nome; não há Diretrizes no Figma para confirmar"],
+        "mustNot": []
+      },
+      "a11y": { "wcag": [] },
+      "tokenAdoption": { "fills": "116/116", "texto": "56/56", "padding": "2/12" },
+      "pendencias": [
+        "Sem descrição no Figma — único componente real sem description preenchida",
+        "Prop de estado usa nome status em vez de state, único caso na DS",
+        "Sem implementação CSS/HTML"
+      ]
+    },
+
+    "aba": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "adc971279dd03c2039bc3fb7b853fcf0b755ab3b", "nodeId": "219:1146", "pagina": "↪ abas" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Item individual de navegação por abas. Sempre utilizado dentro de um grupo de abas.",
+      "props": {
+        "state": { "tipo": "enum", "valores": ["default", "active"] },
+        "label": { "tipo": "text", "figmaProp": "Label#225:9" }
+      },
+      "rules": {
+        "must": ["A aba ativa deve sempre estar visível e não rolável fora da viewport"],
+        "mustNot": ["Usar uma aba isolada — sempre agrupar duas ou mais", "Mais de 7 abas — acima disso, usar dropdown ou menu lateral"]
+      },
+      "a11y": { "wcag": ["4.1.2"], "nota": "padrão role=\"tablist\" + role=\"tab\" + role=\"tabpanel\" não documentado no Figma, obrigatório na implementação" },
+      "tokenAdoption": { "fills": "4/4", "texto": "2/2", "padding": "0/2" },
+      "pendencias": ["Sem implementação CSS/HTML", "Sem estado de foco documentado"]
+    },
+
+    "avatar": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "90df29f78847e1f6db0cab15687bb8396eb10d32", "nodeId": "118:155", "pagina": "↪ avatar" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Representação visual do usuário. Exibe foto de perfil ou ícone substituto.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["image", "icon"] },
+        "nome": { "tipo": "text", "figmaProp": "Nome#225:0" },
+        "info": { "tipo": "text", "figmaProp": "Info#225:3" },
+        "textos": { "tipo": "boolean", "figmaProp": "Textos#225:6", "descricao": "exibe nome e info ao lado" }
+      },
+      "rules": {
+        "must": ["variant=icon como fallback automático para usuários sem foto"],
+        "mustNot": ["variant=image sem a URL da foto validada"]
+      },
+      "a11y": { "wcag": ["1.1.1"], "nota": "alt descritivo obrigatório em variant=image" },
+      "tokenAdoption": { "fills": "6/7", "texto": "3/4", "padding": "2/4" },
+      "pendencias": ["Sem implementação CSS/HTML"]
+    },
+
+    "breadcrumb": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "e545b185c70c9c955f5ed9bcc941f4c10e475edd", "nodeId": "225:6538", "pagina": "↪ breadcrumbs" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Item de trilha de navegação hierárquica. Indica a posição do usuário dentro da estrutura do produto.",
+      "props": {
+        "state": { "tipo": "enum", "valores": ["default", "active"] },
+        "nomePagina": { "tipo": "text", "figmaProp": "Nome página#225:12" }
+      },
+      "rules": {
+        "must": ["Último item da trilha sempre com state=active, não clicável"],
+        "mustNot": ["Exibir breadcrumb em telas de nível 1 (home/dashboard)"]
+      },
+      "a11y": { "wcag": ["4.1.2"], "nota": "envolver em <nav aria-label=\"breadcrumb\"><ol>" },
+      "tokenAdoption": { "fills": "4/4", "texto": "2/2", "padding": "0/4" },
+      "pendencias": ["Sem implementação CSS/HTML"]
+    },
+
+    "chips": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "fe85b1daedac49cd71bcd7cf537d914923ca341c", "nodeId": "332:510", "pagina": "↪ chips" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Marcador compacto de categoria, status ou filtro ativo.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["default", "success", "warning", "info", "danger"] },
+        "texto": { "tipo": "text", "figmaProp": "Texto chips#332:12" },
+        "iconLeft": { "tipo": "boolean", "figmaProp": "icon left#351:0" },
+        "iconRight": { "tipo": "boolean", "figmaProp": "icon right#332:13" }
+      },
+      "rules": {
+        "must": ["success/warning/danger para comunicar status de registros ou alertas"],
+        "mustNot": ["Mais de 3 chips por célula de tabela — acima disso, usar ícone com tooltip"]
+      },
+      "a11y": { "wcag": ["1.4.1"], "nota": "cor não pode ser o único diferenciador — acompanhar de texto ou ícone" },
+      "tokenAdoption": { "fills": "20/20", "texto": "5/5", "padding": "0/15" },
+      "pendencias": ["Sem implementação CSS/HTML"]
+    },
+
+    "dots": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "eb0e9a3a7544eb01a111d6473c206056c2d7313c", "nodeId": "337:717", "pagina": "↪ paginação" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Indicador de paginação por pontos. Representa a posição atual em um conjunto de páginas ou slides.",
+      "props": { "state": { "tipo": "enum", "valores": ["default", "active"] } },
+      "rules": {
+        "must": ["Usar em carrosséis, wizards e paginações com até 10 itens"],
+        "mustNot": ["Usar acima de 10 páginas — preferir paginação numérica (componente pagination)"]
+      },
+      "a11y": { "wcag": [] },
+      "tokenAdoption": { "fills": "2/2", "texto": "0/0", "padding": "0/2" },
+      "pendencias": ["Sem implementação CSS/HTML", "Consumido como slot pelo componente pagination — não é standalone"]
+    },
+
+    "pagination": {
+      "status": "designed",
+      "atomic": "molecule",
+      "figma": { "key": "d06dec5da9dad9763d4f0b82137cb2ba85572ad6", "nodeId": "338:755", "pagina": "↪ paginação" },
+      "codeConnect": null,
+      "selector": ".pagination",
+      "descricao": "Navegação entre páginas de uma listagem ou tabela.",
+      "props": {
+        "anterior": { "tipo": "text", "figmaProp": "Anterior#338:14" },
+        "proximo": { "tipo": "text", "figmaProp": "Próximo#338:15" },
+        "textoEsquerdo": { "tipo": "boolean", "figmaProp": "Texto esquerdo#338:17" },
+        "textoDireito": { "tipo": "boolean", "figmaProp": "Texto Direito#338:16" },
+        "slotDots": { "tipo": "slot", "figmaProp": "Slot - dots#404:0", "recebe": "dots" }
+      },
+      "rules": {
+        "must": ["Sempre exibir o total: \"1–20 de N resultados\"", "Usar sempre que lista tiver > 20 itens"],
+        "mustNot": ["Ocultar os botões Anterior/Próximo na primeira/última página — usar state=disabled"]
+      },
+      "a11y": { "wcag": ["2.4.7", "4.1.2"], "nota": "<nav aria-label=\"Paginação\">, aria-current=\"page\" no item ativo" },
+      "tokenAdoption": { "fills": "5/5", "texto": "2/2", "padding": "0/5" },
+      "pendencias": ["Existe CSS (.pagination) em soul-ds-examples.html mas sem Code Connect e sem consumir o slot dots explicitamente"]
+    },
+
+    "celulas": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "6f7adc2630819e928a4d61137e8fe6e456a45394", "nodeId": "321:48", "pagina": "↪ grid (tabela)" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Célula reutilizável para composição de tabelas e grids de dados.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["header", "check", "slot", "default", "icons"] },
+        "label": { "tipo": "text", "figmaProp": "Label#321:0" },
+        "iconEsquerda": { "tipo": "boolean", "figmaProp": "icon esquerda#321:3" },
+        "iconDireita": { "tipo": "boolean", "figmaProp": "icon direita#321:6" }
+      },
+      "rules": {
+        "must": ["variant=header na primeira linha de toda tabela, com label descritivo da coluna", "variant=check apenas na coluna de seleção múltipla"],
+        "mustNot": ["icon esquerda e icon direita simultâneos em variant=default"]
+      },
+      "a11y": { "wcag": ["1.3.1"], "nota": "variant=header deve virar <th scope=\"col\">" },
+      "tokenAdoption": { "fills": "8/8", "texto": "2/2", "padding": "0/11" },
+      "pendencias": [
+        "A descrição do componente menciona 'variant=chips a uma coluna de status por tabela', mas o enum real no Figma não tem valor chips — tem slot. Divergência entre prosa e dado; a prosa provavelmente não foi atualizada quando a variante foi renomeada."
+      ]
+    },
+
+    "cell-slot": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "69abe17a48f28daece0f424f44e02c6492daa92e", "nodeId": "323:176", "pagina": "↪ grid (tabela)" },
+      "codeConnect": null,
+      "selector": ".cell-slot",
+      "descricao": "Contêiner de slot genérico usado internamente pelo componente celulas.",
+      "props": { "slot": { "tipo": "slot", "figmaProp": "slot#323:9" } },
+      "rules": { "must": [], "mustNot": ["Usar isoladamente fora do contexto de celulas — é um átomo de composição interna, não standalone"] },
+      "a11y": { "wcag": [] },
+      "tokenAdoption": { "fills": "0/0", "texto": "0/0", "padding": "0/0" },
+      "pendencias": ["Interno — não expor como componente selecionável em UI de composição"]
+    },
+
+    "historico": {
+      "status": "designed",
+      "atomic": "molecule",
+      "figma": { "key": "17b92f888a82d9411f8d46e0d2a65d44ccb5b60a", "nodeId": "366:213", "pagina": "↪ historico" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Linha de histórico ou timeline de eventos. Exibe registros ordenados cronologicamente.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["top", "base"], "nota": "top = primeiro/intermediário com linha conectora; base = último item, fecha a timeline" },
+        "label": { "tipo": "text" },
+        "labelBase": { "tipo": "text", "figmaProp": "Label base#366:18" },
+        "textoBase": { "tipo": "text", "figmaProp": "Texto base#366:21" },
+        "icon1": { "tipo": "instanceSwap", "figmaProp": "Icon 1#366:3" },
+        "icon2": { "tipo": "instanceSwap", "figmaProp": "Icon 2#366:6" },
+        "iconBase": { "tipo": "instanceSwap", "figmaProp": "Icon base#366:15" },
+        "mostrarIcon1": { "tipo": "boolean", "figmaProp": "Mostrar icon 1#366:9" },
+        "mostrarIcon2": { "tipo": "boolean", "figmaProp": "Mostrar icon 2#366:12" },
+        "mostrarIconBase": { "tipo": "boolean", "figmaProp": "Mostrar icon base#366:24" }
+      },
+      "rules": {
+        "must": ["Sempre finalizar a lista com variant=base", "Label curto — até 40 caracteres; detalhes vão em Texto base"],
+        "mustNot": []
+      },
+      "a11y": { "wcag": [] },
+      "tokenAdoption": { "fills": "8/8", "texto": "3/3", "padding": "0/5" },
+      "pendencias": ["Sem implementação CSS/HTML"]
+    },
+
+    "digito": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "4149e70c84389f1933fac878573fa4995140515c", "nodeId": "288:8433", "pagina": "↪ calendario" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Célula interna do calendário. Representa um dia, mês ou ano selecionável.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["digit", "text"], "nota": "digit = número; text = abreviação de mês (ex: JAN)" },
+        "state": { "tipo": "enum", "valores": ["default", "hover", "active", "disabled"] },
+        "weight": { "tipo": "enum", "valores": ["bold", "normal"], "nota": "bold = dias do mês exibido; normal = dias de preenchimento dos extremos" }
+      },
+      "rules": {
+        "must": ["state=disabled para datas bloqueadas por regra de negócio"],
+        "mustNot": ["Usar diretamente fora do calendario — é um sub-componente interno"]
+      },
+      "a11y": { "wcag": ["2.5.8"] },
+      "tokenAdoption": { "fills": "24/24", "texto": "12/12", "padding": "0/0" },
+      "pendencias": ["Interno — não expor como componente selecionável em UI de composição"]
+    },
+
+    "calendario": {
+      "status": "designed",
+      "atomic": "organism",
+      "figma": { "key": "52615fd4f43fafb9c8111ec469a75b4405b71175", "nodeId": "288:8700", "pagina": "↪ calendario" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Seletor de data com navegação entre visualizações de dia, mês e ano.",
+      "props": { "view": { "tipo": "enum", "valores": ["day", "month", "year"] } },
+      "rules": {
+        "must": ["Iniciar sempre em view=day para seleção de data única", "Combinar com o componente input para exibir a data selecionada"],
+        "mustNot": []
+      },
+      "a11y": { "wcag": ["2.1.1"], "nota": "navegação por teclado entre dias (setas) não documentada no Figma, obrigatória na implementação" },
+      "tokenAdoption": { "fills": "164/164", "texto": "76/76", "padding": "0/12" },
+      "pendencias": ["Sem implementação CSS/HTML", "Composto por digito internamente — implementar digito primeiro"]
+    },
+
+    "dialog": {
+      "status": "designed",
+      "atomic": "organism",
+      "figma": { "key": "2aee6ec232b417fd375d9ad7e2dc3f64a7ca498e", "nodeId": "561:5433", "pagina": "↪ dialog" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Janela modal para confirmações, formulários curtos ou detalhamento de um item sem sair do contexto atual.",
+      "props": {
+        "titulo": { "tipo": "text", "figmaProp": "Titulo#562:4" },
+        "conteudo": { "tipo": "slot", "figmaProp": "dialog content#562:1" },
+        "btn": { "tipo": "boolean", "figmaProp": "btn#562:3", "descricao": "exibe/oculta rodapé de ações" }
+      },
+      "rules": {
+        "must": ["Sempre oferecer saída explícita (fechar/cancelar)", "Nomear o botão primário de ação destrutiva pela ação (\"Excluir\"), nunca \"OK\""],
+        "mustNot": []
+      },
+      "a11y": { "wcag": ["2.1.2", "2.4.3"], "nota": "usar <dialog> nativo com showModal() para focus trap automático — ver planejados/modal" },
+      "tokenAdoption": { "fills": "6/7", "texto": "3/3", "padding": "2/6" },
+      "pendencias": ["Sem implementação CSS/HTML", "Sem variante de confirmação destrutiva documentada — achado crítico da Fase 0 (Nielsen #3, controle e liberdade)"]
+    },
+
+    "tooltip": {
+      "status": "designed",
+      "atomic": "atom",
+      "figma": { "key": "6cfe6206b075637f78007c4644bc0ba32bc4b4e9", "nodeId": "581:90", "pagina": "↪ tooltip" },
+      "codeConnect": null,
+      "selector": null,
+      "descricao": "Texto de apoio contextual exibido ao passar o mouse ou focar um elemento.",
+      "props": { "texto": { "tipo": "text", "figmaProp": "Texto#581:0" } },
+      "rules": {
+        "must": ["Manter o texto curto, idealmente uma linha"],
+        "mustNot": ["Usar para conteúdo essencial à tarefa — nem todo input (touch/teclado) aciona hover"]
+      },
+      "a11y": { "wcag": ["1.4.13"], "nota": "role=\"tooltip\" + aria-describedby, dispensável/persistente/hoverable" },
+      "tokenAdoption": { "fills": "2/2", "texto": "1/1", "padding": "0/1" },
+      "pendencias": ["Sem implementação CSS/HTML"]
+    },
+
+    "alert": {
+      "status": "codeOnly",
+      "atomic": "molecule",
+      "figma": null,
+      "codeConnect": null,
+      "selector": ".alert",
+      "descricao": "Banner de feedback inline e persistente. Encontrado implementado em soul-ds-examples.html sem existir no Figma — extraído do CSS real, não reconstruído de memória.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["error", "success", "warning", "info"], "css": ".alert--{value}" },
+        "titulo": { "tipo": "text", "css": ".alert__title" },
+        "texto": { "tipo": "text", "css": ".alert__text" }
+      },
+      "rules": {
+        "must": ["role=\"alert\" no elemento raiz — já presente na implementação atual"],
+        "mustNot": []
+      },
+      "a11y": {
+        "wcag": ["1.4.1"],
+        "nota": "achado real: os 4 variants se distinguem SÓ por cor (background+border-color+color), sem ícone. A coleção mv-basico/alerta já tem ícones erro/aviso/alerta/ajuda prontos para resolver isso — falha de 1.4.1 (uso de cor) documentada desde a Fase 0."
+      },
+      "tokenAdoption": { "fills": "todos var(--color-*)", "texto": "0/0 — nenhum font-size hardcoded", "padding": "todos var(--spacing-*)" },
+      "pendencias": [
+        "Sem componente no Figma — nenhum designer revisou o padrão visual ainda",
+        "1.4.1: distingue variant só por cor, sem ícone (ver a11y.nota)",
+        "Contraste de 3 dos 4 variants abaixo de 4.5:1 — ver rules.json → contrasteConhecido (info/success/warning)"
+      ]
+    },
+
+    "card": {
+      "status": "codeOnly",
+      "atomic": "molecule",
+      "figma": null,
+      "codeConnect": null,
+      "selector": ".card",
+      "descricao": "Container de conteúdo agrupado com header, corpo e footer opcionais. Extraído do CSS real de soul-ds-examples.html.",
+      "props": {
+        "header": { "tipo": "slot", "css": ".card__header" },
+        "titulo": { "tipo": "text", "css": ".card__title" },
+        "subtitulo": { "tipo": "text", "css": ".card__subtitle" },
+        "body": { "tipo": "slot", "css": ".card__body" },
+        "footer": { "tipo": "slot", "css": ".card__footer" }
+      },
+      "rules": { "must": [], "mustNot": [] },
+      "a11y": { "wcag": [] },
+      "tokenAdoption": { "fills": "100% var(--color-*)", "texto": "100% var(--font-size-*)", "padding": "100% var(--spacing-*)" },
+      "pendencias": [
+        "Sem componente no Figma",
+        "Não confundir com card-base — card-base é um ÍCONE em mv-basico/sistema (achado da Fase 1), não este componente"
+      ]
+    },
+
+    "table": {
+      "status": "codeOnly",
+      "atomic": "organism",
+      "figma": null,
+      "codeConnect": null,
+      "selector": ".table-wrapper .table",
+      "descricao": "Tabela de dados com cabeçalho, zebra e hover. Extraído do CSS real de soul-ds-examples.html. Implementada como <table> nativo — NÃO consome os átomos celulas/cell-slot já designed no Figma (Fase 2).",
+      "props": {
+        "thead": { "tipo": "slot", "css": ".table thead th" },
+        "tbody": { "tipo": "slot", "css": ".table tbody td" }
+      },
+      "rules": {
+        "must": ["th scope=\"col\" no cabeçalho — já presente na implementação atual"],
+        "mustNot": []
+      },
+      "a11y": { "wcag": ["1.3.1"] },
+      "tokenAdoption": { "fills": "100% var(--color-*)", "texto": "100% exceto letter-spacing: 0.04em hardcoded (achado Fase 0, sem token de letter-spacing na DS)", "padding": "100% var(--spacing-*)" },
+      "pendencias": [
+        "Sem componente no Figma",
+        "Não consome celulas/cell-slot (designed, Fase 2) — dois caminhos de implementação de tabela coexistem sem reconciliação",
+        "letter-spacing: 0.04em hardcoded — não há token de letter-spacing na DS (achado Fase 0)"
+      ]
+    },
+
+    "sidebar": {
+      "status": "codeOnly",
+      "atomic": "organism",
+      "figma": null,
+      "codeConnect": null,
+      "selector": ".sidebar",
+      "descricao": "Navegação lateral com grupos rotulados e itens selecionáveis. Extraído do CSS real de soul-ds-examples.html.",
+      "props": {
+        "label": { "tipo": "text", "css": ".sidebar__label" },
+        "item": { "tipo": "text", "css": ".sidebar__item" },
+        "itemActive": { "tipo": "boolean", "css": ".sidebar__item--active" }
+      },
+      "rules": {
+        "must": [":focus-visible já implementado em .sidebar__item — não remover"],
+        "mustNot": []
+      },
+      "a11y": { "wcag": ["2.4.7"], "nota": "usar <nav aria-label=\"lateral\"> envolvendo — não documentado no CSS, mas presente no HTML de exemplo" },
+      "tokenAdoption": { "fills": "100% var(--color-*)", "texto": "100% exceto letter-spacing: 0.08em hardcoded (mesmo achado de table)", "padding": "100% var(--spacing-*)" },
+      "pendencias": ["Sem componente no Figma", "letter-spacing: 0.08em hardcoded — mesma lacuna de token que table"]
+    },
+
+    "badge": {
+      "status": "codeOnly",
+      "atomic": "atom",
+      "figma": null,
+      "codeConnect": null,
+      "selector": ".status",
+      "descricao": "Indicador compacto de status com ponto colorido. A classe real no CSS chama-se .status, não .badge — nome divergente do conceito. Extraído do CSS real de soul-ds-examples.html.",
+      "props": {
+        "variant": { "tipo": "enum", "valores": ["success", "error", "warning", "info"], "css": ".status--{value}" }
+      },
+      "rules": { "must": [], "mustNot": [] },
+      "a11y": { "wcag": ["1.4.1"], "nota": "usa ::before com currentColor como único diferenciador visual além da cor de texto — mesmo risco de 1.4.1 que alert" },
+      "tokenAdoption": { "fills": "100% var(--color-*)", "texto": "100% var(--font-size-*)", "padding": "padding: 2px var(--spacing-4) — o 2px não existe na escala (--spacing-1=1px, --spacing-1-5=1.5px, --spacing-2=4px); mesma lacuna do asterisco obrigatório do input" },
+      "pendencias": [
+        "Sem componente no Figma",
+        "Classe chama-se .status, não .badge — o validador de governança (Fase 3) só reconhece pelo nome; documentado aqui para quem procurar por 'badge' e só achar '.status'",
+        "padding usa 2px hardcoded — não existe token para esse valor (ver ds.manifest pendencia ESP-1)"
+      ]
+    }
+
+  },
+
+  "planejados": {
+    "$nota": "Não existem no Figma nem em código. Usar HTML semântico nativo + comentário /* [DS-TEMP] motivo */ até serem desenhados.",
+    "select":   { "status": "planned", "equivalenteNativo": "<select> + <option>" },
+    "toast":    { "status": "planned", "equivalenteNativo": "<div role=\"alert\" aria-live=\"polite\">", "nota": "diferente de alert (agora codeOnly) — toast é transiente, alert é banner persistente" },
+    "tab":      { "status": "planned", "equivalenteNativo": "role=\"tablist\" + role=\"tab\" + role=\"tabpanel\"", "nota": "aba (item individual) já existe — falta o organism que os agrupa em tablist" },
+    "skeleton": { "status": "planned", "equivalenteNativo": "<div aria-busy=\"true\" aria-label=\"Carregando...\">" },
+    "navbar":   { "status": "planned", "equivalenteNativo": "<nav aria-label=\"principal\">" }
+  },
+
+  "totais": {
+    "componentesReais": 24,
+    "porStatus": { "stable": 2, "designed": 16, "codeOnly": 5, "beta": 1 },
+    "planejados": 5,
+    "comCodeConnect": 2,
+    "semImplementacaoCss": 15
+  }
+}

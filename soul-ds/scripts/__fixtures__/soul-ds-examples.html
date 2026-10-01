@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue-light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soul DS — Exemplos de uso</title>
+  <link rel="stylesheet" href="tokens.css" />
+  <style>
+    /* ─── Reset e base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-foreground);
+      background: var(--color-background);
+    }
+
+    /* ─── Layout de página ─────────────────────────────────────────── */
+    .page { max-width: 960px; margin: 0 auto; padding: var(--spacing-16); }
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-12);
+    }
+    .page-title {
+      font-size: var(--font-size-5xl);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      color: var(--color-foreground);
+    }
+    .section { margin-bottom: var(--spacing-20); }
+    .section-title {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted-foreground);
+      margin-bottom: var(--spacing-8);
+    }
+
+    /* ─── Button ───────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-2);
+      padding: var(--spacing-4) var(--spacing-8);
+      border-radius: var(--radius-md);
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-button);
+      font-weight: var(--font-weight-medium);
+      line-height: var(--line-height-normal);
+      cursor: pointer;
+      border: var(--border-width-1) solid transparent;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, opacity 0.15s;
+      text-decoration: none;
+    }
+    .btn--primary {
+      background: var(--color-primary);
+      color: var(--color-primary-foreground);
+    }
+    .btn--primary:hover  { filter: brightness(1.08); }
+    .btn--primary[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    .btn--outline:hover { background: var(--color-accent); }
+
+    .btn--link {
+      background: transparent;
+      color: var(--color-primary);
+      border-color: transparent;
+      text-decoration: underline;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .btn--destructive {
+      background: var(--color-destructive);
+      color: var(--color-destructive-foreground);
+    }
+    .btn--destructive:hover { filter: brightness(1.08); }
+
+    .btn:focus-visible {
+      outline: var(--border-width-2) solid var(--color-ring);
+      outline-offset: 2px;
+    }
+
+    .btn-group { display: flex; align-items: center; flex-wrap: wrap; gap: var(--spacing-4); }
+
+    /* ─── Input ────────────────────────────────────────────────────── */
+    .input-field { display: flex; flex-direction: column; gap: var(--spacing-1-5); }
+    .input-field__label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-foreground);
+    }
+    .input-field__required { color: var(--color-error); margin-left: 2px; }
+    .input-field__wrapper  { position: relative; }
+    .input-field__input {
+      width: 100%;
+      padding: var(--spacing-4) var(--spacing-6);
+      background: var(--color-input);
+      border: var(--border-width-1) solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      color: var(--color-foreground);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .input-field__input::placeholder { color: var(--color-muted-foreground); }
+    .input-field__input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-ring) 30%, transparent);
+    }
+    .input-field__input[disabled] {
+      background: var(--color-muted);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .input-field[data-state="error"] .input-field__input { border-color: var(--color-error); }
+    .input-field[data-state="error"] .input-field__input:focus {
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-error) 25%, transparent);
+    }
+    .input-field__helper { font-size: var(--font-size-xs); color: var(--color-muted-foreground); }
+    .input-field[data-state="error"] .input-field__helper { color: var(--color-error); }
+
+    /* ─── Card ─────────────────────────────────────────────────────── */
+    .card {
+      background: var(--color-card);
+      border: var(--border-width-1) solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-12);
+      box-shadow: var(--shadow-sm);
+    }
+    .card__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-8);
+    }
+    .card__title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-card-foreground);
+    }
+    .card__subtitle {
+      font-size: var(--font-size-sm);
+      color: var(--color-muted-foreground);
+      margin-top: var(--spacing-1);
+    }
+    .card__body { color: var(--color-card-foreground); }
+    .card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--spacing-4);
+      margin-top: var(--spacing-12);
+      padding-top: var(--spacing-8);
+      border-top: var(--border-width-1) solid var(--color-border);
+    }
+
+    /* ─── Divider ──────────────────────────────────────────────────── */
+    .divider     { border: none; border-top: var(--border-width-1) solid var(--color-border); }
+    .divider--sm { margin-block: var(--spacing-4); }
+    .divider--md { margin-block: var(--spacing-8); }
+    .divider--lg { margin-block: var(--spacing-16); }
+
+    /* ─── Feedback alerts ──────────────────────────────────────────── */
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-6);
+      padding: var(--spacing-6) var(--spacing-8);
+      border-radius: var(--radius-md);
+      border: var(--border-width-1) solid;
+      font-size: var(--font-size-sm);
+    }
+    .alert__title { font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-1); }
+    .alert--error {
+      background: var(--color-error-background);
+      border-color: var(--color-error);
+      color: var(--color-error);
+    }
+    .alert--success {
+      background: var(--color-success-background);
+      border-color: var(--color-success);
+      color: var(--color-success);
+    }
+    .alert--warning {
+      background: var(--color-warning-background);
+      border-color: var(--color-warning);
+      color: var(--color-warning);
+    }
+    .alert--info {
+      background: var(--color-info-background);
+      border-color: var(--color-info);
+      color: var(--color-info);
+    }
+    .alert__text { color: var(--color-foreground); }
+
+    /* ─── Tabela ───────────────────────────────────────────────────── */
+    .table-wrapper {
+      border: var(--border-width-1) solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--font-size-base);
+    }
+    .table thead th {
+      background: var(--color-muted);
+      padding: var(--spacing-4) var(--spacing-8);
+      text-align: left;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-muted-foreground);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: var(--border-width-1) solid var(--color-border);
+    }
+    .table tbody td {
+      padding: var(--spacing-4) var(--spacing-8);
+      color: var(--color-foreground);
+      border-bottom: var(--border-width-1) solid var(--color-border);
+    }
+    .table tbody tr:last-child td { border-bottom: none; }
+    .table tbody tr:nth-child(even) td { background: var(--color-background); }
+    .table tbody tr:hover td { background: var(--color-accent); }
+
+    /* ─── Status badge ─────────────────────────────────────────────── */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-2);
+      padding: 2px var(--spacing-4);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+    }
+    .status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .status--success { background: var(--color-success-background); color: var(--color-success); }
+    .status--error   { background: var(--color-error-background);   color: var(--color-error); }
+    .status--warning { background: var(--color-warning-background); color: var(--color-warning); }
+    .status--info    { background: var(--color-info-background);    color: var(--color-info); }
+
+    /* ─── Paginação ────────────────────────────────────────────────── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-8);
+      padding: var(--spacing-6) var(--spacing-8);
+      font-size: var(--font-size-sm);
+      color: var(--color-muted-foreground);
+      border-top: var(--border-width-1) solid var(--color-border);
+    }
+    .pagination__pages { display: flex; align-items: center; gap: var(--spacing-2); }
+    .pagination__btn {
+      min-width: 32px;
+      height: 32px;
+      padding: 0 var(--spacing-4);
+      border-radius: var(--radius-md);
+      border: var(--border-width-1) solid var(--color-border);
+      background: transparent;
+      color: var(--color-foreground);
+      font-size: var(--font-size-sm);
+      font-family: var(--font-family-base);
+      cursor: pointer;
+      transition: background 0.1s, border-color 0.1s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pagination__btn:hover { background: var(--color-accent); border-color: var(--color-ring); }
+    .pagination__btn--active {
+      background: var(--color-primary);
+      color: var(--color-primary-foreground);
+      border-color: var(--color-primary);
+    }
+    .pagination__btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+    .pagination__btn:focus-visible {
+      outline: var(--border-width-2) solid var(--color-ring);
+      outline-offset: 2px;
+    }
+
+    /* ─── Formulário ───────────────────────────────────────────────── */
+    .form { display: flex; flex-direction: column; gap: var(--spacing-8); }
+    .form__group { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-8); }
+    .form__footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--spacing-4);
+      padding-top: var(--spacing-8);
+      border-top: var(--border-width-1) solid var(--color-border);
+    }
+
+    /* ─── Sidebar layout ───────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 400px;
+      border: var(--border-width-1) solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .sidebar {
+      background: var(--color-sidebar-background);
+      padding: var(--spacing-8);
+      border-right: var(--border-width-1) solid var(--color-border);
+    }
+    .sidebar__label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--spacing-3) var(--spacing-4);
+      margin-bottom: var(--spacing-2);
+    }
+    .sidebar__item {
+      display: block;
+      padding: var(--spacing-3) var(--spacing-4);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-sm);
+      color: var(--color-sidebar-foreground);
+      text-decoration: none;
+      transition: background 0.1s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      font-family: var(--font-family-base);
+    }
+    .sidebar__item:hover { background: var(--color-accent); color: var(--color-primary); }
+    .sidebar__item--active {
+      background: var(--color-accent);
+      color: var(--color-primary);
+      font-weight: var(--font-weight-medium);
+    }
+    .sidebar__item:focus-visible {
+      outline: var(--border-width-2) solid var(--color-ring);
+      outline-offset: 1px;
+    }
+    .main-content { padding: var(--spacing-16); background: var(--color-background); }
+
+    /* ─── Tipografia ───────────────────────────────────────────────── */
+    .type-stack { display: flex; flex-direction: column; gap: var(--spacing-8); }
+    .type-row { display: flex; align-items: baseline; gap: var(--spacing-8); }
+    .type-label {
+      font-size: var(--font-size-xs);
+      color: var(--color-muted-foreground);
+      min-width: 80px;
+      font-family: var(--font-family-mono, monospace);
+    }
+
+    /* ─── Swatch de cores ──────────────────────────────────────────── */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--spacing-6); }
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: var(--border-width-1) solid var(--color-border);
+    }
+    .swatch__color { height: 48px; }
+    .swatch__info { padding: var(--spacing-4) var(--spacing-6); background: var(--color-card); }
+    .swatch__name  { font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); color: var(--color-foreground); }
+    .swatch__value { font-size: var(--font-size-xs); color: var(--color-muted-foreground); font-family: var(--font-family-mono, monospace); }
+
+    /* ─── Demais utilitários ───────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-8); }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--spacing-8); }
+    .mt-8  { margin-top: var(--spacing-8); }
+    .mt-16 { margin-top: var(--spacing-16); }
+    .text-muted { color: var(--color-muted-foreground); font-size: var(--font-size-sm); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── CABEÇALHO DA PÁGINA ──────────────────────────────────────── -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Soul DS — Exemplos</h1>
+      <p class="text-muted mt-8">Referência de uso real dos tokens e componentes. v1.0.4</p>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn--outline">Cancelar</button>
+      <button class="btn btn--primary">Salvar alterações</button>
+    </div>
+  </div>
+
+  <hr class="divider divider--lg" role="separator" />
+
+  <!-- ── BUTTONS ──────────────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-buttons">
+    <h2 class="section-title" id="sec-buttons">Buttons</h2>
+    <div class="btn-group">
+      <button class="btn btn--primary">Primary</button>
+      <button class="btn btn--outline">Outline</button>
+      <button class="btn btn--link">Link</button>
+      <button class="btn btn--destructive">Destrutivo</button>
+      <button class="btn btn--primary" disabled aria-disabled="true">Desabilitado</button>
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── INPUTS ───────────────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-inputs">
+    <h2 class="section-title" id="sec-inputs">Inputs</h2>
+    <div class="grid-2">
+
+      <div class="input-field">
+        <label class="input-field__label" for="nome">
+          Nome completo
+          <span class="input-field__required" aria-hidden="true">*</span>
+        </label>
+        <div class="input-field__wrapper">
+          <input
+            id="nome"
+            class="input-field__input"
+            type="text"
+            placeholder="Ex.: João Silva"
+            required
+            aria-required="true"
+          />
+        </div>
+        <span class="input-field__helper">Conforme documento oficial</span>
+      </div>
+
+      <div class="input-field" data-state="error">
+        <label class="input-field__label" for="email">E-mail</label>
+        <div class="input-field__wrapper">
+          <input
+            id="email"
+            class="input-field__input"
+            type="email"
+            value="email-invalido"
+            aria-invalid="true"
+            aria-describedby="email-err"
+          />
+        </div>
+        <span class="input-field__helper" id="email-err" role="alert">
+          Insira um e-mail válido
+        </span>
+      </div>
+
+      <div class="input-field">
+        <label class="input-field__label" for="cpf">CPF</label>
+        <div class="input-field__wrapper">
+          <input
+            id="cpf"
+            class="input-field__input"
+            type="text"
+            placeholder="000.000.000-00"
+          />
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label class="input-field__label" for="obs">Observações</label>
+        <div class="input-field__wrapper">
+          <input
+            id="obs"
+            class="input-field__input"
+            type="text"
+            disabled
+            value="Campo bloqueado por regra de negócio"
+            aria-disabled="true"
+          />
+        </div>
+        <span class="input-field__helper">Edição restrita ao perfil administrador</span>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── FEEDBACK ALERTS ──────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-alerts">
+    <h2 class="section-title" id="sec-alerts">Feedback</h2>
+    <div style="display: flex; flex-direction: column; gap: var(--spacing-6);">
+
+      <div class="alert alert--success" role="alert">
+        <div>
+          <p class="alert__title">Salvo com sucesso</p>
+          <p class="alert__text">As alterações foram registradas e estão disponíveis.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--error" role="alert">
+        <div>
+          <p class="alert__title">Erro ao salvar</p>
+          <p class="alert__text">Verifique os campos obrigatórios e tente novamente.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--warning" role="alert">
+        <div>
+          <p class="alert__title">Atenção</p>
+          <p class="alert__text">Esta ação afetará registros vinculados. Confirme antes de prosseguir.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--info" role="alert">
+        <div>
+          <p class="alert__title">Informação</p>
+          <p class="alert__text">O prontuário foi atualizado às 14h32 pelo usuário Dr. Carlos.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── TABELA + PAGINAÇÃO ────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-table">
+    <h2 class="section-title" id="sec-table">Tabela + paginação</h2>
+
+    <div class="table-wrapper">
+      <table class="table" aria-label="Lista de pacientes">
+        <thead>
+          <tr>
+            <th scope="col">Paciente</th>
+            <th scope="col">Prontuário</th>
+            <th scope="col">Status</th>
+            <th scope="col">Último atend.</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maria Oliveira</td>
+            <td>000124-7</td>
+            <td><span class="status status--success">Atendida</span></td>
+            <td>18/05/2026</td>
+            <td>
+              <button class="btn btn--link" aria-label="Ver detalhes de Maria Oliveira">Ver</button>
+            </td>
+          </tr>
+          <tr>
+            <td>João Santos</td>
+            <td>000125-3</td>
+            <td><span class="status status--warning">Aguardando</span></td>
+            <td>17/05/2026</td>
+            <td>
+              <button class="btn btn--link" aria-label="Ver detalhes de João Santos">Ver</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Ana Ferreira</td>
+            <td>000126-1</td>
+            <td><span class="status status--error">Não atendida</span></td>
+            <td>16/05/2026</td>
+            <td>
+              <button class="btn btn--link" aria-label="Ver detalhes de Ana Ferreira">Ver</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Carlos Lima</td>
+            <td>000127-9</td>
+            <td><span class="status status--info">Em triagem</span></td>
+            <td>18/05/2026</td>
+            <td>
+              <button class="btn btn--link" aria-label="Ver detalhes de Carlos Lima">Ver</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <nav class="pagination" aria-label="Paginação de pacientes">
+        <span>1–4 de 143 resultados</span>
+        <div class="pagination__pages">
+          <button class="pagination__btn" aria-label="Página anterior" disabled>‹</button>
+          <button class="pagination__btn pagination__btn--active" aria-label="Página 1, atual" aria-current="page">1</button>
+          <button class="pagination__btn" aria-label="Página 2">2</button>
+          <button class="pagination__btn" aria-label="Página 3">3</button>
+          <span style="color:var(--color-muted-foreground);padding:0 var(--spacing-2)">…</span>
+          <button class="pagination__btn" aria-label="Página 36">36</button>
+          <button class="pagination__btn" aria-label="Próxima página">›</button>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── CARD COM FORMULÁRIO ───────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-card">
+    <h2 class="section-title" id="sec-card">Card + formulário</h2>
+
+    <div class="card">
+      <div class="card__header">
+        <div>
+          <h3 class="card__title">Dados do paciente</h3>
+          <p class="card__subtitle">Preencha todos os campos obrigatórios antes de prosseguir</p>
+        </div>
+        <button class="btn btn--outline" style="flex-shrink:0">Limpar</button>
+      </div>
+
+      <form class="form" novalidate aria-label="Cadastro de paciente">
+        <p class="text-muted">
+          Campos marcados com <span aria-hidden="true" style="color:var(--color-error)">*</span>
+          <span class="sr-only">asterisco</span> são obrigatórios.
+        </p>
+
+        <div class="form__group">
+          <div class="input-field">
+            <label class="input-field__label" for="f-nome">
+              Nome <span class="input-field__required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-field__wrapper">
+              <input id="f-nome" class="input-field__input" type="text" required aria-required="true" />
+            </div>
+          </div>
+          <div class="input-field">
+            <label class="input-field__label" for="f-nasc">
+              Data de nascimento <span class="input-field__required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-field__wrapper">
+              <input id="f-nasc" class="input-field__input" type="date" required aria-required="true" />
+            </div>
+          </div>
+          <div class="input-field">
+            <label class="input-field__label" for="f-cpf">CPF</label>
+            <div class="input-field__wrapper">
+              <input id="f-cpf" class="input-field__input" type="text" placeholder="000.000.000-00" />
+            </div>
+          </div>
+          <div class="input-field">
+            <label class="input-field__label" for="f-tel">Telefone</label>
+            <div class="input-field__wrapper">
+              <input id="f-tel" class="input-field__input" type="tel" placeholder="(00) 00000-0000" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form__footer">
+          <button type="button" class="btn btn--outline">Cancelar</button>
+          <button type="submit" class="btn btn--primary">Salvar paciente</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── SIDEBAR LAYOUT ────────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-layout">
+    <h2 class="section-title" id="sec-layout">Layout com sidebar</h2>
+
+    <div class="layout">
+      <nav class="sidebar" aria-label="Navegação lateral">
+        <p class="sidebar__label">Atendimento</p>
+        <button class="sidebar__item sidebar__item--active">Fila de espera</button>
+        <button class="sidebar__item">Triagem</button>
+        <button class="sidebar__item">Prontuário</button>
+        <p class="sidebar__label" style="margin-top: var(--spacing-8);">Documentos</p>
+        <button class="sidebar__item">Prescrição</button>
+        <button class="sidebar__item">Evolução</button>
+        <button class="sidebar__item">Resultados</button>
+      </nav>
+      <div class="main-content">
+        <h2 style="font-size:var(--font-size-2xl);font-weight:var(--font-weight-semibold);margin-bottom:var(--spacing-4);">Fila de espera</h2>
+        <p class="text-muted">Conteúdo principal da seção selecionada na sidebar.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── SWATCHES DE COR ───────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-colors">
+    <h2 class="section-title" id="sec-colors">Tokens de cor — Blue Light</h2>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-primary)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">primary</p>
+          <p class="swatch__value">#205E7E</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-secondary)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">secondary</p>
+          <p class="swatch__value">#008C77</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-background); border-bottom: 1px solid var(--color-border)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">background</p>
+          <p class="swatch__value">#FAFAFA</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-muted)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">muted</p>
+          <p class="swatch__value">#E6E6E6</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-error)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">error</p>
+          <p class="swatch__value">#D63333</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-success)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">success</p>
+          <p class="swatch__value">#43A047</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-warning)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">warning</p>
+          <p class="swatch__value">#F05406</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-info)"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">info</p>
+          <p class="swatch__value">#0081CE</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider divider--md" role="separator" />
+
+  <!-- ── ESCALA TIPOGRÁFICA ────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="sec-type">
+    <h2 class="section-title" id="sec-type">Escala tipográfica</h2>
+    <div class="type-stack">
+      <div class="type-row">
+        <span class="type-label">H1 · 48px</span>
+        <span style="font-size:var(--font-size-5xl);font-weight:var(--font-weight-bold);line-height:var(--line-height-tight);">Título principal</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H2 · 36px</span>
+        <span style="font-size:var(--font-size-4xl);font-weight:var(--font-weight-bold);line-height:var(--line-height-tight);">Título de seção</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H3 · 30px</span>
+        <span style="font-size:var(--font-size-3xl);font-weight:var(--font-weight-semibold);line-height:var(--line-height-tight);">Subtítulo</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H4 · 24px</span>
+        <span style="font-size:var(--font-size-2xl);font-weight:var(--font-weight-semibold);line-height:var(--line-height-snug);">Card title</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H5 · 18px</span>
+        <span style="font-size:var(--font-size-xl);font-weight:var(--font-weight-medium);line-height:var(--line-height-snug);">Seção menor</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H6 · 16px</span>
+        <span style="font-size:var(--font-size-lg);font-weight:var(--font-weight-medium);">Label de grupo</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Body · 14px</span>
+        <span style="font-size:var(--font-size-base);line-height:var(--line-height-normal);">Texto de parágrafo, conteúdo principal de formulários e tabelas.</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Small · 12px</span>
+        <span style="font-size:var(--font-size-sm);color:var(--color-muted-foreground);line-height:var(--line-height-relaxed);">Helper text, legendas, metadados secundários.</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Caption · 10px</span>
+        <span style="font-size:var(--font-size-xs);color:var(--color-muted-foreground);line-height:var(--line-height-relaxed);">Labels de campo, rótulos de tabela, timestamps.</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,2112 @@
+{
+  "$schema": "soul-ds/icon-stems@1",
+  "$description": "Mapa de sinônimos por radical (stem) do nome snake_case do ícone. Usado por build-icons.mjs para expandir `keywords`. Curado à mão — editar aqui, nunca no icons.json gerado.",
+  "$rules": [
+    "Chave = token exato do nome, em snake_case, sem acento.",
+    "Valor = array de termos que um humano ou agente usaria para buscar esse ícone.",
+    "Não repetir o próprio token: o build já o inclui.",
+    "Incluir o equivalente em inglês quando o termo for comum em UI (save, delete, filter)."
+  ],
+  "abordagem": [
+    "primeiro contato",
+    "triagem inicial"
+  ],
+  "abrir": [
+    "open",
+    "expandir",
+    "acessar"
+  ],
+  "acao": [
+    "action",
+    "operação",
+    "comando"
+  ],
+  "accordion": [
+    "sanfona",
+    "expansível",
+    "colapsável",
+    "expandir seção"
+  ],
+  "acesso": [
+    "access",
+    "entrada",
+    "permissão"
+  ],
+  "acolhimento": [
+    "acolher",
+    "recepcionar",
+    "welcoming"
+  ],
+  "acompanhamento": [
+    "follow-up",
+    "monitorar",
+    "seguimento"
+  ],
+  "acompanhante": [
+    "companion",
+    "responsável",
+    "visitante"
+  ],
+  "adicionar": [
+    "add",
+    "novo",
+    "incluir",
+    "criar",
+    "mais",
+    "plus"
+  ],
+  "administracao": [
+    "admin",
+    "gestão",
+    "administrativo"
+  ],
+  "admissao": [
+    "admission",
+    "entrada",
+    "internar"
+  ],
+  "afericao": [
+    "medir",
+    "sinais vitais",
+    "measurement"
+  ],
+  "agenda": [
+    "schedule",
+    "calendário",
+    "agendamento",
+    "booking"
+  ],
+  "agrupar": [
+    "group",
+    "juntar",
+    "agrupamento"
+  ],
+  "aguardando": [
+    "waiting",
+    "pendente",
+    "em espera",
+    "pending"
+  ],
+  "ajuda": [
+    "help",
+    "suporte",
+    "dúvida",
+    "socorro"
+  ],
+  "aleitamento": [
+    "amamentação",
+    "breastfeeding"
+  ],
+  "alergia": [
+    "allergy",
+    "reação alérgica"
+  ],
+  "alerta": [
+    "alert",
+    "aviso",
+    "atenção",
+    "warning"
+  ],
+  "alimento": [
+    "food",
+    "comida",
+    "refeição",
+    "nutrição"
+  ],
+  "alinhar": [
+    "align",
+    "alinhamento"
+  ],
+  "alta": [
+    "discharge",
+    "liberação",
+    "saída"
+  ],
+  "ambiente": [
+    "environment",
+    "ambientação"
+  ],
+  "ambulancia": [
+    "ambulance",
+    "resgate",
+    "emergência",
+    "samu"
+  ],
+  "ambulatorial": [
+    "ambulatório",
+    "outpatient"
+  ],
+  "anestesia": [
+    "anesthesia",
+    "sedação"
+  ],
+  "anexar": [
+    "attach",
+    "anexo",
+    "clipe",
+    "attachment"
+  ],
+  "animais": [
+    "animal",
+    "pet",
+    "bicho"
+  ],
+  "anotacao": [
+    "note",
+    "nota",
+    "registro",
+    "observação"
+  ],
+  "apac": [
+    "autorização de procedimento",
+    "alta complexidade"
+  ],
+  "apagar": [
+    "delete",
+    "excluir",
+    "borracha",
+    "erase",
+    "limpar"
+  ],
+  "app": [
+    "aplicativo",
+    "application",
+    "mobile"
+  ],
+  "aprazamento": [
+    "horário de medicação",
+    "scheduling clínico"
+  ],
+  "aprazar": [
+    "agendar medicação",
+    "definir horário"
+  ],
+  "arquivar": [
+    "archive",
+    "guardar",
+    "arquivo morto"
+  ],
+  "arquivo": [
+    "file",
+    "documento"
+  ],
+  "assinar": [
+    "sign",
+    "assinatura",
+    "signature",
+    "firmar"
+  ],
+  "assistente": [
+    "assistant",
+    "wizard",
+    "ajudante"
+  ],
+  "associar": [
+    "link",
+    "vincular",
+    "relacionar",
+    "associate"
+  ],
+  "atalho": [
+    "shortcut",
+    "acesso rápido"
+  ],
+  "atendido": [
+    "attended",
+    "atendimento realizado"
+  ],
+  "atendidos": [
+    "attended",
+    "atendimentos concluídos"
+  ],
+  "atendimento": [
+    "appointment",
+    "consulta",
+    "encounter"
+  ],
+  "atividades": [
+    "activities",
+    "tarefas",
+    "atividade"
+  ],
+  "atributo": [
+    "attribute",
+    "propriedade",
+    "campo"
+  ],
+  "atualizar": [
+    "update",
+    "refresh",
+    "recarregar",
+    "sincronizar"
+  ],
+  "auditar": [
+    "audit",
+    "auditoria",
+    "conferir"
+  ],
+  "auditoria": [
+    "audit",
+    "conferência",
+    "revisão"
+  ],
+  "autorizar": [
+    "authorize",
+    "aprovar",
+    "permitir",
+    "liberar"
+  ],
+  "avaliacao": [
+    "assessment",
+    "avaliar",
+    "evaluation"
+  ],
+  "avancar": [
+    "next",
+    "próximo",
+    "seguir",
+    "forward"
+  ],
+  "aviso": [
+    "notice",
+    "alerta",
+    "comunicado"
+  ],
+  "backup": [
+    "cópia de segurança",
+    "restore"
+  ],
+  "balanca": [
+    "scale",
+    "peso",
+    "pesagem"
+  ],
+  "balanco": [
+    "balance",
+    "balanço"
+  ],
+  "banco": [
+    "bank",
+    "financeiro"
+  ],
+  "bercario": [
+    "nursery",
+    "recém-nascido",
+    "neonatal"
+  ],
+  "bicicleta": [
+    "bike",
+    "bicycle"
+  ],
+  "bloquear": [
+    "block",
+    "travar",
+    "lock",
+    "cadeado"
+  ],
+  "bolsa": [
+    "benefício",
+    "auxílio"
+  ],
+  "borda": [
+    "border",
+    "contorno"
+  ],
+  "bug": [
+    "defeito",
+    "erro",
+    "problema"
+  ],
+  "bulario": [
+    "bula",
+    "medicamento info",
+    "drug reference"
+  ],
+  "buscar": [
+    "search",
+    "pesquisar",
+    "procurar",
+    "lupa",
+    "find"
+  ],
+  "bussola": [
+    "compass",
+    "direção",
+    "navegação"
+  ],
+  "cabecalho": [
+    "header",
+    "topo",
+    "cabeça"
+  ],
+  "cadastro": [
+    "register",
+    "registro",
+    "cadastrar",
+    "signup"
+  ],
+  "caixa": [
+    "box",
+    "caixa registradora",
+    "cashier"
+  ],
+  "calculo": [
+    "calculation",
+    "calcular",
+    "calculadora",
+    "math"
+  ],
+  "calendario": [
+    "calendar",
+    "data",
+    "date",
+    "agenda"
+  ],
+  "camisa": [
+    "shirt",
+    "vestuário",
+    "uniforme"
+  ],
+  "cancelar": [
+    "cancel",
+    "abortar",
+    "desistir",
+    "x"
+  ],
+  "card": [
+    "cartão",
+    "card"
+  ],
+  "casa": [
+    "home",
+    "início",
+    "residência",
+    "domicílio"
+  ],
+  "casos": [
+    "cases",
+    "caso"
+  ],
+  "celular": [
+    "mobile",
+    "smartphone",
+    "telefone celular"
+  ],
+  "certificado": [
+    "certificate",
+    "certificação"
+  ],
+  "chamada": [
+    "call",
+    "chamar",
+    "chamamento"
+  ],
+  "chave": [
+    "key",
+    "senha",
+    "password"
+  ],
+  "checagem": [
+    "check",
+    "verificação",
+    "conferência",
+    "checklist"
+  ],
+  "checkbox": [
+    "caixa de seleção",
+    "marcar",
+    "selection box"
+  ],
+  "cheque": [
+    "check",
+    "cheque bancário"
+  ],
+  "cid": [
+    "classificação internacional de doenças",
+    "diagnóstico código"
+  ],
+  "cidadao": [
+    "citizen",
+    "cidadão",
+    "usuário do sus"
+  ],
+  "circulo": [
+    "circle",
+    "redondo"
+  ],
+  "cirurgia": [
+    "surgery",
+    "operação",
+    "cirúrgico"
+  ],
+  "classificacao": [
+    "classification",
+    "ordenar",
+    "categorizar"
+  ],
+  "clinica": [
+    "clinic",
+    "clínico"
+  ],
+  "codigo": [
+    "code",
+    "código"
+  ],
+  "colar": [
+    "paste",
+    "colagem"
+  ],
+  "colonizacao": [
+    "colonization",
+    "colonização bacteriana"
+  ],
+  "comentario": [
+    "comment",
+    "observação",
+    "feedback"
+  ],
+  "comorbidade": [
+    "comorbidity",
+    "doença associada"
+  ],
+  "comparar": [
+    "compare",
+    "comparação",
+    "diff"
+  ],
+  "compras": [
+    "shopping",
+    "comprar",
+    "purchase"
+  ],
+  "comunicacao": [
+    "communication",
+    "comunicar",
+    "mensagem"
+  ],
+  "concluir": [
+    "complete",
+    "finalizar",
+    "concluído",
+    "done"
+  ],
+  "conectividade": [
+    "connectivity",
+    "conexão",
+    "rede",
+    "network"
+  ],
+  "configuracoes": [
+    "settings",
+    "configurar",
+    "ajustes",
+    "engrenagem",
+    "gear"
+  ],
+  "configurar": [
+    "configure",
+    "settings",
+    "ajustar"
+  ],
+  "confirmar": [
+    "confirm",
+    "ok",
+    "aceitar",
+    "check",
+    "validar"
+  ],
+  "consolidar": [
+    "consolidate",
+    "unificar"
+  ],
+  "consulta": [
+    "query",
+    "consultar",
+    "appointment"
+  ],
+  "contas": [
+    "accounts",
+    "conta",
+    "financeiro"
+  ],
+  "contingencia": [
+    "contingency",
+    "plano b",
+    "emergência"
+  ],
+  "controladoria": [
+    "controllership",
+    "controle financeiro"
+  ],
+  "controle": [
+    "control",
+    "controlar",
+    "gestão"
+  ],
+  "copiar": [
+    "copy",
+    "duplicar",
+    "clonar",
+    "cópia"
+  ],
+  "cor": [
+    "color",
+    "cor",
+    "paleta"
+  ],
+  "cortar": [
+    "cut",
+    "recortar",
+    "tesoura",
+    "scissors"
+  ],
+  "cota": [
+    "quota",
+    "limite"
+  ],
+  "cracha": [
+    "badge",
+    "identificação",
+    "id card"
+  ],
+  "crianca": [
+    "child",
+    "criança",
+    "pediatria",
+    "kid"
+  ],
+  "criterio": [
+    "criteria",
+    "critério",
+    "regra"
+  ],
+  "cronologicos": [
+    "cronologia",
+    "timeline",
+    "histórico"
+  ],
+  "cursor": [
+    "pointer",
+    "seta do mouse",
+    "mouse"
+  ],
+  "curva": [
+    "curve",
+    "gráfico de crescimento"
+  ],
+  "custo": [
+    "cost",
+    "despesa",
+    "gasto"
+  ],
+  "dados": [
+    "data",
+    "informação",
+    "registro"
+  ],
+  "datacenter": [
+    "servidor",
+    "infraestrutura"
+  ],
+  "demograficos": [
+    "demographics",
+    "perfil populacional"
+  ],
+  "dengue": [
+    "arbovirose",
+    "aedes"
+  ],
+  "dente": [
+    "tooth",
+    "odontologia",
+    "dental"
+  ],
+  "denunciar": [
+    "report",
+    "denúncia",
+    "reportar abuso"
+  ],
+  "desagrupar": [
+    "ungroup",
+    "separar"
+  ],
+  "desarquivar": [
+    "unarchive",
+    "restaurar arquivo"
+  ],
+  "desassociar": [
+    "unlink",
+    "desvincular",
+    "desassociação"
+  ],
+  "desbloquear": [
+    "unlock",
+    "destravar",
+    "liberar"
+  ],
+  "descer": [
+    "down",
+    "abaixo",
+    "mover para baixo"
+  ],
+  "desempenho": [
+    "performance",
+    "rendimento"
+  ],
+  "desfazer": [
+    "undo",
+    "voltar atrás",
+    "reverter"
+  ],
+  "desmarcar": [
+    "uncheck",
+    "deselecionar",
+    "limpar seleção"
+  ],
+  "detalhes": [
+    "details",
+    "detalhamento",
+    "info",
+    "mais informações"
+  ],
+  "diagnostico": [
+    "diagnosis",
+    "diagnóstico"
+  ],
+  "dicionario": [
+    "dictionary",
+    "glossário"
+  ],
+  "diligenciamento": [
+    "diligência",
+    "acompanhamento processual"
+  ],
+  "dimensoes": [
+    "dimensions",
+    "tamanho",
+    "medidas"
+  ],
+  "dispensa": [
+    "dispensação",
+    "entrega de medicamento",
+    "dispensing"
+  ],
+  "distribuir": [
+    "distribute",
+    "distribuição",
+    "espaçar"
+  ],
+  "divider": [
+    "divisor",
+    "separador",
+    "linha separadora",
+    "separator"
+  ],
+  "documento": [
+    "document",
+    "arquivo",
+    "doc",
+    "papel"
+  ],
+  "documentos": [
+    "documents",
+    "arquivos",
+    "papelada"
+  ],
+  "doencas": [
+    "diseases",
+    "doença",
+    "patologia"
+  ],
+  "domiciliar": [
+    "home care",
+    "atendimento em casa"
+  ],
+  "dose": [
+    "dosagem",
+    "posologia",
+    "dosage"
+  ],
+  "download": [
+    "baixar",
+    "descarregar",
+    "salvar arquivo"
+  ],
+  "duplicidade": [
+    "duplicate",
+    "duplicado",
+    "repetido"
+  ],
+  "editar": [
+    "edit",
+    "alterar",
+    "modificar",
+    "lápis",
+    "pencil"
+  ],
+  "editor": [
+    "editor",
+    "edição"
+  ],
+  "eletivo": [
+    "elective",
+    "eletiva",
+    "agendado"
+  ],
+  "eletronico": [
+    "electronic",
+    "digital"
+  ],
+  "emergencia": [
+    "emergency",
+    "urgência",
+    "pronto-socorro"
+  ],
+  "encaminhar": [
+    "forward",
+    "encaminhamento",
+    "referral",
+    "enviar para"
+  ],
+  "enfermagem": [
+    "nursing",
+    "enfermeiro",
+    "nurse"
+  ],
+  "entrelinha": [
+    "line height",
+    "espaçamento de linha",
+    "entrelinhamento"
+  ],
+  "enviar": [
+    "send",
+    "submeter",
+    "submit",
+    "mandar"
+  ],
+  "equipamentos": [
+    "equipment",
+    "aparelhos",
+    "máquinas"
+  ],
+  "equipe": [
+    "team",
+    "time",
+    "grupo de trabalho"
+  ],
+  "erro": [
+    "error",
+    "falha",
+    "problema",
+    "x"
+  ],
+  "escala": [
+    "scale",
+    "escala de plantão",
+    "shift"
+  ],
+  "espessura": [
+    "thickness",
+    "espessura de linha",
+    "stroke width"
+  ],
+  "estabelecimento": [
+    "establishment",
+    "unidade",
+    "facility"
+  ],
+  "estetoscopio": [
+    "stethoscope",
+    "exame clínico"
+  ],
+  "estoque": [
+    "stock",
+    "inventory",
+    "almoxarifado"
+  ],
+  "estrategia": [
+    "strategy",
+    "planejamento"
+  ],
+  "evolucao": [
+    "evolution",
+    "evolução clínica",
+    "progress note"
+  ],
+  "exame": [
+    "exam",
+    "teste",
+    "test",
+    "laboratório"
+  ],
+  "excluir": [
+    "delete",
+    "apagar",
+    "remover",
+    "lixeira",
+    "trash"
+  ],
+  "executar": [
+    "run",
+    "rodar",
+    "execute",
+    "play"
+  ],
+  "exibir": [
+    "show",
+    "mostrar",
+    "visualizar",
+    "display"
+  ],
+  "exportar": [
+    "export",
+    "exportação",
+    "extrair"
+  ],
+  "familia": [
+    "family",
+    "núcleo familiar"
+  ],
+  "faq": [
+    "perguntas frequentes",
+    "dúvidas comuns"
+  ],
+  "faturamento": [
+    "billing",
+    "faturar",
+    "cobrança"
+  ],
+  "favorito": [
+    "favorite",
+    "estrela",
+    "star",
+    "marcar favorito"
+  ],
+  "fechar": [
+    "close",
+    "sair",
+    "x",
+    "encerrar"
+  ],
+  "fila": [
+    "queue",
+    "espera",
+    "waiting line"
+  ],
+  "filiacao": [
+    "filiation",
+    "parentesco",
+    "genitores"
+  ],
+  "filtro": [
+    "filter",
+    "filtrar",
+    "funil",
+    "refinar"
+  ],
+  "finalizar": [
+    "finish",
+    "concluir",
+    "encerrar",
+    "complete"
+  ],
+  "fisico": [
+    "physical",
+    "exame físico"
+  ],
+  "fisioterapia": [
+    "physiotherapy",
+    "reabilitação"
+  ],
+  "fixar": [
+    "pin",
+    "fixar no topo",
+    "alfinete"
+  ],
+  "formato": [
+    "format",
+    "formatação"
+  ],
+  "formula": [
+    "formula",
+    "fórmula",
+    "cálculo"
+  ],
+  "foto": [
+    "photo",
+    "imagem",
+    "câmera",
+    "camera",
+    "picture"
+  ],
+  "frequencia": [
+    "frequency",
+    "frequência",
+    "assiduidade"
+  ],
+  "galeria": [
+    "gallery",
+    "álbum",
+    "imagens"
+  ],
+  "gerar": [
+    "generate",
+    "criar",
+    "produzir"
+  ],
+  "gerenciador": [
+    "manager",
+    "gerenciamento",
+    "gestor"
+  ],
+  "gerenciamento": [
+    "management",
+    "gestão",
+    "administrar"
+  ],
+  "gestante": [
+    "pregnant",
+    "gravidez",
+    "pré-natal"
+  ],
+  "global": [
+    "global",
+    "mundo",
+    "internacional",
+    "world"
+  ],
+  "grafico": [
+    "chart",
+    "gráfico",
+    "graph",
+    "dashboard"
+  ],
+  "grid": [
+    "grade",
+    "tabela",
+    "malha"
+  ],
+  "grupo": [
+    "group",
+    "agrupamento",
+    "coletivo"
+  ],
+  "hashtag": [
+    "tag",
+    "cerquilha",
+    "marcador"
+  ],
+  "hidrico": [
+    "hídrico",
+    "fluid balance",
+    "líquidos"
+  ],
+  "historico": [
+    "history",
+    "histórico",
+    "log",
+    "registro anterior"
+  ],
+  "horario": [
+    "time",
+    "hora",
+    "schedule",
+    "agendar"
+  ],
+  "horizontal": [
+    "horizontal",
+    "eixo x"
+  ],
+  "hospital": [
+    "hospital",
+    "unidade hospitalar"
+  ],
+  "identidade": [
+    "identity",
+    "rg",
+    "documento de identidade",
+    "id"
+  ],
+  "idoso": [
+    "elderly",
+    "terceira idade",
+    "geriatria"
+  ],
+  "imagem": [
+    "image",
+    "figura",
+    "picture",
+    "foto"
+  ],
+  "importar": [
+    "import",
+    "importação",
+    "carregar"
+  ],
+  "impressao": [
+    "print",
+    "impressão"
+  ],
+  "imprimir": [
+    "print",
+    "impressora",
+    "printer"
+  ],
+  "incompativel": [
+    "incompatible",
+    "conflito"
+  ],
+  "iniciar": [
+    "start",
+    "começar",
+    "play",
+    "iniciar processo"
+  ],
+  "instalar": [
+    "install",
+    "instalação",
+    "setup"
+  ],
+  "inteligencia": [
+    "intelligence",
+    "ia",
+    "ai",
+    "inteligência artificial"
+  ],
+  "interacao": [
+    "interaction",
+    "interação"
+  ],
+  "interface": [
+    "interface",
+    "ui",
+    "tela"
+  ],
+  "internacao": [
+    "hospitalization",
+    "internar",
+    "admission"
+  ],
+  "internado": [
+    "inpatient",
+    "paciente internado"
+  ],
+  "interrogacao": [
+    "question",
+    "dúvida",
+    "pergunta",
+    "?"
+  ],
+  "isolamento": [
+    "isolation",
+    "precaução",
+    "quarentena",
+    "isolado",
+    "isolada"
+  ],
+  "italico": [
+    "italic",
+    "itálico"
+  ],
+  "janela": [
+    "window",
+    "janela do sistema"
+  ],
+  "job": [
+    "tarefa agendada",
+    "rotina",
+    "cron"
+  ],
+  "kit": [
+    "kit",
+    "conjunto"
+  ],
+  "kpi": [
+    "indicador",
+    "métrica",
+    "indicator"
+  ],
+  "lancar": [
+    "launch",
+    "lançar",
+    "registrar lançamento"
+  ],
+  "lancha": [
+    "boat",
+    "embarcação"
+  ],
+  "laudo": [
+    "report",
+    "laudo médico",
+    "medical report"
+  ],
+  "layout": [
+    "layout",
+    "disposição",
+    "arranjo"
+  ],
+  "legado": [
+    "legacy",
+    "sistema antigo"
+  ],
+  "leito": [
+    "bed",
+    "cama hospitalar",
+    "hospital bed"
+  ],
+  "liberar": [
+    "release",
+    "liberação",
+    "desbloquear"
+  ],
+  "ligar": [
+    "turn on",
+    "ligar desligar",
+    "power",
+    "toggle"
+  ],
+  "limite": [
+    "limit",
+    "limite",
+    "teto"
+  ],
+  "limpar": [
+    "clear",
+    "limpar campo",
+    "reset"
+  ],
+  "limpeza": [
+    "cleaning",
+    "higienização",
+    "housekeeping"
+  ],
+  "link": [
+    "vínculo",
+    "corrente",
+    "chain",
+    "url"
+  ],
+  "lista": [
+    "list",
+    "listagem",
+    "relação"
+  ],
+  "localizacao": [
+    "location",
+    "local",
+    "pin",
+    "mapa",
+    "gps"
+  ],
+  "log": [
+    "registro",
+    "histórico de sistema"
+  ],
+  "logistica": [
+    "logistics",
+    "distribuição",
+    "suprimentos"
+  ],
+  "logo": [
+    "logotipo",
+    "marca",
+    "brand"
+  ],
+  "lote": [
+    "batch",
+    "em massa",
+    "bulk"
+  ],
+  "mamografia": [
+    "mammography",
+    "exame de mama"
+  ],
+  "manutencao": [
+    "maintenance",
+    "manutenção",
+    "reparo"
+  ],
+  "mapa": [
+    "map",
+    "mapa",
+    "localização"
+  ],
+  "marcar": [
+    "check",
+    "selecionar",
+    "assinalar",
+    "tick"
+  ],
+  "massa": [
+    "bulk",
+    "em lote",
+    "massivo"
+  ],
+  "matar": [
+    "kill",
+    "encerrar processo",
+    "terminar"
+  ],
+  "materiais": [
+    "materials",
+    "insumos",
+    "suprimentos"
+  ],
+  "med": [
+    "medicamento",
+    "medication",
+    "remédio"
+  ],
+  "medica": [
+    "medical",
+    "médica"
+  ],
+  "medicamento": [
+    "medication",
+    "remédio",
+    "fármaco",
+    "drug"
+  ],
+  "medicamentos": [
+    "medications",
+    "remédios",
+    "farmácia"
+  ],
+  "medico": [
+    "doctor",
+    "médico",
+    "physician"
+  ],
+  "mensagem": [
+    "message",
+    "recado",
+    "chat"
+  ],
+  "menu": [
+    "menu",
+    "navegação",
+    "hambúrguer",
+    "hamburger"
+  ],
+  "metadados": [
+    "metadata",
+    "metainformação"
+  ],
+  "metrica": [
+    "metric",
+    "indicador",
+    "medida"
+  ],
+  "microfone": [
+    "microphone",
+    "áudio",
+    "gravar voz"
+  ],
+  "microorganismos": [
+    "microorganisms",
+    "bactéria",
+    "germes"
+  ],
+  "microscopia": [
+    "microscopy",
+    "análise microscópica"
+  ],
+  "microscopio": [
+    "microscope",
+    "laboratório"
+  ],
+  "monitor": [
+    "monitor",
+    "tela",
+    "display",
+    "monitoramento"
+  ],
+  "moto": [
+    "motorcycle",
+    "motocicleta"
+  ],
+  "movimentacao": [
+    "movement",
+    "transferência",
+    "deslocamento"
+  ],
+  "mulher": [
+    "woman",
+    "feminino",
+    "saúde da mulher"
+  ],
+  "multiempresa": [
+    "multi-company",
+    "multiempresarial"
+  ],
+  "nascido": [
+    "newborn",
+    "nascimento",
+    "birth"
+  ],
+  "negar": [
+    "deny",
+    "recusar",
+    "rejeitar",
+    "negado"
+  ],
+  "negocio": [
+    "business",
+    "negócio",
+    "comercial"
+  ],
+  "negrito": [
+    "bold",
+    "negrito"
+  ],
+  "neutro": [
+    "neutral",
+    "neutro",
+    "indiferente"
+  ],
+  "nivel": [
+    "level",
+    "nível",
+    "grau"
+  ],
+  "nota": [
+    "note",
+    "anotação",
+    "observação"
+  ],
+  "notificacao": [
+    "notification",
+    "sino",
+    "bell",
+    "aviso"
+  ],
+  "nova": [
+    "new",
+    "nova",
+    "criar"
+  ],
+  "novo": [
+    "new",
+    "criar",
+    "adicionar",
+    "add"
+  ],
+  "nuvem": [
+    "cloud",
+    "nuvem",
+    "servidor remoto"
+  ],
+  "obito": [
+    "death",
+    "falecimento",
+    "óbito"
+  ],
+  "odontograma": [
+    "odontogram",
+    "mapa dental"
+  ],
+  "opme": [
+    "órteses próteses",
+    "materiais especiais"
+  ],
+  "orcamento": [
+    "budget",
+    "orçamento",
+    "estimativa"
+  ],
+  "ordenar": [
+    "sort",
+    "ordenação",
+    "classificar"
+  ],
+  "organograma": [
+    "org chart",
+    "hierarquia",
+    "estrutura"
+  ],
+  "oxigenio": [
+    "oxygen",
+    "o2",
+    "suporte ventilatório"
+  ],
+  "paciente": [
+    "patient",
+    "doente",
+    "enfermo"
+  ],
+  "pacote": [
+    "package",
+    "pacote",
+    "bundle"
+  ],
+  "pagamento": [
+    "payment",
+    "pagar",
+    "quitar"
+  ],
+  "pan": [
+    "mover",
+    "arrastar tela",
+    "deslocar",
+    "hand tool"
+  ],
+  "parametrizacao": [
+    "parametrization",
+    "configuração",
+    "setup"
+  ],
+  "parar": [
+    "stop",
+    "interromper",
+    "parada"
+  ],
+  "parecer": [
+    "opinion",
+    "parecer médico",
+    "consultation"
+  ],
+  "pasta": [
+    "folder",
+    "diretório",
+    "pasta"
+  ],
+  "patologia": [
+    "pathology",
+    "patológico"
+  ],
+  "pausar": [
+    "pause",
+    "suspender temporariamente"
+  ],
+  "pdf": [
+    "pdf",
+    "documento pdf"
+  ],
+  "pedido": [
+    "order",
+    "solicitação",
+    "request"
+  ],
+  "pedidos": [
+    "orders",
+    "solicitações"
+  ],
+  "pendencia": [
+    "pending",
+    "pendência",
+    "em aberto"
+  ],
+  "perfil": [
+    "profile",
+    "perfil de usuário"
+  ],
+  "pertences": [
+    "belongings",
+    "objetos pessoais"
+  ],
+  "pesquisar": [
+    "search",
+    "buscar",
+    "lupa",
+    "procurar",
+    "find"
+  ],
+  "pix": [
+    "pagamento instantâneo",
+    "transferência"
+  ],
+  "plano": [
+    "plan",
+    "plano de saúde",
+    "convênio"
+  ],
+  "politicas": [
+    "policies",
+    "política",
+    "normas",
+    "diretrizes"
+  ],
+  "poltrona": [
+    "chair",
+    "cadeira",
+    "recliner"
+  ],
+  "portal": [
+    "portal",
+    "site"
+  ],
+  "portaria": [
+    "gatehouse",
+    "entrada",
+    "recepção"
+  ],
+  "predio": [
+    "building",
+    "edifício",
+    "prédio"
+  ],
+  "preferencial": [
+    "priority",
+    "atendimento prioritário"
+  ],
+  "preferencias": [
+    "preferences",
+    "configurações pessoais"
+  ],
+  "prescricao": [
+    "prescription",
+    "receita médica",
+    "prescrever"
+  ],
+  "prestador": [
+    "provider",
+    "profissional de saúde",
+    "fornecedor"
+  ],
+  "prevencao": [
+    "prevention",
+    "profilaxia",
+    "preventivo"
+  ],
+  "primario": [
+    "primary",
+    "principal"
+  ],
+  "procedimento": [
+    "procedure",
+    "intervenção"
+  ],
+  "processado": [
+    "processed",
+    "processado com sucesso",
+    "concluído"
+  ],
+  "processo": [
+    "process",
+    "processo",
+    "fluxo"
+  ],
+  "produtividade": [
+    "productivity",
+    "rendimento"
+  ],
+  "proibicao": [
+    "prohibition",
+    "proibido",
+    "vedado"
+  ],
+  "prontuario": [
+    "medical record",
+    "prontuário",
+    "ehr",
+    "histórico clínico"
+  ],
+  "protocolo": [
+    "protocol",
+    "protocolo",
+    "número de registro"
+  ],
+  "psf": [
+    "saúde da família",
+    "estratégia saúde da família"
+  ],
+  "publicar": [
+    "publish",
+    "divulgar",
+    "tornar público"
+  ],
+  "publico": [
+    "public",
+    "público"
+  ],
+  "qr": [
+    "qr code",
+    "código qr",
+    "scan"
+  ],
+  "qualidade": [
+    "quality",
+    "qualidade",
+    "qa"
+  ],
+  "quebra": [
+    "break",
+    "quebra de página"
+  ],
+  "quebrar": [
+    "break",
+    "romper",
+    "desfazer vínculo"
+  ],
+  "radioterapia": [
+    "radiotherapy",
+    "oncologia"
+  ],
+  "raio": [
+    "x-ray",
+    "raio-x",
+    "radiografia"
+  ],
+  "reabrir": [
+    "reopen",
+    "abrir novamente"
+  ],
+  "receita": [
+    "prescription",
+    "receituário",
+    "recipe"
+  ],
+  "recepcao": [
+    "reception",
+    "recepção",
+    "front desk"
+  ],
+  "recuar": [
+    "indent",
+    "recuo",
+    "tabulação"
+  ],
+  "refazer": [
+    "redo",
+    "repetir",
+    "refazer"
+  ],
+  "regulacao": [
+    "regulation",
+    "regulação",
+    "autorização"
+  ],
+  "rejeicao": [
+    "rejection",
+    "rejeitado",
+    "motivo de recusa"
+  ],
+  "rejeitar": [
+    "reject",
+    "recusar",
+    "negar"
+  ],
+  "rejeitos": [
+    "waste",
+    "resíduos",
+    "descarte"
+  ],
+  "relatorio": [
+    "report",
+    "relatório"
+  ],
+  "relogio": [
+    "clock",
+    "hora",
+    "tempo",
+    "time"
+  ],
+  "remedio": [
+    "medicine",
+    "medicamento",
+    "fármaco"
+  ],
+  "remover": [
+    "remove",
+    "excluir",
+    "tirar",
+    "delete"
+  ],
+  "report": [
+    "relatório",
+    "report"
+  ],
+  "reservado": [
+    "reserved",
+    "reserva",
+    "bloqueado"
+  ],
+  "restaurar": [
+    "restore",
+    "recuperar",
+    "voltar"
+  ],
+  "resultados": [
+    "results",
+    "resultado",
+    "laudo"
+  ],
+  "resumo": [
+    "summary",
+    "sumário",
+    "síntese"
+  ],
+  "retangulo": [
+    "rectangle",
+    "retângulo",
+    "forma"
+  ],
+  "reticencias": [
+    "ellipsis",
+    "três pontos",
+    "mais opções",
+    "more"
+  ],
+  "retornar": [
+    "return",
+    "voltar",
+    "reverter"
+  ],
+  "risco": [
+    "risk",
+    "risco",
+    "perigo"
+  ],
+  "rodape": [
+    "footer",
+    "rodapé"
+  ],
+  "rotas": [
+    "routes",
+    "rota",
+    "percurso"
+  ],
+  "saidas": [
+    "exits",
+    "saída",
+    "output"
+  ],
+  "sair": [
+    "exit",
+    "logout",
+    "sair do sistema"
+  ],
+  "salvar": [
+    "save",
+    "gravar",
+    "persistir",
+    "disquete",
+    "confirmar alteração"
+  ],
+  "saneamento": [
+    "sanitation",
+    "saneamento básico"
+  ],
+  "sangue": [
+    "blood",
+    "hemocomponente",
+    "transfusão"
+  ],
+  "script": [
+    "script",
+    "código",
+    "rotina"
+  ],
+  "selecionar": [
+    "select",
+    "seleção",
+    "escolher"
+  ],
+  "senha": [
+    "password",
+    "senha",
+    "credencial"
+  ],
+  "servidor": [
+    "server",
+    "servidor",
+    "host"
+  ],
+  "seta": [
+    "arrow",
+    "direção",
+    "navegação"
+  ],
+  "setor": [
+    "sector",
+    "setor",
+    "departamento",
+    "ala"
+  ],
+  "simulador": [
+    "simulator",
+    "simulação",
+    "teste"
+  ],
+  "sinal": [
+    "sign",
+    "símbolo",
+    "operador"
+  ],
+  "sincronizar": [
+    "sync",
+    "sincronização",
+    "atualizar"
+  ],
+  "sistolica": [
+    "systolic",
+    "pressão arterial"
+  ],
+  "situacao": [
+    "situation",
+    "status",
+    "condição"
+  ],
+  "sobrescrever": [
+    "overwrite",
+    "substituir"
+  ],
+  "solicitacao": [
+    "request",
+    "solicitação",
+    "pedido"
+  ],
+  "solicitar": [
+    "request",
+    "pedir",
+    "requisitar"
+  ],
+  "soro": [
+    "serum",
+    "soro",
+    "infusão"
+  ],
+  "soroterapia": [
+    "serum therapy",
+    "hidratação venosa"
+  ],
+  "stacktrace": [
+    "pilha de erro",
+    "rastreamento",
+    "stack trace",
+    "depuração"
+  ],
+  "status": [
+    "status",
+    "estado",
+    "situação"
+  ],
+  "subdosagem": [
+    "underdose",
+    "dose insuficiente"
+  ],
+  "subir": [
+    "up",
+    "acima",
+    "mover para cima"
+  ],
+  "sublinhado": [
+    "underline",
+    "sublinhar"
+  ],
+  "superdosagem": [
+    "overdose",
+    "dose excessiva"
+  ],
+  "suporte": [
+    "support",
+    "suporte técnico",
+    "helpdesk"
+  ],
+  "suspender": [
+    "suspend",
+    "suspensão",
+    "pausar"
+  ],
+  "tabela": [
+    "table",
+    "grade",
+    "grid",
+    "planilha"
+  ],
+  "tablet": [
+    "tablet",
+    "dispositivo"
+  ],
+  "tag": [
+    "etiqueta",
+    "marcador",
+    "rótulo",
+    "label"
+  ],
+  "teclado": [
+    "keyboard",
+    "digitação"
+  ],
+  "tela": [
+    "screen",
+    "tela",
+    "display"
+  ],
+  "telefone": [
+    "phone",
+    "telefone",
+    "ligação",
+    "call"
+  ],
+  "terminar": [
+    "end",
+    "finalizar",
+    "encerrar"
+  ],
+  "teste": [
+    "test",
+    "testar",
+    "ensaio"
+  ],
+  "texto": [
+    "text",
+    "texto",
+    "conteúdo"
+  ],
+  "thread": [
+    "linha de execução",
+    "processo paralelo",
+    "tarefa"
+  ],
+  "timeline": [
+    "linha do tempo",
+    "cronologia"
+  ],
+  "tipo": [
+    "type",
+    "tipo",
+    "categoria"
+  ],
+  "tiss": [
+    "troca de informação em saúde suplementar",
+    "padrão ans"
+  ],
+  "totem": [
+    "kiosk",
+    "totem de autoatendimento"
+  ],
+  "touch": [
+    "toque",
+    "tela sensível"
+  ],
+  "trace": [
+    "rastreio",
+    "rastreamento",
+    "log detalhado",
+    "tracing"
+  ],
+  "traduzir": [
+    "translate",
+    "tradução",
+    "idioma"
+  ],
+  "transplante": [
+    "transplant",
+    "doação de órgãos"
+  ],
+  "transporte": [
+    "transport",
+    "transporte",
+    "deslocamento"
+  ],
+  "tratamento": [
+    "treatment",
+    "terapia",
+    "conduta"
+  ],
+  "triagem": [
+    "triage",
+    "classificação de risco",
+    "screening"
+  ],
+  "trigger": [
+    "gatilho",
+    "disparo",
+    "acionador"
+  ],
+  "trocar": [
+    "swap",
+    "trocar",
+    "substituir",
+    "exchange"
+  ],
+  "tuberculose": [
+    "tuberculosis",
+    "tb",
+    "bacilo"
+  ],
+  "unidade": [
+    "unit",
+    "unidade",
+    "setor"
+  ],
+  "upload": [
+    "enviar arquivo",
+    "carregar",
+    "subir arquivo"
+  ],
+  "usuario": [
+    "user",
+    "usuário",
+    "pessoa",
+    "conta",
+    "perfil"
+  ],
+  "vacina": [
+    "vaccine",
+    "imunização",
+    "vacinação"
+  ],
+  "validar": [
+    "validate",
+    "validação",
+    "conferir"
+  ],
+  "velocidade": [
+    "speed",
+    "velocidade",
+    "vazão"
+  ],
+  "velocimetro": [
+    "gauge",
+    "velocímetro",
+    "medidor"
+  ],
+  "versao": [
+    "version",
+    "versão",
+    "release"
+  ],
+  "vertical": [
+    "vertical",
+    "eixo y"
+  ],
+  "viagem": [
+    "travel",
+    "viagem",
+    "deslocamento"
+  ],
+  "vigencia": [
+    "validity",
+    "vigência",
+    "período válido"
+  ],
+  "vincular": [
+    "link",
+    "vincular",
+    "associar"
+  ],
+  "visita": [
+    "visit",
+    "visita",
+    "ronda"
+  ],
+  "visualizar": [
+    "view",
+    "ver",
+    "olho",
+    "eye",
+    "preview"
+  ],
+  "whatsapp": [
+    "zap",
+    "mensageiro",
+    "chat"
+  ],
+  "zoom": [
+    "zoom",
+    "ampliar",
+    "reduzir"
+  ]
+}

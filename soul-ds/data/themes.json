@@ -1,0 +1,79 @@
+{
+  "$schema": "soul-ds/themes@1",
+  "$description": "Camada semântica (coleção 'soulds' do Figma), resolvida nos 4 temas. Cada valor é um path para data/tokens.json. Aplicar via [data-theme=\"...\"] no <html>, espelhando o Figma.",
+  "$temaPadrao": "blueLight",
+
+  "tokens": {
+    "color.background":          { "blueLight": "color.neutral.50",  "blueDark": "color.neutral.800", "greenLight": "color.neutral.50",  "greenDark": "color.neutral.800" },
+    "color.foreground":          { "blueLight": "color.neutral.800", "blueDark": "color.white",        "greenLight": "color.neutral.800", "greenDark": "color.white" },
+    "color.card":                { "blueLight": "color.neutral.50",  "blueDark": "color.neutral.900", "greenLight": "color.neutral.50",  "greenDark": "color.neutral.900" },
+    "color.cardForeground":      { "blueLight": "color.neutral.800", "blueDark": "color.white",        "greenLight": "color.neutral.800", "greenDark": "color.white" },
+    "color.popover":              { "blueLight": "color.white",       "blueDark": "color.neutral.800", "greenLight": "color.white",       "greenDark": "color.neutral.800" },
+    "color.popoverForeground":    { "blueLight": "color.neutral.800", "blueDark": "color.white",        "greenLight": "color.neutral.800", "greenDark": "color.white" },
+    "color.primary":              { "blueLight": "color.bluesoul.700","blueDark": "color.bluesoul.600","greenLight": "color.greensoul.700","greenDark": "color.greensoul.600" },
+    "color.primaryForeground":    { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.secondary":            { "blueLight": "color.greensoul.700","blueDark": "color.greensoul.600","greenLight": "color.bluesoul.700","greenDark": "color.bluesoul.600" },
+    "color.secondaryForeground":  { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.muted":                { "blueLight": "color.neutral.200", "blueDark": "color.neutral.200", "greenLight": "color.neutral.200", "greenDark": "color.neutral.200" },
+    "color.mutedForeground": {
+      "$description": "Achado Fase 0: contraste real medido em 2.36:1 contra background (alvo 4.5:1), abaixo até do piso de UI 3:1. neutral/400 (#A5A5A5) é insuficiente — ver rules.json → contrasteConhecido. Recomendação: promover para neutral/500 (#767676, 4.6:1) num próximo ADR de cor.",
+      "blueLight": "color.neutral.400", "blueDark": "color.neutral.400", "greenLight": "color.neutral.400", "greenDark": "color.neutral.400"
+    },
+    "color.accent":                { "blueLight": "color.bluesoul.50", "blueDark": "color.bluesoul.50", "greenLight": "color.greensoul.50", "greenDark": "color.greensoul.50" },
+    "color.accentForeground":      { "blueLight": "color.bluesoul.800","blueDark": "color.bluesoul.600","greenLight": "color.greensoul.700","greenDark": "color.greensoul.700" },
+    "color.destructive":           { "blueLight": "color.red.600", "blueDark": "color.red.600", "greenLight": "color.red.600", "greenDark": "color.red.600" },
+    "color.destructiveForeground": { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.border": {
+      "$description": "Achado Fase 0: contraste real em 1.39:1 contra background (alvo 3:1) — borda de input praticamente invisível.",
+      "blueLight": "color.neutral.300", "blueDark": "color.neutral.300", "greenLight": "color.neutral.300", "greenDark": "color.neutral.300"
+    },
+    "color.input":                 { "blueLight": "color.neutral.50", "blueDark": "color.neutral.700", "greenLight": "color.neutral.50", "greenDark": "color.neutral.700" },
+    "color.ring": {
+      "$description": "Achado Fase 0: nos temas Green, contraste em 2.88:1 contra background (alvo 3:1) — foco visualmente insuficiente.",
+      "blueLight": "color.bluesoul.600", "blueDark": "color.bluesoul.600", "greenLight": "color.greensoul.600", "greenDark": "color.greensoul.600"
+    },
+    "color.success":               { "blueLight": "color.green.600", "blueDark": "color.green.600", "greenLight": "color.green.600", "greenDark": "color.green.600" },
+    "color.successForeground":     { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.warning":               { "blueLight": "color.orange.600", "blueDark": "color.orange.600", "greenLight": "color.orange.600", "greenDark": "color.orange.600" },
+    "color.warningForeground":     { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.error":                 { "blueLight": "color.red.600", "blueDark": "color.red.600", "greenLight": "color.red.600", "greenDark": "color.red.600" },
+    "color.errorForeground":       { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.info":                  { "blueLight": "color.blue.600", "blueDark": "color.blue.600", "greenLight": "color.blue.600", "greenDark": "color.blue.600" },
+    "color.infoForeground":        { "blueLight": "color.white", "blueDark": "color.white", "greenLight": "color.white", "greenDark": "color.white" },
+    "color.sidebarBackground": {
+      "$description": "Achado Fase 0: idêntico nos 4 temas — em Blue Dark/Green Dark, uma sidebar cinza-claro aparece dentro de uma aplicação escura. Precisa de valor por tema, não constante.",
+      "blueLight": "color.neutral.100", "blueDark": "color.neutral.100", "greenLight": "color.neutral.100", "greenDark": "color.neutral.100"
+    },
+    "color.sidebarForeground":     { "blueLight": "color.neutral.700", "blueDark": "color.neutral.700", "greenLight": "color.neutral.700", "greenDark": "color.neutral.700" },
+
+    "color.errorBackground": {
+      "$description": "Existe em tokens.css, NÃO existe no Figma (achado Fase 0) — CSS está à frente aqui. Valor abaixo é o que tokens.css já usa; falta levar para o Figma.",
+      "blueLight": "color.red.50", "blueDark": "color.red.800", "greenLight": "color.red.50", "greenDark": "color.red.800"
+    },
+    "color.successBackground": {
+      "$description": "Existe em tokens.css, NÃO existe no Figma — mesma situação de errorBackground.",
+      "blueLight": "color.green.50", "blueDark": "color.green.800", "greenLight": "color.green.50", "greenDark": "color.green.800"
+    },
+    "color.warningBackground": {
+      "$description": "Existe em tokens.css, NÃO existe no Figma — mesma situação de errorBackground.",
+      "blueLight": "color.orange.50", "blueDark": "color.orange.800", "greenLight": "color.orange.50", "greenDark": "color.orange.800"
+    },
+    "color.infoBackground": {
+      "$description": "Existe em tokens.css, NÃO existe no Figma — mesma situação de errorBackground.",
+      "blueLight": "color.blue.50", "blueDark": "color.blue.800", "greenLight": "color.blue.50", "greenDark": "color.blue.800"
+    }
+  },
+
+  "literais": {
+    "$nota": "Mesmo valor nos 4 temas — não são aliases, são o próprio primitivo branco/preto/transparente.",
+    "color.white": "color.white",
+    "color.black": "color.black",
+    "color.transparent": "color.transparent"
+  },
+
+  "temasComContrasteFalho": {
+    "blueDark": ["color.errorBackground/color.error", "color.successBackground/color.success", "color.warningBackground/color.warning", "color.infoBackground/color.info", "color.primary contra color.background"],
+    "greenDark": ["mesmos pares de blueDark — a paleta *-800 usada como fundo escuro dos 4 feedbacks fica próxima demais do tom 600 usado como texto"],
+    "$causa": "Nos temas dark, *-background vai para o tom 800 da paleta e o texto continua no tom 600 — dois tons escuros sobrepostos. Padrão correto: inverter, fundo 800 com texto no tom 200/400. Achado Fase 0, ainda sem correção — ADR de cor separado do ADR de espaçamento desta fase."
+  }
+}
