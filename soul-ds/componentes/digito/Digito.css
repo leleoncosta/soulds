@@ -1,0 +1,94 @@
+/*
+ * Soul DS — Digito Component (sub-componente interno do calendario)
+ * Variantes: digit (20x20, circular quando active/hover), text (46x46, quadrado)
+ * Estados: default, hover, active, disabled
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * 20px/46px são dimensões estruturais da célula (sem token de tamanho no DS para isso),
+ * mesma convenção de Button.css (.btn--icon 40px) e Avatar.css (.avatar__image 32px).
+ */
+
+.digito {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-background);
+  border: none;
+  padding: 0;
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-foreground);
+
+  cursor: pointer;
+  transition: box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.digito--weight-bold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.digito--weight-normal {
+  font-weight: var(--font-weight-regular);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   VARIANT: digit (dia do mês) — 20x20, circular
+   ───────────────────────────────────────────────────────────────────────── */
+
+.digito--digit {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   VARIANT: text (mês/ano) — 46x46, quadrado
+   ───────────────────────────────────────────────────────────────────────── */
+
+.digito--text {
+  width: 46px;
+  height: 46px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   STATE: hover — sem token de sombra colorida dedicado no DS;
+   computado a partir de --color-primary via color-mix(), não hardcoded.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.digito--hover:not(:disabled),
+.digito:hover:not(:disabled) {
+  box-shadow: 0 0 2.5px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   STATE: active — selecionado
+   ───────────────────────────────────────────────────────────────────────── */
+
+.digito--active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   STATE: disabled
+   O Figma não diferencia visualmente default/disabled para este componente
+   (mesma cor em ambos) — ver pendência no README. Aplicamos apenas o
+   bloqueio real de interação, sem inventar uma cor que o Figma não define.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.digito:disabled {
+  cursor: not-allowed;
+}
+
+.digito:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digito {
+    transition: none;
+  }
+}

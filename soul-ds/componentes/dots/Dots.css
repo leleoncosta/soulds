@@ -1,0 +1,26 @@
+/*
+ * Soul DS — Dots Component
+ * Estados: default, active
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * 6px é o diâmetro estrutural do ponto (sem token de tamanho no DS para isso).
+ */
+
+.dots {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background-color: var(--color-muted-foreground);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.dots--active {
+  background-color: var(--color-primary);
+}
+
+.dots:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}

@@ -1,0 +1,54 @@
+/*
+ * Soul DS — Pagination Component
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Composto internamente pelo sub-componente Dots (ver ../dots).
+ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding: var(--spacing-8);
+}
+
+.pagination__link {
+  background: none;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  line-height: var(--line-height-normal);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pagination__link:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.pagination__link:hover:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+.pagination__link:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-2);
+}
+
+.pagination__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-12);
+  padding: 0 var(--spacing-20);
+}

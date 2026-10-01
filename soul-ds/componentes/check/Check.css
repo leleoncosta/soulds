@@ -1,0 +1,93 @@
+/*
+ * Soul DS — Check Component
+ * Tamanhos: sm (16px), md (20px), lg (24px)
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Usa <input type="checkbox"> nativo visualmente oculto + marca estilizada ao lado,
+ * conforme a11y.nota do contrato.
+ */
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  cursor: pointer;
+}
+
+.check__box {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.check--sm .check__box {
+  width: 16px;
+  height: 16px;
+}
+
+.check--md .check__box {
+  width: 20px;
+  height: 20px;
+}
+
+.check--lg .check__box {
+  width: 24px;
+  height: 24px;
+}
+
+.check__input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.check__marca {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  border: var(--border-width-1) solid var(--color-muted-foreground);
+  border-radius: var(--radius-2);
+  color: transparent;
+  pointer-events: none;
+}
+
+.check__marca svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.check__input:checked ~ .check__marca {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.check__input:focus-visible ~ .check__marca {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.check__input:disabled ~ .check__marca {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+}
+
+.check:has(.check__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.check__input:disabled {
+  cursor: not-allowed;
+}
+
+.check__label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-foreground);
+}

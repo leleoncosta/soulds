@@ -33,13 +33,15 @@ node -e 'const d=require("./data/components.json"); console.log(d.componentes["c
 
 ---
 
-## Os 2 componentes com código (`stable`)
+## Os 16 componentes com código (`stable`)
 
-`button` (`.btn`) e `input` (`.input-field`) são os únicos com CSS real, Code Connect e uso comprovado em `soul-ds-examples.html`. Use como estão.
+`button` (`.btn`), `input` (`.input-field`), `aba` (`.aba`), `avatar` (`.avatar`), `breadcrumb` (`.breadcrumb`), `digito` (`.digito`), `calendario` (`.calendario`), `chips` (`.chips`), `dots` (`.dots`), `pagination` (`.pagination`), `tooltip` (`.tooltip`), `dialog` (`.dialog`), `historico` (`.historico`), `check` (`.check`), `radio` (`.radio`) e `switch` (`.switch`) têm CSS real, Code Connect e uso comprovado (`soul-ds/componentes/<nome>/`). Use como estão.
 
-## Os 16 documentados sem código (`designed`)
+`digito` é sub-componente interno do `calendario`; `dots` é consumido pelo `pagination` (mas pode ser usado standalone, ex. carrossel); `dialog` reaproveita o próprio `Button` no rodapé — ver `rules.mustNot` de cada um.
 
-`check` · `radio` · `switch` · `aba` · `avatar` · `breadcrumb` · `chips` · `dots` · `pagination` · `celulas` · `cell-slot` · `historico` · `digito` · `calendario` · `dialog` · `tooltip`
+## Os 2 documentados sem código (`designed`)
+
+`celulas` · `cell-slot`
 
 Existem no Figma, com props, variantes e Diretrizes documentadas — mas **nenhum tem CSS no repositório**. Ao implementar um destes:
 

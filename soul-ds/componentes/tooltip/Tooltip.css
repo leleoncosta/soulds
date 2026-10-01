@@ -1,0 +1,149 @@
+/*
+ * Soul DS — Tooltip Component
+ * 12 posições de seta (arrowPosition), combinando 4 bordas × 3 alinhamentos.
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * A seta é desenhada via CSS border-trick (triângulo), preenchida com o mesmo
+ * token de fundo do balão — não é um asset SVG importado.
+ */
+
+.tooltip__wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+
+  max-width: 160px;
+  min-width: 40px;
+  padding: var(--spacing-4) var(--spacing-8);
+
+  /* --color-popover é branco no tema claro (pensado p/ painéis que seguem a
+     superfície da página) — não serve para uma "bolha" sempre contrastante.
+     Sem um token "inverse"/tooltip dedicado no DS, invertemos foreground/background
+     (mesmo truque usado por outros DS para superfície inversa): no tema claro
+     isso dá fundo neutral-800 + texto neutral-50, batendo com o Figma (#333/branco). */
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  border-radius: var(--radius-4);
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  word-break: break-word;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   POSICIONAMENTO DO BALÃO — oposto à borda que tem a seta
+   (seta na borda inferior do balão → balão fica ACIMA do elemento de referência, etc.)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.tooltip:has(> .tooltip__arrow--bottom) {
+  bottom: calc(100% + var(--spacing-4));
+}
+.tooltip:has(> .tooltip__arrow--top) {
+  top: calc(100% + var(--spacing-4));
+}
+.tooltip:has(> .tooltip__arrow--right) {
+  right: calc(100% + var(--spacing-4));
+}
+.tooltip:has(> .tooltip__arrow--left) {
+  left: calc(100% + var(--spacing-4));
+}
+
+.tooltip:has(> .tooltip__arrow--bottom.tooltip__arrow--start),
+.tooltip:has(> .tooltip__arrow--top.tooltip__arrow--start) {
+  left: 0;
+}
+.tooltip:has(> .tooltip__arrow--bottom.tooltip__arrow--center),
+.tooltip:has(> .tooltip__arrow--top.tooltip__arrow--center) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tooltip:has(> .tooltip__arrow--bottom.tooltip__arrow--end),
+.tooltip:has(> .tooltip__arrow--top.tooltip__arrow--end) {
+  right: 0;
+}
+
+.tooltip:has(> .tooltip__arrow--left.tooltip__arrow--start),
+.tooltip:has(> .tooltip__arrow--right.tooltip__arrow--start) {
+  top: 0;
+}
+.tooltip:has(> .tooltip__arrow--left.tooltip__arrow--center),
+.tooltip:has(> .tooltip__arrow--right.tooltip__arrow--center) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.tooltip:has(> .tooltip__arrow--left.tooltip__arrow--end),
+.tooltip:has(> .tooltip__arrow--right.tooltip__arrow--end) {
+  bottom: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SETA — triângulo via border-trick, cor = --color-foreground (mesma do fundo)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.tooltip__arrow--bottom {
+  bottom: -4px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--color-foreground);
+}
+.tooltip__arrow--top {
+  top: -4px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid var(--color-foreground);
+}
+.tooltip__arrow--left {
+  left: -4px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 4px solid var(--color-foreground);
+}
+.tooltip__arrow--right {
+  right: -4px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid var(--color-foreground);
+}
+
+.tooltip__arrow--start.tooltip__arrow--bottom,
+.tooltip__arrow--start.tooltip__arrow--top {
+  left: var(--spacing-12);
+}
+.tooltip__arrow--center.tooltip__arrow--bottom,
+.tooltip__arrow--center.tooltip__arrow--top {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tooltip__arrow--end.tooltip__arrow--bottom,
+.tooltip__arrow--end.tooltip__arrow--top {
+  right: var(--spacing-12);
+}
+
+.tooltip__arrow--start.tooltip__arrow--left,
+.tooltip__arrow--start.tooltip__arrow--right {
+  top: var(--spacing-12);
+}
+.tooltip__arrow--center.tooltip__arrow--left,
+.tooltip__arrow--center.tooltip__arrow--right {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.tooltip__arrow--end.tooltip__arrow--left,
+.tooltip__arrow--end.tooltip__arrow--right {
+  bottom: var(--spacing-12);
+}

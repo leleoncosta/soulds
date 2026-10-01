@@ -1,0 +1,117 @@
+/*
+ * Soul DS — Calendario Component (organism)
+ * Views: day (grade de dias), month (grade de meses), year (grade de anos)
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * 260px é a largura estrutural do painel (sem token de tamanho no DS para isso).
+ */
+
+.calendario {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 260px;
+  padding: var(--spacing-12);
+  background-color: var(--color-background);
+  /* mesma sombra sutil do hover do digito — calculada a partir de --color-primary, sem token dedicado */
+  box-shadow: 0 0 2.5px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.calendario__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  width: 100%;
+}
+
+.calendario__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--color-foreground);
+  cursor: pointer;
+}
+
+.calendario__nav svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.calendario__nav:hover {
+  filter: brightness(0.7);
+}
+
+.calendario__nav:focus-visible,
+.calendario__title:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.calendario__title {
+  flex: 1 0 0;
+  min-width: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-foreground);
+  text-align: center;
+  cursor: pointer;
+}
+
+.calendario__title:disabled {
+  cursor: default;
+}
+
+.calendario__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  width: 100%;
+  padding-top: var(--spacing-16);
+}
+
+.calendario__weekdays,
+.calendario__week {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  width: 100%;
+}
+
+.calendario__weekday {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-foreground);
+}
+
+.calendario__grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  gap: var(--spacing-24) var(--spacing-16);
+  width: 100%;
+  padding-top: var(--spacing-16);
+}
+
+.calendario__grid--month > *,
+.calendario__grid--year > * {
+  flex: 0 0 46px;
+}

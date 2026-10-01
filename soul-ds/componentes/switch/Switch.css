@@ -1,0 +1,103 @@
+/*
+ * Soul DS — Switch Component
+ * Estados: selected=true/false × state=default/disabled
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * role="switch" + aria-checked — não documentado no Figma, mas obrigatório (a11y.nota do contrato).
+ */
+
+.switch-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 39px;
+  height: 24px;
+  padding: var(--spacing-4);
+  background-color: var(--color-background);
+  border: var(--border-width-1) solid var(--color-muted-foreground);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.switch--checked {
+  justify-content: flex-end;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.switch__thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-muted-foreground);
+  color: var(--color-white);
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.switch--checked .switch__thumb {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+.switch__thumb svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.switch--checked .switch__thumb svg {
+  width: 16px;
+  height: 16px;
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.switch:disabled {
+  cursor: not-allowed;
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+}
+
+.switch:disabled .switch__thumb {
+  background-color: var(--color-muted-foreground);
+  color: var(--color-white);
+}
+
+.switch--checked:disabled .switch__thumb {
+  background-color: var(--color-muted-foreground);
+  color: var(--color-muted);
+}
+
+.switch__label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-foreground);
+  cursor: pointer;
+}
+
+.switch-wrapper:has(.switch:disabled) .switch__label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .switch__thumb {
+    transition: none;
+  }
+}

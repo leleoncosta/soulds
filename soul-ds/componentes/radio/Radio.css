@@ -1,0 +1,96 @@
+/*
+ * Soul DS — Radio Component
+ * Tamanhos: sm (16px), md (20px), lg (24px)
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Usa <input type="radio"> nativo visualmente oculto + marca estilizada ao lado,
+ * conforme a11y.nota do contrato. Agrupe com <fieldset>/<legend> + name compartilhado.
+ */
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  cursor: pointer;
+}
+
+.radio__box {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.radio--sm .radio__box {
+  width: 16px;
+  height: 16px;
+}
+
+.radio--md .radio__box {
+  width: 20px;
+  height: 20px;
+}
+
+.radio--lg .radio__box {
+  width: 24px;
+  height: 24px;
+}
+
+.radio__input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio__marca {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  border: var(--border-width-1) solid var(--color-muted-foreground);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+.radio__marca::after {
+  content: '';
+  width: 62.5%;
+  height: 62.5%;
+  border-radius: var(--radius-full);
+  background-color: transparent;
+}
+
+.radio__input:checked ~ .radio__marca {
+  border-color: var(--color-primary);
+}
+
+.radio__input:checked ~ .radio__marca::after {
+  background-color: var(--color-primary);
+}
+
+.radio__input:focus-visible ~ .radio__marca {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.radio__input:disabled ~ .radio__marca {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+}
+
+.radio:has(.radio__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.radio__input:disabled {
+  cursor: not-allowed;
+}
+
+.radio__label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-foreground);
+}

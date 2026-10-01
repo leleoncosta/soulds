@@ -1,0 +1,61 @@
+/*
+ * Soul DS — Aba Component
+ * Estados: default, active
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Hover não tem token semântico dedicado no DS — usa filter() sobre a cor base,
+ * em vez de inventar um novo --color-hover inexistente no Figma/tokens.json.
+ */
+
+.aba {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--spacing-14) var(--spacing-16);
+
+  background-color: var(--color-background);
+  border: none;
+  border-bottom: 2px solid var(--color-muted-foreground);
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-foreground);
+
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  outline: none;
+  position: relative;
+}
+
+.aba:hover:not(.aba--active) {
+  filter: brightness(0.97);
+}
+
+.aba:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: -2px;
+}
+
+.aba--active {
+  border-bottom-color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aba {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .aba {
+    border-bottom-width: 3px;
+  }
+
+  .aba:focus-visible {
+    outline-width: 3px;
+  }
+}

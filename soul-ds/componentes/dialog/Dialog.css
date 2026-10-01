@@ -1,0 +1,85 @@
+/*
+ * Soul DS — Dialog Component (organism)
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Usa <dialog> nativo — ::backdrop e focus trap vêm de graça do navegador via showModal().
+ */
+
+.dialog {
+  min-width: 450px;
+  max-width: calc(100vw - var(--spacing-32));
+  padding: 0;
+  margin: auto;
+  border: none;
+  border-radius: var(--radius-2);
+  background-color: var(--color-background);
+  /* mesma sombra sutil usada em digito/calendario — calculada a partir de --color-primary */
+  box-shadow: 0 0 2.5px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.dialog::backdrop {
+  background-color: color-mix(in srgb, var(--color-black) 50%, transparent);
+}
+
+.dialog__titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-2) var(--radius-2) 0 0;
+}
+
+.dialog__titulo-texto {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-primary-foreground);
+}
+
+.dialog__fechar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--color-primary-foreground);
+  cursor: pointer;
+}
+
+.dialog__fechar svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.dialog__fechar:hover {
+  filter: brightness(0.85);
+}
+
+.dialog__fechar:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.dialog__conteudo {
+  padding: var(--spacing-16);
+  color: var(--color-foreground);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.dialog__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-8);
+  padding: var(--spacing-16);
+}

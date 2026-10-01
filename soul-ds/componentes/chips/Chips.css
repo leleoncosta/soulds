@@ -1,0 +1,100 @@
+/*
+ * Soul DS — Chips Component
+ * Variantes: default, success, warning, info, danger
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ */
+
+.chips {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-2) var(--spacing-4);
+
+  border-radius: var(--radius-2);
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DEFAULT VARIANT
+   ───────────────────────────────────────────────────────────────────────── */
+
+.chips--default {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-foreground);
+  color: var(--color-foreground);
+  font-weight: var(--font-weight-regular);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   FEEDBACK VARIANTS
+   ───────────────────────────────────────────────────────────────────────── */
+
+.chips--success {
+  background-color: var(--color-success);
+  color: var(--color-success-foreground);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chips--warning {
+  background-color: var(--color-warning);
+  color: var(--color-warning-foreground);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chips--info {
+  background-color: var(--color-info);
+  color: var(--color-info-foreground);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chips--danger {
+  background-color: var(--color-destructive);
+  color: var(--color-destructive-foreground);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ÍCONE DE FECHAR
+   ───────────────────────────────────────────────────────────────────────── */
+
+.chips__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.chips__icon svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+button.chips__icon {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+button.chips__icon:hover {
+  filter: brightness(0.8);
+}
+
+button.chips__icon:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 1px;
+  border-radius: var(--radius-2);
+}
+
+.chips__texto {
+  display: inline;
+}

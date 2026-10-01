@@ -1,0 +1,72 @@
+/*
+ * Soul DS — Avatar Component
+ * Variantes: image, icon
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * 32px/20px são dimensões estruturais do componente (não há token de tamanho de avatar no DS),
+ * mesma convenção usada em Button.css para .btn--icon (40px hardcoded).
+ */
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8);
+}
+
+.avatar__image {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.avatar__icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-full);
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+.avatar__icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.avatar__textos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-1-5);
+  min-width: 0;
+}
+
+.avatar__nome {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-foreground);
+  word-break: break-word;
+}
+
+.avatar__info {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-muted-foreground);
+  word-break: break-word;
+}

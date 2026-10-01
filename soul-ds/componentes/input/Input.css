@@ -1,0 +1,136 @@
+/*
+ * Soul DS — Input Component
+ * Estados: default, focus (:focus-within nativo), error (data-state), disabled (:disabled nativo)
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ */
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.input-field__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-foreground);
+}
+
+.input-field__label--oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.input-field__obrigatorio {
+  color: var(--color-error);
+}
+
+.input-field__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  height: 24px;
+  padding: var(--spacing-6) var(--spacing-4);
+  background-color: var(--color-background);
+  border: var(--border-width-1) solid var(--color-muted-foreground);
+  border-radius: var(--radius-2);
+  color: var(--color-foreground);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-field__input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: inherit;
+  outline: none;
+}
+
+.input-field__input::placeholder {
+  color: var(--color-muted-foreground);
+}
+
+.input-field__wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 2.5px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.input-field__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+.input-field__icone svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.input-field__hint {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  color: var(--color-muted-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ERROR STATE
+   ───────────────────────────────────────────────────────────────────────── */
+
+.input-field[data-state='error'] .input-field__label {
+  color: var(--color-error);
+}
+
+.input-field[data-state='error'] .input-field__wrapper {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.input-field[data-state='error'] .input-field__hint {
+  color: var(--color-error);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DISABLED STATE — via :disabled nativo, sem classe/prop dedicada
+   ───────────────────────────────────────────────────────────────────────── */
+
+.input-field:has(.input-field__input:disabled) .input-field__label {
+  color: var(--color-muted-foreground);
+}
+
+.input-field__wrapper:has(.input-field__input:disabled) {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+  color: var(--color-muted-foreground);
+  cursor: not-allowed;
+}
+
+.input-field__input:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input-field__wrapper {
+    transition: none;
+  }
+}

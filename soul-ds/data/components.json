@@ -51,7 +51,7 @@
       "status": "stable",
       "atomic": "atom",
       "figma": { "key": "185b014e9a7c4b0cb2db04d33f67610d98389816", "nodeId": "225:7164", "pagina": "↪ inputs" },
-      "codeConnect": "input.figma.js",
+      "codeConnect": "input.connect.tsx",
       "selector": ".input-field",
       "descricao": "Campo de entrada de texto. Suporta label, placeholder, ícone, hint e validação.",
       "props": {
@@ -75,59 +75,62 @@
       },
       "a11y": { "wcag": ["1.3.1", "3.3.1", "3.3.2", "4.1.2"] },
       "tokenAdoption": { "fills": "48/48", "texto": "24/24", "padding": "8/24" },
-      "pendencias": []
+      "pendencias": [
+        "Estava marcado stable com codeConnect apontando para um arquivo inexistente (input.figma.js) — implementação real criada nesta sessão em soul-ds/componentes/input/",
+        "Sem variante de ícone à esquerda — Figma só modela ícone à direita"
+      ]
     },
 
     "check": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "4a88873f80a8c687dc82882c37118c57485a5b45", "nodeId": "325:272", "pagina": "↪ inputs" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "check.connect.tsx",
+      "selector": ".check",
       "descricao": "Seleção múltipla independente. Cada checkbox opera de forma autônoma.",
       "props": {
-        "selected": { "tipo": "enum", "valores": ["true", "false"] },
-        "size": { "tipo": "enum", "valores": ["sm", "md", "lg"] }
+        "selected": { "tipo": "enum", "valores": ["true", "false"], "nota": "mapeado para o atributo nativo checked/defaultChecked do <input>, não uma prop dedicada" },
+        "size": { "tipo": "enum", "valores": ["sm", "md", "lg"], "css": ".check--{value}" }
       },
       "rules": {
         "must": ["Usar quando o usuário pode selecionar zero, um ou vários itens de uma lista"],
         "mustNot": ["Usar para seleção exclusiva — nesse caso usar radio"]
       },
-      "a11y": { "wcag": ["4.1.2", "2.5.8"], "nota": "usar <input type=\"checkbox\"> nativo + <label> até existir CSS próprio — ver planejados/checkbox no README para o mapeamento" },
+      "a11y": { "wcag": ["4.1.2", "2.5.8"], "nota": "usa <input type=\"checkbox\"> nativo + <label>, conforme recomendado" },
       "tokenAdoption": { "fills": "9/9", "texto": "0/0", "padding": "0/9" },
-      "pendencias": ["Sem implementação CSS/HTML — nenhum consumidor no repositório ainda"]
+      "pendencias": []
     },
 
     "radio": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "9b6ce29f4c27879687545cc5b1a6e41373467d5a", "nodeId": "325:297", "pagina": "↪ inputs" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "radio.connect.tsx",
+      "selector": ".radio",
       "descricao": "Seleção exclusiva dentro de um grupo. Apenas um item pode estar selecionado por vez.",
       "props": {
-        "selected": { "tipo": "enum", "valores": ["true", "false"] },
-        "size": { "tipo": "enum", "valores": ["sm", "md", "lg"] }
+        "selected": { "tipo": "enum", "valores": ["true", "false"], "nota": "mapeado para o atributo nativo checked/defaultChecked do <input>, não uma prop dedicada" },
+        "size": { "tipo": "enum", "valores": ["sm", "md", "lg"], "css": ".radio--{value}" }
       },
       "rules": {
         "must": ["Agrupar sempre dois ou mais radio buttons dentro de <fieldset>"],
         "mustNot": ["Usar um único radio isolado", "Usar para mais de 5 opções — nesse caso preferir select"]
       },
-      "a11y": { "wcag": ["4.1.2", "2.5.8"], "nota": "usar <input type=\"radio\"> + <fieldset> + <legend> nativos até existir CSS próprio" },
+      "a11y": { "wcag": ["4.1.2", "2.5.8"], "nota": "usa <input type=\"radio\"> + <fieldset> + <legend> nativos, conforme recomendado" },
       "tokenAdoption": { "fills": "6/6", "texto": "0/0", "padding": "0/3" },
-      "pendencias": ["Sem implementação CSS/HTML — nenhum consumidor no repositório ainda"]
+      "pendencias": []
     },
 
     "switch": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "fceac3c7dc40876cef33d227b25bd58dfb21ecf2", "nodeId": "355:277", "pagina": "↪ inputs" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "switch.connect.tsx",
+      "selector": ".switch",
       "descricao": "Controle de alternância binária com efeito imediato. Liga/desliga uma configuração sem necessidade de confirmação.",
       "props": {
-        "selected": { "tipo": "enum", "valores": ["true", "false"] },
-        "state": { "tipo": "enum", "valores": ["default", "disabled"] },
+        "selected": { "tipo": "enum", "valores": ["true", "false"], "nota": "mapeado para checked/defaultChecked do componente, não uma prop dedicada" },
+        "state": { "tipo": "enum", "valores": ["default", "disabled"], "css": "[disabled]" },
         "icon": { "tipo": "boolean", "figmaProp": "Icon#355:6" }
       },
       "rules": {
@@ -137,9 +140,9 @@
           "Usar como substituto de checkbox em formulários com botão salvar"
         ]
       },
-      "a11y": { "wcag": ["4.1.2"], "nota": "role=\"switch\" + aria-checked — não documentado no Figma, mas obrigatório na implementação" },
+      "a11y": { "wcag": ["4.1.2"], "nota": "implementado com role=\"switch\" + aria-checked, conforme recomendado" },
       "tokenAdoption": { "fills": "12/12", "texto": "0/0", "padding": "0/20" },
-      "pendencias": ["Sem implementação CSS/HTML — nenhum consumidor no repositório ainda"]
+      "pendencias": []
     },
 
     "input-calendar": {
@@ -166,14 +169,14 @@
     },
 
     "aba": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "adc971279dd03c2039bc3fb7b853fcf0b755ab3b", "nodeId": "219:1146", "pagina": "↪ abas" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "aba.connect.tsx",
+      "selector": ".aba",
       "descricao": "Item individual de navegação por abas. Sempre utilizado dentro de um grupo de abas.",
       "props": {
-        "state": { "tipo": "enum", "valores": ["default", "active"] },
+        "state": { "tipo": "enum", "valores": ["default", "active"], "css": ".aba--{value}" },
         "label": { "tipo": "text", "figmaProp": "Label#225:9" }
       },
       "rules": {
@@ -182,18 +185,18 @@
       },
       "a11y": { "wcag": ["4.1.2"], "nota": "padrão role=\"tablist\" + role=\"tab\" + role=\"tabpanel\" não documentado no Figma, obrigatório na implementação" },
       "tokenAdoption": { "fills": "4/4", "texto": "2/2", "padding": "0/2" },
-      "pendencias": ["Sem implementação CSS/HTML", "Sem estado de foco documentado"]
+      "pendencias": ["Sem estado de foco documentado no Figma", "Sem componente de grupo (tablist com navegação por setas) — apenas o item individual foi implementado"]
     },
 
     "avatar": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "90df29f78847e1f6db0cab15687bb8396eb10d32", "nodeId": "118:155", "pagina": "↪ avatar" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "avatar.connect.tsx",
+      "selector": ".avatar",
       "descricao": "Representação visual do usuário. Exibe foto de perfil ou ícone substituto.",
       "props": {
-        "variant": { "tipo": "enum", "valores": ["image", "icon"] },
+        "variant": { "tipo": "enum", "valores": ["image", "icon"], "css": ".avatar--{value}" },
         "nome": { "tipo": "text", "figmaProp": "Nome#225:0" },
         "info": { "tipo": "text", "figmaProp": "Info#225:3" },
         "textos": { "tipo": "boolean", "figmaProp": "Textos#225:6", "descricao": "exibe nome e info ao lado" }
@@ -204,18 +207,18 @@
       },
       "a11y": { "wcag": ["1.1.1"], "nota": "alt descritivo obrigatório em variant=image" },
       "tokenAdoption": { "fills": "6/7", "texto": "3/4", "padding": "2/4" },
-      "pendencias": ["Sem implementação CSS/HTML"]
+      "pendencias": ["Sem tamanhos alternativos (sm/lg) documentados no Figma"]
     },
 
     "breadcrumb": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "e545b185c70c9c955f5ed9bcc941f4c10e475edd", "nodeId": "225:6538", "pagina": "↪ breadcrumbs" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "breadcrumb.connect.tsx",
+      "selector": ".breadcrumb",
       "descricao": "Item de trilha de navegação hierárquica. Indica a posição do usuário dentro da estrutura do produto.",
       "props": {
-        "state": { "tipo": "enum", "valores": ["default", "active"] },
+        "state": { "tipo": "enum", "valores": ["default", "active"], "css": ".breadcrumb--{value}" },
         "nomePagina": { "tipo": "text", "figmaProp": "Nome página#225:12" }
       },
       "rules": {
@@ -224,18 +227,18 @@
       },
       "a11y": { "wcag": ["4.1.2"], "nota": "envolver em <nav aria-label=\"breadcrumb\"><ol>" },
       "tokenAdoption": { "fills": "4/4", "texto": "2/2", "padding": "0/4" },
-      "pendencias": ["Sem implementação CSS/HTML"]
+      "pendencias": ["Comportamento mobile (colapso com seta de voltar) não modelado — fica a cargo do componente de grupo/trilha, ainda não existente"]
     },
 
     "chips": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "fe85b1daedac49cd71bcd7cf537d914923ca341c", "nodeId": "332:510", "pagina": "↪ chips" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "chips.connect.tsx",
+      "selector": ".chips",
       "descricao": "Marcador compacto de categoria, status ou filtro ativo.",
       "props": {
-        "variant": { "tipo": "enum", "valores": ["default", "success", "warning", "info", "danger"] },
+        "variant": { "tipo": "enum", "valores": ["default", "success", "warning", "info", "danger"], "css": ".chips--{value}" },
         "texto": { "tipo": "text", "figmaProp": "Texto chips#332:12" },
         "iconLeft": { "tipo": "boolean", "figmaProp": "icon left#351:0" },
         "iconRight": { "tipo": "boolean", "figmaProp": "icon right#332:13" }
@@ -246,31 +249,31 @@
       },
       "a11y": { "wcag": ["1.4.1"], "nota": "cor não pode ser o único diferenciador — acompanhar de texto ou ícone" },
       "tokenAdoption": { "fills": "20/20", "texto": "5/5", "padding": "0/15" },
-      "pendencias": ["Sem implementação CSS/HTML"]
+      "pendencias": ["Figma não define ação de remoção explícita para os ícones left/right — onIconLeftClick/onIconRightClick adicionados para cobrir o caso óbvio (chip removível) sem forçar interatividade"]
     },
 
     "dots": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "eb0e9a3a7544eb01a111d6473c206056c2d7313c", "nodeId": "337:717", "pagina": "↪ paginação" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "dots.connect.tsx",
+      "selector": ".dots",
       "descricao": "Indicador de paginação por pontos. Representa a posição atual em um conjunto de páginas ou slides.",
-      "props": { "state": { "tipo": "enum", "valores": ["default", "active"] } },
+      "props": { "state": { "tipo": "enum", "valores": ["default", "active"], "css": ".dots--{value}" } },
       "rules": {
         "must": ["Usar em carrosséis, wizards e paginações com até 10 itens"],
         "mustNot": ["Usar acima de 10 páginas — preferir paginação numérica (componente pagination)"]
       },
       "a11y": { "wcag": [] },
       "tokenAdoption": { "fills": "2/2", "texto": "0/0", "padding": "0/2" },
-      "pendencias": ["Sem implementação CSS/HTML", "Consumido como slot pelo componente pagination — não é standalone"]
+      "pendencias": ["Normalmente consumido via o slot do componente pagination — não é standalone"]
     },
 
     "pagination": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "molecule",
       "figma": { "key": "d06dec5da9dad9763d4f0b82137cb2ba85572ad6", "nodeId": "338:755", "pagina": "↪ paginação" },
-      "codeConnect": null,
+      "codeConnect": "pagination.connect.tsx",
       "selector": ".pagination",
       "descricao": "Navegação entre páginas de uma listagem ou tabela.",
       "props": {
@@ -286,7 +289,11 @@
       },
       "a11y": { "wcag": ["2.4.7", "4.1.2"], "nota": "<nav aria-label=\"Paginação\">, aria-current=\"page\" no item ativo" },
       "tokenAdoption": { "fills": "5/5", "texto": "2/2", "padding": "0/5" },
-      "pendencias": ["Existe CSS (.pagination) em soul-ds-examples.html mas sem Code Connect e sem consumir o slot dots explicitamente"]
+      "pendencias": [
+        "\"Sempre exibir o total (1–20 de N resultados)\" não implementado — o Figma não modela esse slot de texto",
+        "Paginação numérica (acima de 10 páginas) não existe neste design system — dots não deve ser usado acima desse limite",
+        "O CSS legado (.pagination) em soul-ds-examples.html é um padrão numérico diferente, não alinhado a este contrato — não reaproveitado"
+      ]
     },
 
     "celulas": {
@@ -328,14 +335,14 @@
     },
 
     "historico": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "molecule",
       "figma": { "key": "17b92f888a82d9411f8d46e0d2a65d44ccb5b60a", "nodeId": "366:213", "pagina": "↪ historico" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "historico.connect.tsx",
+      "selector": ".historico",
       "descricao": "Linha de histórico ou timeline de eventos. Exibe registros ordenados cronologicamente.",
       "props": {
-        "variant": { "tipo": "enum", "valores": ["top", "base"], "nota": "top = primeiro/intermediário com linha conectora; base = último item, fecha a timeline" },
+        "variant": { "tipo": "enum", "valores": ["top", "base"], "nota": "top = primeiro/intermediário; base = último item, fecha a timeline. O Figma descreve 'linha conectora' para top, mas o node não a modela visualmente — ambos usam a mesma borda inferior simples", "css": ".historico--{value}" },
         "label": { "tipo": "text" },
         "labelBase": { "tipo": "text", "figmaProp": "Label base#366:18" },
         "textoBase": { "tipo": "text", "figmaProp": "Texto base#366:21" },
@@ -352,19 +359,19 @@
       },
       "a11y": { "wcag": [] },
       "tokenAdoption": { "fills": "8/8", "texto": "3/3", "padding": "0/5" },
-      "pendencias": ["Sem implementação CSS/HTML"]
+      "pendencias": ["Sem componente de grupo que force a regra 'sempre terminar com base' automaticamente — fica a cargo do consumidor"]
     },
 
     "digito": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
       "figma": { "key": "4149e70c84389f1933fac878573fa4995140515c", "nodeId": "288:8433", "pagina": "↪ calendario" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "digito.connect.tsx",
+      "selector": ".digito",
       "descricao": "Célula interna do calendário. Representa um dia, mês ou ano selecionável.",
       "props": {
-        "variant": { "tipo": "enum", "valores": ["digit", "text"], "nota": "digit = número; text = abreviação de mês (ex: JAN)" },
-        "state": { "tipo": "enum", "valores": ["default", "hover", "active", "disabled"] },
+        "variant": { "tipo": "enum", "valores": ["digit", "text"], "nota": "digit = número; text = abreviação de mês (ex: JAN)", "css": ".digito--{value}" },
+        "state": { "tipo": "enum", "valores": ["default", "hover", "active", "disabled"], "css": ".digito--{value}" },
         "weight": { "tipo": "enum", "valores": ["bold", "normal"], "nota": "bold = dias do mês exibido; normal = dias de preenchimento dos extremos" }
       },
       "rules": {
@@ -373,32 +380,32 @@
       },
       "a11y": { "wcag": ["2.5.8"] },
       "tokenAdoption": { "fills": "24/24", "texto": "12/12", "padding": "0/0" },
-      "pendencias": ["Interno — não expor como componente selecionável em UI de composição"]
+      "pendencias": ["Figma não diferencia visualmente default/disabled (mesma cor nos 12 nodes inspecionados) — implementação bloqueia interação real sem inventar cor"]
     },
 
     "calendario": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "organism",
       "figma": { "key": "52615fd4f43fafb9c8111ec469a75b4405b71175", "nodeId": "288:8700", "pagina": "↪ calendario" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "calendario.connect.tsx",
+      "selector": ".calendario",
       "descricao": "Seletor de data com navegação entre visualizações de dia, mês e ano.",
-      "props": { "view": { "tipo": "enum", "valores": ["day", "month", "year"] } },
+      "props": { "view": { "tipo": "enum", "valores": ["day", "month", "year"], "css": null } },
       "rules": {
         "must": ["Iniciar sempre em view=day para seleção de data única", "Combinar com o componente input para exibir a data selecionada"],
         "mustNot": []
       },
       "a11y": { "wcag": ["2.1.1"], "nota": "navegação por teclado entre dias (setas) não documentada no Figma, obrigatória na implementação" },
       "tokenAdoption": { "fills": "164/164", "texto": "76/76", "padding": "0/12" },
-      "pendencias": ["Sem implementação CSS/HTML", "Composto por digito internamente — implementar digito primeiro"]
+      "pendencias": ["Navegação por teclado com setas entre dias não implementada (só Tab/Enter/Espaço nativos)", "Sem locale configurável — pt-BR fixo"]
     },
 
     "dialog": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "organism",
       "figma": { "key": "2aee6ec232b417fd375d9ad7e2dc3f64a7ca498e", "nodeId": "561:5433", "pagina": "↪ dialog" },
-      "codeConnect": null,
-      "selector": null,
+      "codeConnect": "dialog.connect.tsx",
+      "selector": ".dialog",
       "descricao": "Janela modal para confirmações, formulários curtos ou detalhamento de um item sem sair do contexto atual.",
       "props": {
         "titulo": { "tipo": "text", "figmaProp": "Titulo#562:4" },
@@ -411,24 +418,30 @@
       },
       "a11y": { "wcag": ["2.1.2", "2.4.3"], "nota": "usar <dialog> nativo com showModal() para focus trap automático — ver planejados/modal" },
       "tokenAdoption": { "fills": "6/7", "texto": "3/3", "padding": "2/6" },
-      "pendencias": ["Sem implementação CSS/HTML", "Sem variante de confirmação destrutiva documentada — achado crítico da Fase 0 (Nielsen #3, controle e liberdade)"]
+      "pendencias": ["Sem variante de confirmação destrutiva documentada — achado crítico da Fase 0 (Nielsen #3, controle e liberdade)", "Sem suporte a tamanhos (sm/lg) — largura mínima 450px fixa, replicando o único exemplo do Figma"]
     },
 
     "tooltip": {
-      "status": "designed",
+      "status": "stable",
       "atomic": "atom",
-      "figma": { "key": "6cfe6206b075637f78007c4644bc0ba32bc4b4e9", "nodeId": "581:90", "pagina": "↪ tooltip" },
-      "codeConnect": null,
-      "selector": null,
+      "figma": { "key": "6cfe6206b075637f78007c4644bc0ba32bc4b4e9", "nodeId": "817:3179", "pagina": "↪ tooltip" },
+      "codeConnect": "tooltip.connect.tsx",
+      "selector": ".tooltip",
       "descricao": "Texto de apoio contextual exibido ao passar o mouse ou focar um elemento.",
-      "props": { "texto": { "tipo": "text", "figmaProp": "Texto#581:0" } },
+      "props": {
+        "texto": { "tipo": "text", "figmaProp": "Texto" },
+        "arrowPosition": { "tipo": "enum", "valores": ["bottom-left", "bottom", "bottom-right", "top-left", "top", "top-right", "right-top", "right", "right-bottom", "left-top", "left", "left-bottom"], "nota": "12 combinações (4 bordas × 3 alinhamentos), nomenclatura 1:1 com o Figma" }
+      },
       "rules": {
         "must": ["Manter o texto curto, idealmente uma linha"],
         "mustNot": ["Usar para conteúdo essencial à tarefa — nem todo input (touch/teclado) aciona hover"]
       },
       "a11y": { "wcag": ["1.4.13"], "nota": "role=\"tooltip\" + aria-describedby, dispensável/persistente/hoverable" },
       "tokenAdoption": { "fills": "2/2", "texto": "1/1", "padding": "0/1" },
-      "pendencias": ["Sem implementação CSS/HTML"]
+      "pendencias": [
+        "nodeId antigo (581:90) não existia mais no Figma ao implementar — atualizado para 817:3179 (frame com as 12 variantes de arrowPosition)",
+        "Sem posicionamento automático (flip) quando o tooltip estouraria a viewport"
+      ]
     },
 
     "alert": {
@@ -560,9 +573,9 @@
 
   "totais": {
     "componentesReais": 24,
-    "porStatus": { "stable": 2, "designed": 16, "codeOnly": 5, "beta": 1 },
+    "porStatus": { "stable": 16, "designed": 2, "codeOnly": 5, "beta": 1 },
     "planejados": 5,
-    "comCodeConnect": 2,
-    "semImplementacaoCss": 15
+    "comCodeConnect": 16,
+    "semImplementacaoCss": 2
   }
 }

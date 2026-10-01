@@ -1,0 +1,70 @@
+/*
+ * Soul DS — Breadcrumb Component
+ * Estados: default (página pai, clicável), active (página atual, não clicável)
+ * Tokens: dist/soul-ds.css (gerado via `npm run build`) — nenhuma cor/espaçamento hardcoded aqui.
+ * Hover não tem token semântico dedicado no DS — usa filter() sobre a cor base,
+ * mesma convenção de Button.css.
+ */
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-12) var(--spacing-8);
+  list-style: none;
+}
+
+.breadcrumb__label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-primary);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+a.breadcrumb__label,
+button.breadcrumb__label {
+  cursor: pointer;
+}
+
+button.breadcrumb__label {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+a.breadcrumb__label:hover,
+button.breadcrumb__label:hover {
+  filter: brightness(0.9);
+  text-decoration: underline;
+}
+
+a.breadcrumb__label:focus-visible,
+button.breadcrumb__label:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-2);
+}
+
+.breadcrumb--active .breadcrumb__label {
+  font-weight: var(--font-weight-semibold);
+  cursor: default;
+}
+
+.breadcrumb__separador {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: block;
+  color: var(--color-primary);
+}
+
+@media (prefers-contrast: more) {
+  a.breadcrumb__label:focus-visible,
+  button.breadcrumb__label:focus-visible {
+    outline-width: 3px;
+  }
+}
