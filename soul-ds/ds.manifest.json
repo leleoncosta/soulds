@@ -6,8 +6,7 @@
   "responsavel": "Renato Espinhara",
   "figma": {
     "fileKey": "N905bwbVakikHDGQzo5aKC",
-    "url": "https://www.figma.com/design/N905bwbVakikHDGQzo5aKC/Soul-DS---2026",
-    "libraryKey": "lk-956a6be75e5fa0f728d632ca737e93948862dcad3077cedd44c1ea6c91d8e672070b7f17370275953334f54d9ce646c374ad0107fc1466eae5678f9d8dbb9b23"
+    "url": "https://www.figma.com/design/N905bwbVakikHDGQzo5aKC/Soul-DS---2026"
   },
   "artefatos": {
     "data/icons.json": {
@@ -24,9 +23,9 @@
     "dist/icons/": {
       "gerado": true,
       "por": "scripts/sync-icons.mjs",
-      "svgsPresentes": 53,
-      "svgsEsperados": 739,
-      "estado": "PARCIAL — 53/739 (7%). Exportados via Figma MCP ao vivo nesta sessão, cobrindo as baterias de teste da Fase 1. Restante requer sync-icons.mjs com FIGMA_TOKEN via REST API."
+      "svgsPresentes": 738,
+      "svgsEsperados": 738,
+      "estado": "COMPLETO — 738/738 (100%). sync-icons.mjs rodado com FIGMA_TOKEN em 2026-10-01, após remoção do component set 'ambiente' duplicado (ICO-1). 0 falhas."
     },
     "data/components.json": {
       "gerado": false,
@@ -113,7 +112,8 @@
       "id": "ICO-1",
       "item": "2 component sets chamados `ambiente` em mv-basico/sistema",
       "acao": "renomear ou deprecar um dos dois no Figma",
-      "severidade": "media"
+      "severidade": "media",
+      "status": "resolvido em 2026-10-01 — os dois eram duplicatas pixel-idênticas (mesmo vectorPaths); o nó órfão 243:7427 (sem nenhuma instância em uso nas 27 páginas do arquivo) foi removido do Figma. Sobrou apenas 306:3."
     },
     {
       "id": "ICO-2",
@@ -137,7 +137,8 @@
       "id": "ICO-5",
       "item": "SVGs exportados apenas para o lote-semente (8 de 739)",
       "acao": "rodar scripts/sync-icons.mjs com FIGMA_TOKEN",
-      "severidade": "alta"
+      "severidade": "alta",
+      "status": "resolvido em 2026-10-01 — 738/739 exportados; 1 arquivo restante depende de ICO-1 (colisão de nome 'ambiente')"
     },
     {
       "id": "CMP-1",
@@ -334,5 +335,12 @@
         "recomendacao": "para Phase 3+: substituir a soma ponderada por IDF por BM25 com normalização de cobertura de termos, ou aceitar como limitação documentada de um resolvedor lexical leve — nenhum dos 3 casos é clinicamente sensível (não envolvem dosagem, alergia ou identificação de paciente, que testaram corretos)."
       }
     }
+  },
+  "sincronizadoEm": "2026-10-01T14:32:28.862Z",
+  "icones": {
+    "total": 738,
+    "svgsExportados": 738,
+    "falhas": [],
+    "hashIconsJson": "sha256:bafab5cbec350d7f31086a7f9036cf117892102e6d405198bb453d6259976a2a"
   }
 }
