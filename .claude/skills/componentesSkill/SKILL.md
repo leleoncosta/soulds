@@ -146,6 +146,47 @@ No `README.md` do componente, inclua pelo menos:
   palavras diferentes — copie, para não divergir)
 - Pendências conhecidas (ex.: estado que o Figma não cobre)
 
+## 8. Depois que o componente passa na validação: sincronize os artefatos
+
+Criar o componente não termina no `build-storybook` verde. O componente passou
+de `designed`/`codeOnly` para `stable` — isso deixa `components.json` e os
+documentos derivados dele desatualizados até você corrigir:
+
+1. **`soul-ds/data/components.json`**
+   - Atualize `status` do componente para `"stable"`.
+   - Preencha `codeConnect` (ex.: `"aba.connect.tsx"`) e `selector` (ex.: `".aba"`).
+   - Revise `pendencias` — remova o que foi resolvido, troque por pendências
+     reais que sobraram (ex.: "sem componente de grupo/tablist").
+   - Atualize `totais.porStatus` (`stable` +1, `designed`/`codeOnly` -1 conforme
+     o caso), `totais.comCodeConnect` (+1) e `totais.semImplementacaoCss` (-1).
+   - Rode `npm run verify:components` — tem que terminar em
+     `✓ contrato íntegro`, sem `✗ erro`. Se algum total bater errado, o script
+     aponta exatamente qual.
+
+2. **`soul-ds/references/components.md`** — se esse arquivo citar contagem de
+   componentes `stable`/`designed` (ex.: "Os 4 componentes com código") ou
+   listar nomes de componentes por status, atualize contagem e listas para
+   refletir o componente que acabou de mudar de status.
+
+3. **`soul-ds/project-root/SKILL.md`** e **`soul-ds/project-root/icons.md`** —
+   abra os dois e procure por contagens ou listas que o seu componente tornou
+   desatualizadas (ex.: totais de componentes reais, menção a ícones novos que
+   você resolveu via `find-icon.mjs` para este componente). Se nada mudou
+   nesses dois arquivos especificamente, não edite — não invente mudança para
+   marcar a caixa.
+
+4. **Espelhar para SoulMV** — se existir um diretório irmão `SoulMV` ao lado de
+   `SoulDS` (ex.: `Documents/soulds/SoulMV`), espelhe `soul-ds/` inteiro com
+   robocopy (PowerShell), excluindo artefatos gerados:
+
+   ```powershell
+   robocopy "<caminho>\SoulDS\soul-ds" "<caminho>\SoulMV\soul-ds" /MIR /XD node_modules storybook-static dist /NFL /NDL /NJH
+   ```
+
+   `EXITCODE: 1` é sucesso (arquivos copiados, sem falha) — só investigue se o
+   código for diferente de 0 ou 1. Se o diretório `SoulMV` não existir, pule
+   este passo — não crie a pasta.
+
 ## Checklist resumido
 
 - [ ] Consultei `components.json` para status e contrato antes de começar
@@ -158,3 +199,7 @@ No `README.md` do componente, inclua pelo menos:
 - [ ] `npm run build-storybook` builda sem erro
 - [ ] aria-label em elementos sem rótulo visível, `:focus-visible` em todo estado interativo
 - [ ] README do componente documenta rules must/mustNot do contrato
+- [ ] `components.json` atualizado (status, codeConnect, selector, pendencias, totais) e `verify:components` passa
+- [ ] `references/components.md` revisado — contagens/listas de status corrigidas se citava o componente
+- [ ] `project-root/SKILL.md` e `project-root/icons.md` revisados — só editados se de fato ficaram desatualizados
+- [ ] Mirror para SoulMV via robocopy rodado, se o diretório existir

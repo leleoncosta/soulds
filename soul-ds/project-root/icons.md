@@ -18,13 +18,13 @@
 | Coleção | Ícones | Quando usar |
 |---|---|---|
 | `mv-hosp` | 250 | Contexto clínico — prescrição, prontuário, leito, triagem |
-| `mv-basico` | 489 | UI genérica — salvar, editar, filtro, setas |
+| `mv-basico` | 488 | UI genérica — salvar, editar, filtro, setas |
 
 **Nunca escolha um ícone de memória e nunca gere SVG à mão.** Resolva
 sempre por `find-icon.mjs` — ele existe exatamente para substituir a leitura
-desta lista, com busca ponderada em vez de escaneamento visual de 739 linhas.
+desta lista, com busca ponderada em vez de escaneamento visual de 738 linhas.
 
 Estado da exportação de SVG: ver `soul-ds/ds.manifest.json → artefatos →
-"dist/icons/"`. Nem todo ícone indexado tem arquivo em disco ainda — se
+"dist/icons/"` (738/738, 100% — ver `ICO-5` resolvido em 2026-10-01). Se
 `find-icon.mjs` apontar um caminho que não existe, isso é uma lacuna a
 sinalizar, não uma licença para desenhar o SVG.

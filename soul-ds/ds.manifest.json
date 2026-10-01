@@ -138,7 +138,21 @@
       "item": "SVGs exportados apenas para o lote-semente (8 de 739)",
       "acao": "rodar scripts/sync-icons.mjs com FIGMA_TOKEN",
       "severidade": "alta",
-      "status": "resolvido em 2026-10-01 — 738/739 exportados; 1 arquivo restante depende de ICO-1 (colisão de nome 'ambiente')"
+      "status": "resolvido em 2026-10-01 — 738/738 exportados (100%) após ICO-1 também resolvido (colisão de nome 'ambiente' eliminada)"
+    },
+    {
+      "id": "DOC-1",
+      "item": "Páginas Figma Cover e Changelog com contagem de ícones desatualizada (739), Cover com bloco de anotação duplicado (nós 791:* idênticos a 792:*) e sem entrada no índice para a página '11 - skill & ai guide'",
+      "acao": "corrigir contagem para 738, remover duplicata, adicionar entrada de índice e nova entrada de changelog v1.0.8",
+      "severidade": "media",
+      "status": "resolvido em 2026-10-01 — ver changelog v1.0.8 no Figma"
+    },
+    {
+      "id": "DOC-2",
+      "item": "Página '11 - skill & ai guide' não tinha instrução de clone do repositório — só listava a estrutura de pastas esperada, sem o passo 0 (git clone)",
+      "acao": "adicionar bloco '0. Clone o repositório' com git clone https://github.com/leleoncosta/soulds.git",
+      "severidade": "baixa",
+      "status": "resolvido em 2026-10-01 — ver seção Instalação no Figma"
     },
     {
       "id": "CMP-1",

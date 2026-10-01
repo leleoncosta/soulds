@@ -70,10 +70,10 @@ token, uma lista de ícone ou uma prop de componente escrita nesta prosa,
 - **`project-root/soul-ds-examples.html`** é a versão totalmente
   remediada do exemplo — `validate.mjs` dá zero erros nela (era 28 no
   início da Fase 3). Mesma ressalva: precisa ser copiada para valer.
-- **739 ícones indexados, 68 com SVG real em disco (9%).** Cobertura
-  ampliada nesta sessão via Figma MCP — o restante precisa de
-  `node soul-ds/scripts/sync-icons.mjs` (requer `FIGMA_TOKEN` e rede,
-  nunca executado como GitHub Action de verdade ainda, ver `CI-2`). Se
+- **738 ícones indexados, 738 com SVG real em disco (100%).** `ICO-5`
+  resolvido em 2026-10-01: `node soul-ds/scripts/sync-icons.mjs` rodado
+  com `FIGMA_TOKEN`, 0 falhas. Ainda não executado como GitHub Action de
+  verdade (ver `CI-2`) — rodar manualmente sempre que o Figma mudar. Se
   `find-icon.mjs` apontar um ícone sem arquivo em `dist/icons/`, isso é
   uma lacuna a sinalizar — nunca gere o SVG à mão.
 - **5 componentes reais sem respaldo no Figma** (`alert`, `card`, `table`,
