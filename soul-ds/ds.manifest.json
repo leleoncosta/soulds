@@ -298,6 +298,13 @@
       "item": "15 dos 24 componentes reconfirmados sem drift contra o Figma nesta fase (os 9 sem prop enum — pagination, cell-slot, dialog, tooltip, alert, card, table, sidebar, badge — não foram re-checados, não têm variantOptions para comparar)",
       "acao": "check-components-drift.mjs cobre esses 9 também via nome/descrição quando rodar de verdade",
       "severidade": "baixa"
+    },
+    {
+      "id": "CI-4",
+      "item": "Auditoria de Code Connect (2026-10-01): dos 16 componentes stable, só Button estava de fato publicado no Figma (confirmado via get_code_connect_map) — os outros 15 têm .connect.tsx local íntegro mas nunca foram publicados. Além disso, Button.connect.tsx tinha 2 bugs reais que impediriam republicação: (1) `figma.enum(..., {...} as const)` quebra o parser estático (a anotação `as const` recomendada pela componentesSkill para literais simples não deve ser usada dentro do 2º argumento de figma.enum); (2) `disabled: false`/`true` como literal boolean cru dentro de `props` também quebra o parser ao expandir `{...props}` no `example` — precisa de `as const` no literal. Ambos corrigidos. figma.config.json também tinha o `include` glob cobrindo só `*.connect.tsx`, nunca os `.tsx` dos componentes reais, causando aviso 'Import ... could not be resolved' em 100% dos arquivos (glob corrigido para incluir `componentes/**/*.tsx`). `npx figma connect publish --dry-run` agora roda limpo (0 erros, 80 nós mapeados) para todos os 16 componentes.",
+      "acao": "rodar `npm run figma:publish` com um FIGMA_ACCESS_TOKEN válido (não disponível neste ambiente) para publicar de fato os 15 componentes pendentes — sem isso, o painel de Code Connect no Figma só mostra o Button quando um designer seleciona qualquer um dos outros 15 componentes",
+      "severidade": "alta",
+      "status": "parcialmente-resolvida"
     }
   ],
   "validacao": {

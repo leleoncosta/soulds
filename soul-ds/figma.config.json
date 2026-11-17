@@ -1,6 +1,6 @@
 {
   "codeConnect": {
     "parser": "react",
-    "include": ["componentes/**/*.connect.tsx"]
+    "include": ["componentes/**/*.connect.tsx", "componentes/**/*.tsx"]
   }
 }

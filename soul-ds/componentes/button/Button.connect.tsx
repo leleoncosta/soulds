@@ -23,7 +23,7 @@ figma.connect(
         link: 'link',
         toggle: 'toggle',
         icon: 'icon',
-      } as const),
+      }),
       label: figma.string('Label'),
       iconLeft: figma.boolean('icon left'),
       iconRight: figma.boolean('icon right'),
@@ -32,7 +32,7 @@ figma.connect(
         hover: false,
         active: false,
         disabled: true,
-      } as const),
+      }),
     },
     example: (props) => <Button {...props} />,
   }
@@ -49,7 +49,7 @@ figma.connect(
       variant: 'primary' as const,
       label: figma.string('Label'),
       state: 'hover' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -66,7 +66,7 @@ figma.connect(
       variant: 'primary' as const,
       label: figma.string('Label'),
       state: 'disabled' as const,
-      disabled: true,
+      disabled: true as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -83,7 +83,7 @@ figma.connect(
       variant: 'outline' as const,
       label: figma.string('Label'),
       state: 'default' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -100,7 +100,7 @@ figma.connect(
       variant: 'outline' as const,
       label: figma.string('Label'),
       state: 'hover' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -117,7 +117,7 @@ figma.connect(
       variant: 'outline' as const,
       label: figma.string('Label'),
       state: 'disabled' as const,
-      disabled: true,
+      disabled: true as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -134,7 +134,7 @@ figma.connect(
       variant: 'link' as const,
       label: figma.string('Label'),
       state: 'default' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -151,7 +151,7 @@ figma.connect(
       variant: 'link' as const,
       label: figma.string('Label'),
       state: 'hover' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -168,7 +168,7 @@ figma.connect(
       variant: 'link' as const,
       label: figma.string('Label'),
       state: 'disabled' as const,
-      disabled: true,
+      disabled: true as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -185,7 +185,7 @@ figma.connect(
       variant: 'toggle' as const,
       label: figma.string('Label'),
       state: 'active' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -202,7 +202,7 @@ figma.connect(
       variant: 'toggle' as const,
       label: figma.string('Label'),
       state: 'hover' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -219,7 +219,7 @@ figma.connect(
       variant: 'toggle' as const,
       label: figma.string('Label'),
       state: 'disabled' as const,
-      disabled: true,
+      disabled: true as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -236,7 +236,7 @@ figma.connect(
       variant: 'toggle' as const,
       label: figma.string('Label'),
       state: 'default' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -253,7 +253,7 @@ figma.connect(
       variant: 'icon' as const,
       label: figma.string('Label'),
       state: 'default' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -270,7 +270,7 @@ figma.connect(
       variant: 'icon' as const,
       label: figma.string('Label'),
       state: 'hover' as const,
-      disabled: false,
+      disabled: false as const,
     },
     example: (props) => <Button {...props} />,
   }
@@ -287,7 +287,7 @@ figma.connect(
       variant: 'icon' as const,
       label: figma.string('Label'),
       state: 'disabled' as const,
-      disabled: true,
+      disabled: true as const,
     },
     example: (props) => <Button {...props} />,
   }
